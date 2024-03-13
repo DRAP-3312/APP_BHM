@@ -1,5 +1,4 @@
-
-import 'package:bhm_app/tarjetaCredito.dart';
+import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
 import 'package:flutter/material.dart';
 
 
@@ -11,8 +10,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const Btn(),
+    return const MaterialApp(
+      home: Btn(),
     );
   }
 }
@@ -23,18 +22,9 @@ class Btn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('PRINCIPAL'),
+      appBar: AppBar( 
       ),
-      body: Center(
-        child: Container(
-          child: ElevatedButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> const TarjetaCredito()));
-            }, 
-            child: const Text('Ver Tarjeta')),
-        ),
-      ),
+      body:   Center(child:  SizedBox( width: MediaQuery.of(context).size.width * 0.8, child: const LoginPage()))
     );
   }
 }
