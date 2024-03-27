@@ -1,4 +1,6 @@
 import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
+import 'package:bhm_app/Core/presentation/screens/Services.dart';
+//import 'package:bhm_app/service/notification.service.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -135,7 +137,10 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 32, vertical: 12),
                   ),
-                  child: const Text('Cerrar Sesion', style: TextStyle(fontSize: 15),)),
+                  child: const Text(
+                    'Cerrar Sesion',
+                    style: TextStyle(fontSize: 15),
+                  )),
             ],
           ),
         ),
@@ -167,6 +172,15 @@ class _HomePageState extends State<HomePage> {
               ),
               label: 'Cofig'),
         ],
+      ),
+      body: Center(
+        child: ElevatedButton(
+            onPressed: () {
+              // mostrarNotificacion();
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const Services()));
+            },
+            child: const Text('Ver noti')),
       ),
     );
   }

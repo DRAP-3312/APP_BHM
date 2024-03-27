@@ -60,14 +60,14 @@ class _LoginState extends State<Login> {
             const Text('Matener Sesion'),
           ],
         ),
-        const SizedBox(height: 15,),
+        const SizedBox(
+          height: 15,
+        ),
         ElevatedButton(
           onPressed: () {
             auth();
-            // Navigator.push(
-            //             context,
-            //             MaterialPageRoute(
-            //                 builder: (context) => const HomePage()));
+            // Navigator.pushReplacement(context,
+            //     MaterialPageRoute(builder: (context) => const HomePage()));
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF16697A),

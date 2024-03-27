@@ -1,8 +1,13 @@
 import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
+import 'package:bhm_app/service/notification.service.dart';
 import 'package:flutter/material.dart';
 
 
-void main(){runApp(const MyApp());}
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await initNotification();
+  runApp(const MyApp());
+  }
 
 
 class MyApp extends StatelessWidget {
