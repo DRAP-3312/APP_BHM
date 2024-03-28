@@ -1,3 +1,4 @@
+import 'package:bhm_app/Core/presentation/screens/HomePage.dart';
 import 'package:bhm_app/Core/presentation/widgets/servicios/inversiones_ahorros.dart';
 import 'package:bhm_app/Core/presentation/widgets/servicios/pagoServicio.dart';
 import 'package:bhm_app/Core/presentation/widgets/servicios/seguros.dart';
@@ -11,11 +12,36 @@ class Services extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Icon(Icons.arrow_back),
-            const Text('Servicios', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),),
-            Container()
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomePage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  elevation: 0,
+                ),
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Color(0xff16697A),
+                )),
+            Container(),
+            const Text(
+              'Servicios',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                  color: Color(0xff16697A)),
+            ),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
           ],
         ),
       ),
@@ -27,7 +53,7 @@ class Services extends StatelessWidget {
             //mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               // SizedBox(
-                
+
               //   child: Image.asset('assets/images/Servicio.avif', fit: BoxFit.fill)
               // ),
               secciones('Pago de servicio', pagoServicio()),
@@ -46,7 +72,11 @@ Widget secciones(String title, Widget seccion) {
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
-       Text(' $title', style: const TextStyle(color: Color(0xff78A1BB), fontSize: 18, fontWeight: FontWeight.w300)),
+      Text(' $title',
+          style: const TextStyle(
+              color: Color(0xff78A1BB),
+              fontSize: 18,
+              fontWeight: FontWeight.w300)),
       const SizedBox(
         height: 5,
       ),

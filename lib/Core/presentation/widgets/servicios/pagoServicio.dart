@@ -6,14 +6,15 @@ Widget pagoServicio() {
     'Electricidad',
     'Telefono',
     'Internet',
+    'Streaming'
   ];
 
   List<IconData> iconos = [
-    Icons.water,
+    Icons.water_drop,
     Icons.bolt,
     Icons.smartphone,
     Icons.wifi,
-  
+    Icons.smart_display
   ];
 
   return Container(
