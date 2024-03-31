@@ -49,7 +49,7 @@ Widget opcionesServicio(List<String> targets, List<IconData> iconos) {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(iconos[index], size: 24.0, color: const Color(0xffFF6347),),
+              Icon(iconos[index], size: 24.0, color: const Color(0xff16697A),),
               const SizedBox(width: 10),
               Text(targets[index], style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w200),),
             ],
