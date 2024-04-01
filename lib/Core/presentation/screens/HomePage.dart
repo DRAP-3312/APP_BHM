@@ -1,12 +1,10 @@
-import 'package:bhm_app/Core/presentation/screens/ListaTarjetas.dart';
+import 'package:bhm_app/Core/presentation/screens/DashBoard.dart';
 import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
-//import 'package:bhm_app/Core/presentation/screens/PerfilPage.dart';
+import 'package:bhm_app/Core/presentation/screens/PerfilPage.dart';
 import 'package:bhm_app/Core/presentation/screens/Services.dart';
-import 'package:bhm_app/Core/presentation/widgets/home-view/noticias.dart';
-import 'package:bhm_app/Core/presentation/widgets/home-view/otros-servicios.dart';
-// import 'package:bhm_app/Core/presentation/screens/Services.dart';
 //import 'package:bhm_app/service/notification.service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,10 +14,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+  List<String> lista1 = ['Transacciones', 'Opcion 1', 'Opcion 2', 'Opcion 3'];
+  List<String> lista2 = ['Servicios', 'Serv 1', 'Serv 2', 'Serv 3'];
+  final List<Widget> _pages = const [DashBoard(), PerfilPage(), Services()];
   @override
   Widget build(BuildContext context) {
-    List<String> Lista1 = ['Transacciones', 'Opcion 1', 'Opcion 2', 'Opcion 3'];
-    List<String> Lista2 = ['Servicios', 'Serv 1', 'Serv 2', 'Serv 3'];
     return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(
@@ -95,19 +95,19 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: ExpansionTile(
                         backgroundColor: Theme.of(context).canvasColor,
-                        title: Text(Lista1[0]),
+                        title: Text(lista1[0]),
                         children: <Widget>[
                           // const Divider(color: Colors.white),
                           ListTile(
-                            title: Text(Lista1[1]),
+                            title: Text(lista1[1]),
                             onTap: () {},
                           ),
                           ListTile(
-                            title: Text(Lista1[2]),
+                            title: Text(lista1[2]),
                             onTap: () {},
                           ),
                           ListTile(
-                            title: Text(Lista1[3]),
+                            title: Text(lista1[3]),
                             onTap: () {},
                           ),
                         ],
@@ -120,19 +120,19 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: ExpansionTile(
                         backgroundColor: Theme.of(context).canvasColor,
-                        title: Text(Lista2[0]),
+                        title: Text(lista2[0]),
                         children: <Widget>[
                           //const Divider(color: Colors.white),
                           ListTile(
-                            title: Text(Lista2[1]),
+                            title: Text(lista2[1]),
                             onTap: () {},
                           ),
                           ListTile(
-                            title: Text(Lista2[2]),
+                            title: Text(lista2[2]),
                             onTap: () {},
                           ),
                           ListTile(
-                            title: Text(Lista2[3]),
+                            title: Text(lista2[3]),
                             onTap: () {},
                           ),
                         ],
@@ -164,7 +164,18 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        body: _pages[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (int index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          //fixedColor: const Color(0xffFF6347),
+          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+          //unselectedItemColor: Colors.black,
+          selectedItemColor: const Color(0xffFF6347),
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
@@ -172,13 +183,8 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xFF16697A),
               ),
               label: 'Home',
+              
             ),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.credit_card,
-                  color: Color(0xFF16697A),
-                ),
-                label: 'Credit card'),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.person,
@@ -190,132 +196,7 @@ class _HomePageState extends State<HomePage> {
                   Icons.settings,
                   color: Color(0xFF16697A),
                 ),
-                label: 'Cofig'),
-          ],
-          // onTap: (int index) {
-          //   // Acción según el índice del elemento seleccionado
-          //   if (index == 0) {
-          //     Navigator.pushReplacement(context,
-          //         MaterialPageRoute(builder: (context) => const HomePage()));
-          //   } else if (index == 2) {
-          //     Navigator.push(context,
-          //         MaterialPageRoute(builder: (context) => const PerfilPage()));
-          //   }
-          //   // Agrega más condiciones según la cantidad de elementos en tu BottomNavigationBarItem
-          // },
-        ),
-        body: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                color: Color(0xff16697A),
-              ),
-              child: const Column(
-                children: [
-                  SizedBox(height: 10),
-                  ListTile(
-                    title: Text('Buenos días',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold)),
-                    subtitle: Text('Yoshua Raymundo Moreno Arendondo',
-                        style: TextStyle(
-                          color: Color(0xffEDE7E3),
-                          fontSize: 15,
-                        )),
-                    trailing: CircleAvatar(
-                      radius: 30,
-                      backgroundImage:
-                          AssetImage('assets/images/personita.png'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ListaTarjetas()));
-              },
-              child: Container(
-                margin: const EdgeInsets.all(20),
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: const DecorationImage(
-                    image: AssetImage('assets/images/homeImages/Tarjeta.jpg'),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Tarjeta de Crédito', // Texto opcional sobre la imagen
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                    child: ItemService(
-                        title: 'Servicios',
-                        icono: Icons.design_services,
-                        onTap: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Services()));
-                        }),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                    child: ItemService(
-                        title: 'Depositar',
-                        icono: Icons.currency_exchange,
-                        onTap: () {}),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                    child: ItemService(
-                      title: 'Retirar',
-                      icono: Icons.payment,
-                      onTap: () {},
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            ListTile(
-              title: Text(
-                '  Noticias',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ),
-            const Column(
-              children: [
-                ItemsNewsFeed(
-                    title:
-                        "Obten hasta un 15% de descuento usando tu aqua card",
-                    image: 'assets/images/homeImages/notice.jpg')
-              ],
-            )
+                label: 'Config'),
           ],
         ));
   }
