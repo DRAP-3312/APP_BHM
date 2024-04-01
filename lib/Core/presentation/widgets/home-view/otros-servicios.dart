@@ -21,7 +21,7 @@ class ItemService extends StatelessWidget {
       child: Container(
         //padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 238, 235, 233),
+            color: const Color.fromARGB(255, 238, 235, 233),
             borderRadius: BorderRadius.circular(30)),
         width: 90,
         height: 100,

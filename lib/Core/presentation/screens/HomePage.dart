@@ -1,13 +1,12 @@
-
-
+import 'package:bhm_app/Core/presentation/screens/ListaTarjetas.dart';
 import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
+//import 'package:bhm_app/Core/presentation/screens/PerfilPage.dart';
 import 'package:bhm_app/Core/presentation/screens/Services.dart';
 import 'package:bhm_app/Core/presentation/widgets/home-view/noticias.dart';
 import 'package:bhm_app/Core/presentation/widgets/home-view/otros-servicios.dart';
 // import 'package:bhm_app/Core/presentation/screens/Services.dart';
 //import 'package:bhm_app/service/notification.service.dart';
 import 'package:flutter/material.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,7 +28,10 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: const Color(0xFF16697A),
           actions: [
             IconButton(
-              icon: const Icon(Icons.notifications, color: Colors.white,),
+              icon: const Icon(
+                Icons.notifications,
+                color: Colors.white,
+              ),
               onPressed: () {},
             ),
           ],
@@ -165,11 +167,12 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                  color: Color(0xFF16697A),
-                ),
-                label: 'Home'),
+              icon: Icon(
+                Icons.home,
+                color: Color(0xFF16697A),
+              ),
+              label: 'Home',
+            ),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.credit_card,
@@ -189,6 +192,17 @@ class _HomePageState extends State<HomePage> {
                 ),
                 label: 'Cofig'),
           ],
+          // onTap: (int index) {
+          //   // Acción según el índice del elemento seleccionado
+          //   if (index == 0) {
+          //     Navigator.pushReplacement(context,
+          //         MaterialPageRoute(builder: (context) => const HomePage()));
+          //   } else if (index == 2) {
+          //     Navigator.push(context,
+          //         MaterialPageRoute(builder: (context) => const PerfilPage()));
+          //   }
+          //   // Agrega más condiciones según la cantidad de elementos en tu BottomNavigationBarItem
+          // },
         ),
         body: ListView(
           padding: EdgeInsets.zero,
@@ -208,8 +222,9 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold)),
                     subtitle: Text('Yoshua Raymundo Moreno Arendondo',
                         style: TextStyle(
-                            color: Color(0xffEDE7E3),
-                            fontSize: 15,)),
+                          color: Color(0xffEDE7E3),
+                          fontSize: 15,
+                        )),
                     trailing: CircleAvatar(
                       radius: 30,
                       backgroundImage:
@@ -219,16 +234,36 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Container(
+            InkWell(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ListaTarjetas()));
+              },
+              child: Container(
                 margin: const EdgeInsets.all(20),
                 height: 200,
                 width: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: const DecorationImage(
-                      image: AssetImage('assets/images/homeImages/Tarjeta.jpg'),
-                      fit: BoxFit.fill),
-                )),
+                    image: AssetImage('assets/images/homeImages/Tarjeta.jpg'),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Tarjeta de Crédito', // Texto opcional sobre la imagen
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
               child: Row(
@@ -240,10 +275,10 @@ class _HomePageState extends State<HomePage> {
                         title: 'Servicios',
                         icono: Icons.design_services,
                         onTap: () {
-                           Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  const Services()));
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Services()));
                         }),
                   ),
                   Padding(
@@ -261,7 +296,6 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {},
                     ),
                   ),
-                  
                 ],
               ),
             ),

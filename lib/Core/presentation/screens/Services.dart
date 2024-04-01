@@ -11,6 +11,7 @@ class Services extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF16697A),       
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -27,8 +28,8 @@ class Services extends StatelessWidget {
                   elevation: 0,
                 ),
                 child: const Icon(
-                  Icons.arrow_back,
-                  color: Color(0xff16697A),
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
                 )),
             Container(),
             const Text(
@@ -36,7 +37,7 @@ class Services extends StatelessWidget {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
-                  color: Color(0xff16697A)),
+                  color: Colors.white),
             ),
             Container(),
             Container(),
@@ -48,14 +49,8 @@ class Services extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: ListView(
             children: <Widget>[
-              // SizedBox(
-
-              //   child: Image.asset('assets/images/Servicio.avif', fit: BoxFit.fill)
-              // ),
               secciones('Pago de servicio', pagoServicio()),
               secciones('Seguro', seguros()),
               secciones('Inversiones y ahorros', inversionesAhorros())
