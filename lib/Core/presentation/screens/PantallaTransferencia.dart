@@ -2,11 +2,15 @@ import 'package:bhm_app/Core/presentation/screens/TransferScreen.dart';
 import 'package:bhm_app/service/notification.service.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(home: PantallaTransferencia()));
-}
+// void main() {
+//   runApp(MaterialApp(home: PantallaTransferencia(usuario: 'EjemploUsuario')));
+// }
 
 class PantallaTransferencia extends StatefulWidget {
+  final String usuario; // Parámetro requerido para la pantalla
+
+  PantallaTransferencia({required this.usuario});
+
   @override
   _PantallaTransferenciaState createState() => _PantallaTransferenciaState();
 }
@@ -26,33 +30,31 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TransferScreen()));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  elevation: 0,
-                ),
-                child: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
-                )),
-            Container(),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TransferScreen()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                shadowColor: Colors.transparent,
+                elevation: 0,
+              ),
+              child: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              ),
+            ),
             const Text(
               'Cantidad a transferir',
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: Colors.white),
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Colors.white,
+              ),
             ),
-            Container(),
-            Container(),
-            Container(),
-            Container(),
+            Container(), // Puedes eliminar los contenedores adicionales si no son necesarios
           ],
         ),
       ),
@@ -63,10 +65,8 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
           children: [
             TextField(
               controller: _amountController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              style:
-                  const TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              style: const TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
               decoration: const InputDecoration(
                 hintText: '0',
@@ -74,8 +74,7 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
               ),
               onChanged: (value) {
                 setState(() {
-                  _textFieldValue =
-                      value; // Actualizar la variable con el nuevo valor
+                  _textFieldValue = value; // Actualizar la variable con el nuevo valor
                 });
               },
             ),
@@ -88,14 +87,13 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
             const SizedBox(height: 8),
             Text(
               saldoDisponible,
-              style:
-                  const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                mostrarNotificacion(_textFieldValue);
+                mostrarNotificacion(_textFieldValue, widget.usuario);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,

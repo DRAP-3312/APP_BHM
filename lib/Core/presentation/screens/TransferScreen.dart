@@ -120,7 +120,7 @@ class TransferScreen extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PantallaTransferencia()),
+                          builder: (context) => PantallaTransferencia(usuario: contacto.nombre,)),
                     );
                   },
                 );
