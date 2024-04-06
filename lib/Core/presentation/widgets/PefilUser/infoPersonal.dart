@@ -11,8 +11,8 @@ Widget infoPersonal(String target, String valor){
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(target, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Color(0xff858585)),),
-        Text(valor, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Color(0xff858585)),),
+        Text(target, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black),),
+        Text(valor, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Colors.black),),
         IconButton(onPressed: (){}, icon: const Icon(Icons.edit, color: Color(0xFF16697A),))
       ],
     ),

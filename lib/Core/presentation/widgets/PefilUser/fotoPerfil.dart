@@ -11,7 +11,7 @@ Widget fotoPerfil() {
           style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w400,
-              color: Color(0xff878787)),
+              color: Colors.black),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -23,6 +23,7 @@ Widget fotoPerfil() {
                 icon: const Icon(
                   Icons.add_photo_alternate,
                   size: 30,
+                  color: Color(0xffFF6347),
                 ))
           ],
         ),

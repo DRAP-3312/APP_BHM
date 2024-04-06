@@ -10,21 +10,21 @@ class ItemService extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonTheme(
-        child: ElevatedButton(
+    return TextButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.zero, // Elimina el relleno interno
-        minimumSize: Size.zero,
-        backgroundColor: Colors.transparent // Establece el tamaño mínimo a cero
-      ),
+          padding: EdgeInsets.zero, // Elimina el relleno interno
+          minimumSize: Size.zero,
+          backgroundColor:
+              Colors.transparent // Establece el tamaño mínimo a cero
+          ),
       child: Container(
         //padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 238, 235, 233),
-            borderRadius: BorderRadius.circular(30)),
-        width: 90,
-        height: 100,
+            borderRadius: BorderRadius.circular(25)),
+        width: 80,
+        height: 90,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,11 +36,14 @@ class ItemService extends StatelessWidget {
             ),
             Text(
               title,
-              style: const TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w400),
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400),
             )
           ],
         ),
       ),
-    ));
+    );
   }
 }

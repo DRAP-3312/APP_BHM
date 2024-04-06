@@ -1,10 +1,8 @@
 import 'package:bhm_app/Core/presentation/screens/DashBoard.dart';
+import 'package:bhm_app/Core/presentation/screens/HelpPage.dart';
 import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
 import 'package:bhm_app/Core/presentation/screens/PerfilPage.dart';
-import 'package:bhm_app/Core/presentation/screens/Services.dart';
-//import 'package:bhm_app/service/notification.service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   List<String> lista1 = ['Transacciones', 'Opcion 1', 'Opcion 2', 'Opcion 3'];
   List<String> lista2 = ['Servicios', 'Serv 1', 'Serv 2', 'Serv 3'];
-  final List<Widget> _pages = const [DashBoard(), PerfilPage(), Services()];
+  final List<Widget> _pages = const [DashBoard(), PerfilPage(), HelpPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -193,10 +191,10 @@ class _HomePageState extends State<HomePage> {
                 label: 'Cuenta'),
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.settings,
+                  Icons.question_mark,
                   color: Color(0xFF16697A),
                 ),
-                label: 'Config'),
+                label: 'Ayuda'),
           ],
         ));
   }

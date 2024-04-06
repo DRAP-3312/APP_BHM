@@ -15,13 +15,13 @@ Future<void> initNotification() async {
 }
 
 
-Future<void> mostrarNotificacion() async{
+Future<void> mostrarNotificacion(String valor) async{
   const AndroidNotificationDetails androidNotificationDetails= AndroidNotificationDetails('BHM', 'Transacciones', importance: Importance.max, priority: Priority.high);
   
   const NotificationDetails notificationDetails = NotificationDetails(
     android: androidNotificationDetails,
   );
 
-  await flutterLocalNotificationsPlugin.show(1, 'Titulo Notifi', 'Esta es una notifi prueba para mostrar el canal', notificationDetails);
+  await flutterLocalNotificationsPlugin.show(1, 'Transferencia exitosa', 'Haz realizado una transferencia de \$$valor', notificationDetails);
 }
 
