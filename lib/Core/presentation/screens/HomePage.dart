@@ -1,6 +1,7 @@
 import 'package:bhm_app/Core/presentation/screens/DashBoard.dart';
 import 'package:bhm_app/Core/presentation/screens/HelpPage.dart';
 import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
+import 'package:bhm_app/Core/presentation/screens/Movimientos.dart';
 import 'package:bhm_app/Core/presentation/screens/PerfilPage.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,10 @@ class _HomePageState extends State<HomePage> {
                 Icons.notifications,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => Movimientos()));
+              },
             ),
           ],
         ),
