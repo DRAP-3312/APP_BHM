@@ -4,6 +4,7 @@ import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
 import 'package:bhm_app/Core/presentation/screens/Movimientos.dart';
 import 'package:bhm_app/Core/presentation/screens/PerfilPage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,8 +33,8 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Movimientos()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Movimientos()));
               },
             ),
           ],
@@ -45,103 +46,63 @@ class _HomePageState extends State<HomePage> {
               //padding: EdgeInsets.zero,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Column(
-                  children: [
-                    DrawerHeader(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF16697A),
-                        shape: BoxShape.rectangle, // O BoxShape.circle
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 100,
-                            height: 100,
-                            child: ClipOval(
-                              child: Image.asset(
-                                'assets/images/LogoShort.png',
-                                fit: BoxFit.cover,
-                              ),
+                Column(children: [
+                  DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF16697A),
+                      shape: BoxShape.rectangle, // O BoxShape.circle
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 100,
+                          height: 100,
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/images/LogoShort.png',
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          const Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Banco Horizonte Mexicano',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10),
-                              ),
-                              Text(
-                                'BHM@hotmail.com',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                        ),
+                        const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Banco Horizonte Mexicano',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10),
+                            ),
+                            Text(
+                              'BHM@hotmail.com',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10),
+                            )
+                          ],
+                        )
+                      ],
                     ),
-                    Theme(
-                      data: Theme.of(context).copyWith(
-                        dividerColor: Colors
-                            .transparent, // Define el color del divisor aquí
-                      ),
-                      child: ExpansionTile(
-                        backgroundColor: Theme.of(context).canvasColor,
-                        title: Text(lista1[0]),
-                        children: <Widget>[
-                          // const Divider(color: Colors.white),
-                          ListTile(
-                            title: Text(lista1[1]),
-                            onTap: () {},
-                          ),
-                          ListTile(
-                            title: Text(lista1[2]),
-                            onTap: () {},
-                          ),
-                          ListTile(
-                            title: Text(lista1[3]),
-                            onTap: () {},
-                          ),
-                        ],
-                      ),
-                    ),
-                    Theme(
-                      data: Theme.of(context).copyWith(
-                        dividerColor: Colors
-                            .transparent, // Define el color del divisor aquí
-                      ),
-                      child: ExpansionTile(
-                        backgroundColor: Theme.of(context).canvasColor,
-                        title: Text(lista2[0]),
-                        children: <Widget>[
-                          //const Divider(color: Colors.white),
-                          ListTile(
-                            title: Text(lista2[1]),
-                            onTap: () {},
-                          ),
-                          ListTile(
-                            title: Text(lista2[2]),
-                            onTap: () {},
-                          ),
-                          ListTile(
-                            title: Text(lista2[3]),
-                            onTap: () {},
-                          ),
-                        ],
-                      ),
+                  ),
+                ]),
+                Column(
+                  children: [
+                    const Text('Porque solo se vive una vez!', style: TextStyle(fontWeight: FontWeight.w200, fontSize: 18, color: Color(0xffFF6347)),),
+                    Container(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Image.asset('assets/images/Bienvenida.jpg', fit: BoxFit.fill,),
                     ),
                   ],
                 ),
+                Container(),
+                Container(),
+                Container(),
                 ElevatedButton(
                     onPressed: () {
                       Navigator.pushReplacement(
@@ -185,7 +146,6 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xFF16697A),
               ),
               label: 'Home',
-              
             ),
             BottomNavigationBarItem(
                 icon: Icon(
