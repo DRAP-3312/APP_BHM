@@ -18,6 +18,7 @@ class _LoginState extends State<Login> {
   String password = "";
   bool isPasswordVisible = false;
 
+
   Future<void> auth() async {
     bool authenticated = false;
     try {
@@ -64,8 +65,9 @@ class _LoginState extends State<Login> {
           height: 15,
         ),
         ElevatedButton(
+          
           onPressed: () {
-            auth();
+            //auth();
             // Navigator.pushReplacement(context,
             //    MaterialPageRoute(builder: (context) => const HomePage()));
           },
@@ -77,11 +79,24 @@ class _LoginState extends State<Login> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
           ),
+          
           child: const Text(
             'INGRESAR',
             style: TextStyle(fontSize: 20),
           ),
         ),
+        const SizedBox(
+          height: 70,
+        ),
+        IconButton(
+            onPressed: () {
+              auth();
+            },
+            color:const Color(0xffFFB997),
+            icon: const Icon(
+              Icons.fingerprint,
+              size: 50, color: Color(0xffFF6347),
+            ))
       ],
     );
   }
@@ -99,11 +114,11 @@ Widget loginLogo() {
         child: Image.asset('assets/images/LogoShort.png', fit: BoxFit.fill),
       ),
       const Text(
-        'Sign Up',
+        'BHM',
         style: TextStyle(
           fontSize: 35,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: Color(0xff16697A),
         ),
       ),
     ],
@@ -132,7 +147,7 @@ Widget loginInputs(
           hintText: 'Ingresa tu contraseña',
           suffixIcon: IconButton(
             icon: const Icon(Icons.visibility),
-            onPressed: togglePasswordView,
+            onPressed: (){},
           ),
         ),
         controller: TextEditingController(text: password),

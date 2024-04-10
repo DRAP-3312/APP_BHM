@@ -20,9 +20,10 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
   String saldoDisponible = '10.000\$';
   final TextEditingController _amountController = TextEditingController();
   String _textFieldValue = '';
-
+  final FocusNode _focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
+    _focusNode.requestFocus();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF16697A),
@@ -33,7 +34,8 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const TransferScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const TransferScreen()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -65,6 +67,7 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
           children: [
             TextField(
               controller: _amountController,
+              focusNode: _focusNode,
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               style: const TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
@@ -78,6 +81,8 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
                 });
               },
             ),
+            
+            
             const SizedBox(height: 24),
             const Text(
               'Saldo disponible',
@@ -87,7 +92,8 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
             const SizedBox(height: 8),
             Text(
               saldoDisponible,
-              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style:
+                  const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const Spacer(),

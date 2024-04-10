@@ -1,8 +1,11 @@
 import 'package:bhm_app/Core/presentation/screens/DashBoard.dart';
 import 'package:bhm_app/Core/presentation/screens/HelpPage.dart';
 import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
+import 'package:bhm_app/Core/presentation/screens/Monto.dart';
 import 'package:bhm_app/Core/presentation/screens/Movimientos.dart';
 import 'package:bhm_app/Core/presentation/screens/PerfilPage.dart';
+import 'package:bhm_app/Core/presentation/screens/Services.dart';
+import 'package:bhm_app/Core/presentation/screens/TransferScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -90,19 +93,41 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
+                  const Text(
+                    'Porque solo se vive una vez!',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w200,
+                        fontSize: 18,
+                        color: Color(0xffFF6347)),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TransferScreen()));
+                    },
+                    child: accionesRapidas('Transferir'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Monto()));
+                    },
+                    child: accionesRapidas('Retirar'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Services()));
+                    },
+                    child: accionesRapidas('Ver servicios'),
+                  ),
                 ]),
-                Column(
-                  children: [
-                    const Text('Porque solo se vive una vez!', style: TextStyle(fontWeight: FontWeight.w200, fontSize: 18, color: Color(0xffFF6347)),),
-                    Container(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Image.asset('assets/images/Bienvenida.jpg', fit: BoxFit.fill,),
-                    ),
-                  ],
-                ),
-                Container(),
-                Container(),
-                Container(),
                 ElevatedButton(
                     onPressed: () {
                       Navigator.pushReplacement(
@@ -163,3 +188,23 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 }
+
+Widget accionesRapidas(String accion) {
+  return Container(
+    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Text(
+        accion,
+        style: const TextStyle(fontSize: 18, color: Color(0xff16697A)),
+      ),
+      const Icon(Icons.arrow_forward, color: Color(0xff16697A))
+    ]),
+  );
+}
+
+
+// style: const ButtonStyle(
+//         alignment: Alignment.center,
+//         backgroundColor: MaterialStatePropertyAll(Colors.white),
+//         elevation: MaterialStatePropertyAll(0),
+//       ),

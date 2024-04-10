@@ -12,6 +12,7 @@ class Monto extends StatefulWidget {
 class _MontoState extends State<Monto> {
   final TextEditingController _amountController = TextEditingController();
   String _textFieldValue = '';
+   final FocusNode _focusNode = FocusNode();
   @override
   void dispose() {
     _amountController.dispose();
@@ -20,6 +21,7 @@ class _MontoState extends State<Monto> {
 
   @override
   Widget build(BuildContext context) {
+    _focusNode.requestFocus();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF16697A),
@@ -88,6 +90,7 @@ class _MontoState extends State<Monto> {
             ),
             TextField(
               controller: _amountController,
+              focusNode: _focusNode,
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               style:

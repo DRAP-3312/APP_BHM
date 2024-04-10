@@ -4,6 +4,7 @@ import 'package:bhm_app/Core/presentation/screens/Services.dart';
 import 'package:bhm_app/Core/presentation/screens/TransferScreen.dart';
 import 'package:bhm_app/Core/presentation/widgets/home-view/noticias.dart';
 import 'package:bhm_app/Core/presentation/widgets/home-view/otros-servicios.dart';
+import 'package:bhm_app/Core/presentation/widgets/tarjetaCambio.dart';
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
@@ -45,28 +46,29 @@ class DashBoard extends StatelessWidget {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const ListaTarjetas()));
           },
-          child: Container(
-            margin: const EdgeInsets.all(20),
-            height: 200,
-            width: 200,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: const DecorationImage(
-                image: AssetImage('assets/images/homeImages/Tarjeta.jpg'),
-                fit: BoxFit.fill,
-              ),
-            ),
-            child: const Center(
-              child: Text(
-                'Tarjeta de Crédito', // Texto opcional sobre la imagen
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
+          child: const FlipImageWidget(),
+          // child: Container(
+          //   margin: const EdgeInsets.all(20),
+          //   height: 200,
+          //   width: 200,
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(10),
+          //     image: const DecorationImage(
+          //       image: AssetImage('assets/images/homeImages/Tarjeta.jpg'),
+          //       fit: BoxFit.fill,
+          //     ),
+          //   ),
+          //   child: const Center(
+          //     child: Text(
+          //       'Tarjeta de Crédito', // Texto opcional sobre la imagen
+          //       style: TextStyle(
+          //         color: Colors.white,
+          //         fontSize: 20,
+          //         fontWeight: FontWeight.bold,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
