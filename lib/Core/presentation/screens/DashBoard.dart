@@ -47,28 +47,6 @@ class DashBoard extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const ListaTarjetas()));
           },
           child: const FlipImageWidget(),
-          // child: Container(
-          //   margin: const EdgeInsets.all(20),
-          //   height: 200,
-          //   width: 200,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(10),
-          //     image: const DecorationImage(
-          //       image: AssetImage('assets/images/homeImages/Tarjeta.jpg'),
-          //       fit: BoxFit.fill,
-          //     ),
-          //   ),
-          //   child: const Center(
-          //     child: Text(
-          //       'Tarjeta de Crédito', // Texto opcional sobre la imagen
-          //       style: TextStyle(
-          //         color: Colors.white,
-          //         fontSize: 20,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     ),
-          //   ),
-          // ),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),

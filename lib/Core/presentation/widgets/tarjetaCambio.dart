@@ -31,20 +31,11 @@ class _FlipImageWidgetState extends State<FlipImageWidget> {
           image: DecorationImage(
             image: _isFrontImage
                 ? const AssetImage('assets/images/homeImages/Tarjeta.jpg')
-                : const AssetImage('assets/images/espaldaTarjeta.jpg'),
+                : const AssetImage('assets/images/tarjetaAtras.png'),
             fit: BoxFit.fill,
           ),
         ),
-        child: const Center(
-          child: Text(
-            'Tarjeta de Crédito', // Texto opcional sobre la imagen
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        
       ),
     );
   }
