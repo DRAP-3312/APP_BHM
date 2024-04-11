@@ -10,19 +10,25 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+        appBar: AppBar(),
         body: Center(
           child: ListView(
-               // mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-          loginLogo(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            //height: 400, //MediaQuery.of(context).size.width * 1,
-            child: const Login(),
-          ),
+                  Container(
+                    //margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    child: loginLogo()),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    //height: 400, //MediaQuery.of(context).size.width * 1,
+                    child: const Login(),
+                  ),
                 ],
               ),
+            ],
+          ),
         ));
   }
 }
