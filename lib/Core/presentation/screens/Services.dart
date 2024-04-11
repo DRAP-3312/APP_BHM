@@ -51,9 +51,9 @@ class Services extends StatelessWidget {
         child: Center(
           child: ListView(
             children: <Widget>[
-              secciones('Pago de servicio', pagoServicio()),
-              secciones('Seguro', seguros()),
-              secciones('Inversiones y ahorros', inversionesAhorros())
+              secciones('Pago de servicio', pagoServicio(context)),
+              secciones('Seguro', seguros(context)),
+              secciones('Inversiones y ahorros', inversionesAhorros(context))
             ],
           ),
         ),

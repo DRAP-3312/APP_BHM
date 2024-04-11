@@ -1,7 +1,7 @@
 import 'package:bhm_app/Core/presentation/widgets/servicios/pagoServicio.dart';
 import 'package:flutter/material.dart';
 
-Widget seguros() {
+Widget seguros(BuildContext context) {
   List<String> targets = [
     'Vida',
     'Hogar',
@@ -26,7 +26,7 @@ Widget seguros() {
       spacing: 18.0, // Espacio horizontal entre los hijos
       runSpacing: 4.0, // Espacio vertical entre las líneas
       children: <Widget>[
-        opcionesServicio(targets, iconos),
+        opcionesServicio(context, targets, iconos),
       ],
     ),
   );

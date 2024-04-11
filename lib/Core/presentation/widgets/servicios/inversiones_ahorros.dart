@@ -1,7 +1,7 @@
 import 'package:bhm_app/Core/presentation/widgets/servicios/pagoServicio.dart';
 import 'package:flutter/material.dart';
 
-Widget inversionesAhorros() {
+Widget inversionesAhorros(BuildContext context) {
   List<String> targets = [
     'Cuenta de ahorros',
     'Fondos de inversion',
@@ -26,7 +26,7 @@ Widget inversionesAhorros() {
       spacing: 18.0, // Espacio horizontal entre los hijos
       runSpacing: 4.0, // Espacio vertical entre las líneas
       children: <Widget>[
-        opcionesServicio(targets, iconos),
+        opcionesServicio(context, targets, iconos),
       ],
     ),
   );

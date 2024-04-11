@@ -1,6 +1,7 @@
+import 'package:bhm_app/Core/presentation/screens/MontoServicio.dart';
 import 'package:flutter/material.dart';
 
-Widget pagoServicio() {
+Widget pagoServicio(BuildContext context) {
   List<String> targets = [
     'Agua',
     'Electricidad',
@@ -26,17 +27,18 @@ Widget pagoServicio() {
       borderRadius: BorderRadius.circular(6.0), 
     ),
     child: Container( 
-        child: opcionesServicio(targets, iconos),
-      ),
+      child: opcionesServicio(context, targets, iconos),
+    ),
   );
 }
 
-Widget opcionesServicio(List<String> targets, List<IconData> iconos) {
+Widget opcionesServicio(BuildContext context, List<String> targets, List<IconData> iconos) {
   return Column(
     children: List.generate(targets.length, (index) {
       return ElevatedButton(
         onPressed: () {
-          // Define la acción al presionar aquí.
+          Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => MontoServicio(servicio: "si")));
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
