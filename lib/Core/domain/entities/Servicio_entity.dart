@@ -1,7 +1,6 @@
-import 'dart:ffi';
 
 class Servicio {
-  final Float montoPago;
+  final double  montoPago;
   final String referencia;
   final DateTime fecha;
 

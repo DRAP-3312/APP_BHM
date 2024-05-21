@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'micuenta_model.g.dart';
+
+@JsonSerializable()
 class Micuenta {
   String numCuenta;
   String user;
@@ -11,4 +16,7 @@ class Micuenta {
       required this.cell,
       required this.userEmail,
       required this.fotoPerfil});
+
+  factory Micuenta.fromJson(Map<String, dynamic> json) => _$MicuentaFromJson(json);
+  Map<String, dynamic> toJson() => _$MicuentaToJson(this);
 }

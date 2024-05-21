@@ -1,11 +1,11 @@
-import 'dart:ffi';
+
 
 class Transferencia {
   final String nameContacto;
 
-  final Float montoTrans;
+  final double  montoTrans;
   final DateTime fechaTrans;
-  final Float saldoDisponible;
+  final double  saldoDisponible;
 
   Transferencia(
       {required this.nameContacto,
