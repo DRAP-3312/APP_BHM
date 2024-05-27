@@ -6,10 +6,11 @@ part 'servicio_model.g.dart';
 class Servicio {
   double montoPago;
   String referencia;
-  DateTime fecha;
+  String fecha;
+  bool isValid;
 
   Servicio(
-      {required this.montoPago, required this.referencia, required this.fecha});
+      {required this.montoPago, required this.referencia, required this.fecha, required this.isValid});
 
   factory Servicio.fromJson(Map<String, dynamic> json) => _$ServicioFromJson(json);
   Map<String, dynamic> toJson() => _$ServicioToJson(this);

@@ -5,6 +5,7 @@ class Inicio {
   final String news;
   final String fotoUser;
   final String fotoNews;
+  final bool isValid;
 
   Inicio(
       {required this.userName,
@@ -12,5 +13,6 @@ class Inicio {
       required this.cvc,
       required this.news,
       required this.fotoUser,
-      required this.fotoNews});
+      required this.fotoNews,
+      required this.isValid});
 }

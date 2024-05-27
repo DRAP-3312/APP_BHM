@@ -10,6 +10,7 @@ class Inicio {
   String news;
   String fotoUser;
   String fotoNews;
+  bool isValid;
 
   Inicio(
       {required this.userName,
@@ -17,7 +18,8 @@ class Inicio {
       required this.cvc,
       required this.news,
       required this.fotoUser,
-      required this.fotoNews});
+      required this.fotoNews,
+      required this.isValid});
 
   factory Inicio.fromJson(Map<String, dynamic> json) =>  _$InicioFromJson(json);
   Map<String, dynamic> toJson() => _$InicioToJson(this);

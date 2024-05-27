@@ -6,14 +6,16 @@ part 'transferencia_model.g.dart';
 class Transferencia {
   String nameContacto;
   double montoTrans;
-  DateTime fechaTrans;
+  String fechaTrans;
   double saldoDisponible;
+  bool isValid;
 
   Transferencia(
       {required this.nameContacto,
       required this.montoTrans,
       required this.fechaTrans,
-      required this.saldoDisponible});
+      required this.saldoDisponible,
+      required this.isValid});
 
   factory Transferencia.fromJson(Map<String, dynamic> json) =>
       _$TransferenciaFromJson(json);

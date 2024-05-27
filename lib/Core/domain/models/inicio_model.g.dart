@@ -13,6 +13,7 @@ Inicio _$InicioFromJson(Map<String, dynamic> json) => Inicio(
       news: json['news'] as String,
       fotoUser: json['fotoUser'] as String,
       fotoNews: json['fotoNews'] as String,
+      isValid: json['isValid'] as bool,
     );
 
 Map<String, dynamic> _$InicioToJson(Inicio instance) => <String, dynamic>{
@@ -22,4 +23,5 @@ Map<String, dynamic> _$InicioToJson(Inicio instance) => <String, dynamic>{
       'news': instance.news,
       'fotoUser': instance.fotoUser,
       'fotoNews': instance.fotoNews,
+      'isValid': instance.isValid,
     };

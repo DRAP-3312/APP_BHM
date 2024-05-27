@@ -12,6 +12,7 @@ Micuenta _$MicuentaFromJson(Map<String, dynamic> json) => Micuenta(
       cell: json['cell'] as String,
       userEmail: json['userEmail'] as String,
       fotoPerfil: json['fotoPerfil'] as String,
+      isValid: json['isValid'] as bool,
     );
 
 Map<String, dynamic> _$MicuentaToJson(Micuenta instance) => <String, dynamic>{
@@ -20,4 +21,5 @@ Map<String, dynamic> _$MicuentaToJson(Micuenta instance) => <String, dynamic>{
       'cell': instance.cell,
       'userEmail': instance.userEmail,
       'fotoPerfil': instance.fotoPerfil,
+      'isValid': instance.isValid,
     };

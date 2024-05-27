@@ -1,6 +1,7 @@
 class Notificacion {
   final String nameRetiro;
-  final DateTime timeRetiro;
+  final String timeRetiro;
+  final bool isValid;
 
-  Notificacion({required this.nameRetiro, required this.timeRetiro});
+  Notificacion({required this.nameRetiro, required this.timeRetiro, required this.isValid});
 }
