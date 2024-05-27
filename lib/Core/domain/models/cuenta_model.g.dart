@@ -11,6 +11,7 @@ Cuenta _$CuentaFromJson(Map<String, dynamic> json) => Cuenta(
       aliasContacto: json['aliasContacto'] as String,
       numTarjet: json['numTarjet'] as String,
       fotoPerfil: json['fotoPerfil'] as String,
+      isValid: json['isValid'] as bool,
     );
 
 Map<String, dynamic> _$CuentaToJson(Cuenta instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$CuentaToJson(Cuenta instance) => <String, dynamic>{
       'aliasContacto': instance.aliasContacto,
       'numTarjet': instance.numTarjet,
       'fotoPerfil': instance.fotoPerfil,
+      'isValid': instance.isValid,
     };

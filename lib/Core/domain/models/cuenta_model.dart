@@ -8,12 +8,14 @@ class Cuenta {
   String aliasContacto;
   String numTarjet;
   String fotoPerfil;
+   bool isValid;
 
   Cuenta(
       {required this.nameContacto,
       required this.aliasContacto,
       required this.numTarjet,
-      required this.fotoPerfil});
+      required this.fotoPerfil,
+      required this.isValid});
 
   factory Cuenta.fromJson(Map<String,dynamic> json) => _$CuentaFromJson(json);
   Map<String,dynamic> toJson( ) => _$CuentaToJson(this);
