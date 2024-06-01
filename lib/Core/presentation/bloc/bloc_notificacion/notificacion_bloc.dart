@@ -1,17 +1,17 @@
+import 'package:bhm_app/Core/domain/usecases/load_notificacion_data.dart' as usecase;
 import 'package:bhm_app/Core/presentation/bloc/bloc_notificacion/notificacion_event.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_notificacion/notificacion_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:aplicaciones_moviles_app/domain/usecases/load_form_data.dart' as usecase;
+
 
 
 class NotificacionBloc extends Bloc<NotificacionEvent, NotificacionState> {
-  //final usecase.LoadFormData loadFormData;
+  final usecase.LoadNotificacionData loadNotificacionData;
 
-  //this.loadFormData
-  NotificacionBloc() : super(const NotificacionState()) {
+  NotificacionBloc(this.loadNotificacionData) : super(const NotificacionState()) {
     on<LoadNotificacionDataEvent>((event, emit) async {
-      //final formData = await loadFormData();
-      //emit(FormState.fromModel(formData));
+      final notifiData = await loadNotificacionData();
+      emit(NotificacionState.fromModel(notifiData));
     });
 
     on<NameRetiroChanged>((event, emit) {

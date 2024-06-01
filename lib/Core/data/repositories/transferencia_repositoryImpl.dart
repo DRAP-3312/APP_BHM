@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 class TransferenciaRepositoryImpl implements TransferenciaRepository {
   @override
-  Future<Transferencia> LoadTransferenciaData() async {
+  Future<Transferencia> loadTransferenciaData() async {
 
     final response = await rootBundle.loadString('/assets/json_data/transferencia_data.json');
     final data = json.decode(response);

@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 
 class InicioRepositoryImpl implements InicioRepository {
   @override
-  Future<Inicio> LoadInicioData() async {
+  Future<Inicio> loadInicioData() async {
 
     final response = await rootBundle.loadString('/assets/json_data/inicio_data.json');
     final data = json.decode(response);

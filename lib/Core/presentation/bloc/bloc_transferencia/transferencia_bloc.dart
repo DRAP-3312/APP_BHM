@@ -1,16 +1,16 @@
+import 'package:bhm_app/Core/domain/usecases/load_transferencia_data.dart' as usecase;
 import 'package:bhm_app/Core/presentation/bloc/bloc_transferencia/transferencia_event.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_transferencia/transferencia_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:aplicaciones_moviles_app/domain/usecases/load_form_data.dart' as usecase;
+
 
 class TransferenciaBloc extends Bloc<TransferenciaEvent, TranferenciaState> {
-  //final usecase.LoadFormData loadFormData;
+  final usecase.LoadTransferenciaData loadTransferenciaData;
 
-  //this.loadFormData
-  TransferenciaBloc() : super(const TranferenciaState()) {
+  TransferenciaBloc(this.loadTransferenciaData) : super(const TranferenciaState()) {
     on<LoadTransferenciaDataEvent>((event, emit) async {
-      //final formData = await loadFormData();
-      //emit(FormState.fromModel(formData));
+      final transferData = await loadTransferenciaData();
+      emit(TranferenciaState.fromModel(transferData));
     });
 
     on<NameContactoChanged>((event, emit) {

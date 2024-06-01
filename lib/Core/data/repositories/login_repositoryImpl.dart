@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   @override
-  Future<Login> LoadLoginData() async {
+  Future<Login> loadLoginData() async {
 
     final response = await rootBundle.loadString('/assets/json_data/login_data.json');
     final data = json.decode(response);

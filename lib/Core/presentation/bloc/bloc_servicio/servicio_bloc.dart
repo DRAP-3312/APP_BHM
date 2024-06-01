@@ -1,16 +1,17 @@
+import 'package:bhm_app/Core/domain/usecases/load_servicio_data.dart' as usecase;
 import 'package:bhm_app/Core/presentation/bloc/bloc_servicio/servicio_event.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_servicio/servicio_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:aplicaciones_moviles_app/domain/usecases/load_form_data.dart' as usecase;
+
 
 class ServicioBloc extends Bloc<ServicioEvent, ServicioState> {
-  //final usecase.LoadFormData loadFormData;
+  final usecase.LoadServicioData loadServicioData;
 
-  //this.loadFormData
-  ServicioBloc() : super(const ServicioState()) {
+  
+  ServicioBloc(this.loadServicioData) : super(const ServicioState()) {
     on<LoadServicioDataEvent>((event, emit) async {
-      //final formData = await loadFormData();
-      //emit(FormState.fromModel(formData));
+      final servicioData = await loadServicioData();
+      emit(ServicioState.fromModel(servicioData));
     });
 
     on<MontoPagoChanged>((event, emit) {

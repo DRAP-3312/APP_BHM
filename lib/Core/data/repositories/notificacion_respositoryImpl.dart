@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 class NotificacionRepositoryImpl implements NotificacionRepository {
   @override
-  Future<Notificacion> LoadNotificacionData() async {
+  Future<Notificacion> loadNotificacionData() async {
 
     final response = await rootBundle.loadString('/assets/json_data/notificacion_data.json');
     final data = json.decode(response);

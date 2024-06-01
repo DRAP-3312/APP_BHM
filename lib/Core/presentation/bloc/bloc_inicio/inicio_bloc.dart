@@ -1,17 +1,16 @@
+import 'package:bhm_app/Core/domain/usecases/load_inicio_data.dart' as usecase;
 import 'package:bhm_app/Core/presentation/bloc/bloc_inicio/inicio_event.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_inicio/inicio_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:aplicaciones_moviles_app/domain/usecases/load_form_data.dart' as usecase;
 
 
 class InicioBloc extends Bloc<InicioEvent, InicioState> {
-  //final usecase.LoadFormData loadFormData;
-
-  //this.loadFormData
-  InicioBloc() : super(const InicioState()) {
+  final usecase.LoadInicioData loadInicioData;
+  
+  InicioBloc(this.loadInicioData) : super(const InicioState()) {
     on<LoadInicioDataEvent>((event, emit) async {
-      //final formData = await loadFormData();
-      //emit(FormState.fromModel(formData));
+      final inicioData = await loadInicioData();
+      emit(InicioState.fromModel(inicioData));
     });
 
     on<UserNameChanged>((event, emit) {

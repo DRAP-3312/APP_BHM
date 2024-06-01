@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 class MiCuentaRepositoryImpl implements MiCuentaRepository {
   @override
-  Future<Micuenta> LoadMiCuentaData() async {
+  Future<Micuenta> loadMiCuentaData() async {
 
     final response = await rootBundle.loadString('/assets/json_data/micuenta_data.json');
     final data = json.decode(response);

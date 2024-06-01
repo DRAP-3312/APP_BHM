@@ -1,27 +1,29 @@
+import 'package:bhm_app/Core/domain/usecases/load_login_data.dart' as usecase;
 import 'package:bhm_app/Core/presentation/bloc/bloc_login/login_event.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_login/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:aplicaciones_moviles_app/domain/usecases/load_form_data.dart' as usecase;
 
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  //final usecase.LoadFormData loadFormData;
+  final usecase.LoadLoginData loadLoginData;
 
-  //this.loadFormData
-  LoginBloc() : super(const LoginState()) {
+  
+  LoginBloc(this.loadLoginData) : super(const LoginState()) {
     on<LoadLoginDataEvent>((event, emit) async {
-      //final formData = await loadFormData();
-      //emit(FormState.fromModel(formData));
+      final loginData = await loadLoginData();
+      emit(LoginState.fromModel(loginData));
     });
 
     on<UserEmailChanged>((event, emit) {
-      emit(state.copyWith(userEmail: event.userEmail, isValid: _validateForm()));
+      emit(
+          state.copyWith(userEmail: event.userEmail, isValid: _validateForm()));
     });
     on<PasswordChanged>((event, emit) {
       emit(state.copyWith(password: event.password, isValid: _validateForm()));
     });
     on<SaveSesionChanged>((event, emit) {
-      emit(state.copyWith(saveSesion: event.saveSesion, isValid: _validateForm()));
+      emit(state.copyWith(
+          saveSesion: event.saveSesion, isValid: _validateForm()));
     });
 
     on<LoginSubmitted>((event, emit) {

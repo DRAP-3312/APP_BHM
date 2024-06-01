@@ -1,16 +1,16 @@
+import 'package:bhm_app/Core/domain/usecases/load_miCuenta_data.dart' as usecase;
 import 'package:bhm_app/Core/presentation/bloc/bloc_miCuenta/miCuenta_event.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_miCuenta/miCuenta_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:aplicaciones_moviles_app/domain/usecases/load_form_data.dart' as usecase;
+
 
 class MiCuentaBloc extends Bloc<MiCuentaEvent, MiCuentaState> {
-  //final usecase.LoadFormData loadFormData;
+  final usecase.LoadMiCuentaData loadMiCuentaData;
 
-  //this.loadFormData
-  MiCuentaBloc() : super(const MiCuentaState()) {
+  MiCuentaBloc(this.loadMiCuentaData) : super(const MiCuentaState()) {
     on<LoadMiCuentaDataEvent>((event, emit) async {
-      //final formData = await loadFormData();
-      //emit(FormState.fromModel(formData));
+      final miCuentaData = await loadMiCuentaData();
+      emit(MiCuentaState.fromModel(miCuentaData));
     });
 
     on<NumCuentaChanged>((event, emit) {

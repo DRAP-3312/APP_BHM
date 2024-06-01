@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 
 class CuentaRepositoryImpl implements CuentaRepository {
   @override
-  Future<Cuenta> LoadCuentaData() async {
+  Future<Cuenta> loadCuentaData() async {
 
     final response = await rootBundle.loadString('/assets/json_data/cuenta_data.json');
     final data = json.decode(response);
