@@ -9,20 +9,38 @@ class LoadContactoData {
   Future<Cuenta> call() async {
     final cuentaData = await repository.loadCuentaData();
 
-    // Validaciones
     if (cuentaData.nameContacto.isEmpty) {
-      throw Exception("nameContacto cannot be empty");
+      throw Exception("nameContacto no puede ser vacio");
     }
+    if (!_isValidName(cuentaData.nameContacto)) {
+      throw Exception("nameContacto fromato incorrecto");
+    }
+
     if (cuentaData.aliasContacto.isEmpty) {
-      throw Exception("aliasContacto cannot be empty");
+      throw Exception("aliasContacto no puede ser vacio");
     }
+
     if (cuentaData.numTarjet.isEmpty) {
-      throw Exception("numTarjet cannot be empty");
+      throw Exception("numTarjet no puede ser vacio");
     }
+    if (!_isValidCardNumber(cuentaData.numTarjet)) {
+      throw Exception("numTarjet formato invalido");
+    }
+
     if (cuentaData.fotoPerfil.isEmpty) {
-      throw Exception("fotoPerfil cannot be empty");
+      throw Exception("fotoPerfil no puede ser vacio");
     }
 
     return cuentaData;
+  }
+
+  bool _isValidName(String name) {
+    final nameRegExp = RegExp(r'^[a-zA-Z\s]+$');
+    return nameRegExp.hasMatch(name);
+  }
+
+  bool _isValidCardNumber(String cardNumber) {
+    final cardNumberRegExp = RegExp(r'^\d{16}$');
+    return cardNumberRegExp.hasMatch(cardNumber);
   }
 }
