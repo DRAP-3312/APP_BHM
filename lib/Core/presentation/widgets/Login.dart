@@ -1,6 +1,6 @@
 import 'package:bhm_app/Core/presentation/screens/HomePage.dart';
+import 'package:bhm_app/Core/presentation/screens/RegistroLogin.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:local_auth/local_auth.dart';
 
 class Login extends StatefulWidget {
@@ -17,7 +17,6 @@ class _LoginState extends State<Login> {
   String phoneNumber = "";
   String password = "";
   bool isPasswordVisible = false;
-
 
   Future<void> auth() async {
     bool authenticated = false;
@@ -64,26 +63,49 @@ class _LoginState extends State<Login> {
         const SizedBox(
           height: 15,
         ),
-        ElevatedButton(
-          
-          onPressed: () {
-            //auth();
-            // Navigator.pushReplacement(context,
-            // MaterialPageRoute(builder: (context) => const HomePage()));
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF16697A),
-            foregroundColor: Colors.white,
-            elevation: 2,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-          ),
-          
-          child: const Text(
-            'INGRESAR',
-            style: TextStyle(fontSize: 20),
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                //auth();
+                // Navigator.pushReplacement(context,
+                // MaterialPageRoute(builder: (context) => const HomePage()));
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF16697A),
+                foregroundColor: Colors.white,
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+              ),
+              child: const Text(
+                'INGRESAR',
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                  Navigator.push(context,
+                MaterialPageRoute(builder: (context) =>  RegisterPage()));
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF16697A),
+                foregroundColor: Colors.white,
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+              ),
+              child: const Text(
+                'REGISTRARSE',
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+          ],
         ),
         const SizedBox(
           height: 70,
@@ -92,10 +114,11 @@ class _LoginState extends State<Login> {
             onPressed: () {
               auth();
             },
-            color:const Color(0xffFFB997),
+            color: const Color(0xffFFB997),
             icon: const Icon(
               Icons.fingerprint,
-              size: 50, color: Color(0xffFF6347),
+              size: 50,
+              color: Color(0xffFF6347),
             ))
       ],
     );
@@ -147,7 +170,7 @@ Widget loginInputs(
           hintText: 'Ingresa tu contraseña',
           suffixIcon: IconButton(
             icon: const Icon(Icons.visibility),
-            onPressed: (){},
+            onPressed: () {},
           ),
         ),
         controller: TextEditingController(text: password),
