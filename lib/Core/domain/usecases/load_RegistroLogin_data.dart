@@ -1,7 +1,5 @@
-
 import 'package:bhm_app/Core/domain/models/Registro_Login_model.dart';
 import 'package:bhm_app/Core/domain/repositories/RegistroLogin_Repositorie.dart';
-
 
 class LoadRegistroDataData {
   final RegistroLoginRepository repository;
@@ -10,7 +8,8 @@ class LoadRegistroDataData {
 
   Future<RegistroLogin> call() async {
     final registroLoginData = await repository.loadRegistroLoginData();
-
+    
+    // Validaciones
     if (registroLoginData.name.isEmpty || registroLoginData.name.length > 50) {
       throw Exception("Nombre no puede ser vacío y debe tener un máximo de 50 caracteres");
     }
@@ -33,6 +32,7 @@ class LoadRegistroDataData {
       throw Exception("ID de Banco no puede ser vacío y debe ser un número");
     }
 
+    print('Datos validados en el usecase: $registroLoginData'); // Verificar datos validados
     return registroLoginData;
   }
 }

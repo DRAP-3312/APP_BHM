@@ -7,11 +7,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RegistroLoginBloc extends Bloc<RegistroLoginEvent, RegistroLoginState> {
   final usecase.LoadRegistroDataData loadRegistroLoginData;
 
-  RegistroLoginBloc(this.loadRegistroLoginData)
+    RegistroLoginBloc(this.loadRegistroLoginData)
       : super(const RegistroLoginState()) {
     on<LoadRegistroLoginDataEvent>((event, emit) async {
-      final registroLonginData = await loadRegistroLoginData();
-      emit(RegistroLoginState.fromModel(registroLonginData));
+      try {
+        final registroLoginData = await loadRegistroLoginData();
+        print('Datos recibidos en el Bloc: $registroLoginData'); // Verificar datos
+        emit(RegistroLoginState.fromModel(registroLoginData));
+        print('Estado actualizado en el Bloc: $registroLoginData'); // Verificar estado actualizado
+      } catch (e) {
+        print('Error al cargar datos: $e'); // Capturar cualquier error
+      }
     });
 
     on<NameChanged>((event, emit) {
