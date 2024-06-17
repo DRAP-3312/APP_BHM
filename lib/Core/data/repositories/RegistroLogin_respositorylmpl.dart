@@ -9,9 +9,9 @@ class RegistroLoginRepositoryImpl implements RegistroLoginRepository {
     final response = await rootBundle.loadString('assets/json_data/RegistroLogin_data.json');
     final data = json.decode(response);
     
-    print('Datos cargados del JSON: $data'); // Verificar los datos del JSON
+    //print('Datos cargados del JSON: $data'); // Verificar los datos del JSON
     final registroLogin = RegistroLogin.fromJson(data);
-    print('Datos convertidos a modelo: $registroLogin'); // Verificar conversión a modelo
+    //print('Datos convertidos a modelo: $registroLogin'); // Verificar conversión a modelo
     return registroLogin;
   }
 }

@@ -28,8 +28,9 @@ class _PerfilPageState extends State<PerfilPage> {
             builder: (context, state) {
               TextEditingController nameController = TextEditingController(text: state.numCuenta);
               TextEditingController lastNameController = TextEditingController(text: state.user);
-              TextEditingController emailController = TextEditingController(text: state.userEmail);
               TextEditingController rfcController = TextEditingController(text: state.cell);
+              TextEditingController emailController = TextEditingController(text: state.userEmail);
+              TextEditingController fotoPerfilController = TextEditingController(text: state.fotoPerfil);
               return ListView(
                 padding: const EdgeInsets.all(20.0),
                 children: [
