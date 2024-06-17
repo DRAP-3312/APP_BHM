@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:bhm_app/Core/data/repositories/inicio_repositoryImpl.dart';
 import 'package:bhm_app/Core/domain/usecases/load_inicio_data.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_inicio/inicio_bloc.dart';
@@ -49,19 +51,19 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(height: 10),
+                       const SizedBox(height: 10),
                       ListTile(
-                        title: Text('Buenos días',
+                        title: const Text('Buenos días',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold)),
                         subtitle: Text(state.userName,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xffEDE7E3),
                               fontSize: 15,
                             )),
-                        trailing: CircleAvatar(
+                        trailing: const CircleAvatar(
                           radius: 30,
                           backgroundImage:
                               AssetImage('assets/images/personita.png'),
