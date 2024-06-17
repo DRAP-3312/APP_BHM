@@ -1,7 +1,8 @@
 {
-    "numCuenta": "4212314",
+    "numCuenta": "4550123456",
     "user": "Josh",
-    "cel": "9988776644",
+    "cell": "9988776644",
     "userEmail": "micorreo23@hotmail.com",
-    "fotoPerfil": "mifoto.jpg"
+    "fotoPerfil": "mifoto.jpg",
+    "isValid": false
 }
