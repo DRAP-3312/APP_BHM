@@ -8,7 +8,7 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
   @override
   Future<Micuenta> loadMiCuentaData() async {
 
-    final response = await rootBundle.loadString('/assets/json_data/micuenta_data.json');
+    final response = await rootBundle.loadString('assets/json_data/micuenta_data.json');
     final data = json.decode(response);
 
     print(data);
