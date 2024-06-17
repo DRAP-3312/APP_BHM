@@ -1,8 +1,9 @@
 {
-    "userName": "Josh",
+    "userName": "Soy json",
     "numTarjet": "1234 5678 8999",
-    "cvc": "123",
-    "news": "Aprovecha las ofertas",
+    "cvc": 123,
+    "news": "Obten hasta un 15% de descuento usando tu aqua card",
     "fotoUser": "mifoto.jpg",
-    "fotoNews": "fotonews.jpg"
+    "fotoNews": "fotonews.jpg",
+    "isValid": false
 }
