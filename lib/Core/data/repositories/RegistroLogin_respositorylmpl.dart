@@ -3,9 +3,11 @@ import 'package:dio/dio.dart';
 import 'package:bhm_app/Core/domain/models/Registro_Login_model.dart';
 import 'package:bhm_app/Core/domain/repositories/RegistroLogin_Repositorie.dart';
 import 'package:flutter/services.dart';
+import 'package:logger/logger.dart';
 
 class RegistroLoginRepositoryImpl implements RegistroLoginRepository {
   final Dio dio;
+  final Logger logger = Logger();
 
   RegistroLoginRepositoryImpl({required this.dio});
 
@@ -18,6 +20,7 @@ class RegistroLoginRepositoryImpl implements RegistroLoginRepository {
     return registroLogin;
   }
 
+  @override
   Future<bool> registerUser(RegistroLogin user) async {
     try {
       final response = await dio.post(
@@ -38,7 +41,7 @@ class RegistroLoginRepositoryImpl implements RegistroLoginRepository {
         return false;
       }
     } catch (e) {
-      print('Error: $e');
+      logger.i('Error: $e');
       return false;
     }
   }

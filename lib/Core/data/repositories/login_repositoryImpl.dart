@@ -5,9 +5,12 @@ import 'package:bhm_app/Core/domain/repositories/login_Repositorie.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:logger/logger.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final Dio dio;
+  final Logger logger = Logger();
+
   LoginRepositoryImpl({required this.dio});
   @override
   Future<Login> loadLoginData() async {
@@ -15,10 +18,11 @@ class LoginRepositoryImpl implements LoginRepository {
         await rootBundle.loadString('/assets/json_data/login_data.json');
     final data = json.decode(response);
 
-    print(data);
+    logger.i(data);
     return Login.fromJson(data);
   }
 
+  @override
   Future<bool> singIn(Login login) async {
     try {
       final response = await dio.post(
@@ -28,7 +32,7 @@ class LoginRepositoryImpl implements LoginRepository {
 
       if (response.statusCode == 200) {
         final token = response.data['access_token'];
-        print('El token: $token');
+        logger.i('El token: $token');
 
         // Guardar el token en las SharedPreferences
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -39,16 +43,16 @@ class LoginRepositoryImpl implements LoginRepository {
 
         if (token != null) {
           // Usa el token para hacer una solicitud autenticada, por ejemplo
-          print('El token recuperado: $clave');
+          logger.i('El token recuperado: $clave');
         } else {
-          print('No hay token guardado');
+          logger.i('No hay token guardado');
         }
         return true;
       } else {
         return false;
       }
     } catch (e) {
-      print('Error: $e');
+      logger.i('Error: $e');
       return false;
     }
   }
