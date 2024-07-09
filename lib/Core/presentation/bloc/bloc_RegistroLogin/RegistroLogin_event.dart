@@ -35,6 +35,7 @@ class EmailChanged extends RegistroLoginEvent {
   @override
   List<Object?> get props => [email];
 }
+
 class RfcChanged extends RegistroLoginEvent {
   final String rfc;
 
@@ -71,5 +72,8 @@ class IdbanckChanged extends RegistroLoginEvent {
   List<Object?> get props => [id_banck];
 }
 
-
 class RegistroLoginSubmitted extends RegistroLoginEvent {}
+
+class RegistroLoginSuccess extends RegistroLoginEvent {}
+
+class RegistroLoginFailure extends RegistroLoginEvent {}

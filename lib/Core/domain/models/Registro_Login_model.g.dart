@@ -15,7 +15,6 @@ RegistroLogin _$RegistroLoginFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String,
       password: json['password'] as String,
       id_banck: (json['id_banck'] as num).toInt(),
-      isValid: json['isValid'] as bool,
     );
 
 Map<String, dynamic> _$RegistroLoginToJson(RegistroLogin instance) =>
@@ -27,5 +26,4 @@ Map<String, dynamic> _$RegistroLoginToJson(RegistroLogin instance) =>
       'phone': instance.phone,
       'password': instance.password,
       'id_banck': instance.id_banck,
-      'isValid': instance.isValid,
     };

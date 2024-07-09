@@ -12,7 +12,7 @@ class RegistroLogin{
   String password;
   // ignore: non_constant_identifier_names
   int id_banck;
-  bool isValid;
+  //bool isValid;
 
   RegistroLogin(
       {
@@ -23,8 +23,7 @@ class RegistroLogin{
       required this.phone,
       required this.password,
       // ignore: non_constant_identifier_names
-      required this.id_banck,
-      required this.isValid});
+      required this.id_banck,});
 
   factory RegistroLogin.fromJson(Map<String, dynamic> json) => _$RegistroLoginFromJson(json);
   Map<String, dynamic> toJson() => _$RegistroLoginToJson(this);
