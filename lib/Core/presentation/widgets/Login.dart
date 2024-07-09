@@ -2,6 +2,10 @@ import 'package:bhm_app/Core/presentation/screens/HomePage.dart';
 import 'package:bhm_app/Core/presentation/screens/RegistroLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bhm_app/Core/presentation/bloc/bloc_login/login_bloc.dart';
+import 'package:bhm_app/Core/presentation/bloc/bloc_login/login_event.dart';
+import 'package:bhm_app/Core/presentation/bloc/bloc_login/login_state.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -14,8 +18,6 @@ class _LoginState extends State<Login> {
   final LocalAuthentication _localAuthentication = LocalAuthentication();
 
   bool _ifChecked = false;
-  String phoneNumber = "";
-  String password = "";
   bool isPasswordVisible = false;
 
   Future<void> auth() async {
@@ -46,81 +48,89 @@ class _LoginState extends State<Login> {
       });
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        loginInputs(phoneNumber, password, togglePasswordView),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Checkbox(
-              value: _ifChecked,
-              onChanged: (newValue) => {setState(() => _ifChecked = newValue!)},
-            ),
-            const Text('Matener Sesion'),
-          ],
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                //auth();
-                Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF16697A),
-                foregroundColor: Colors.white,
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) {
+        if (state is LoginSuccess) {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => const HomePage()));
+        } else if (state is LoginFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Login failed')),
+          );
+        }
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          loginInputs(context, togglePasswordView, isPasswordVisible),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Checkbox(
+                value: _ifChecked,
+                onChanged: (newValue) => {setState(() => _ifChecked = newValue!)},
               ),
-              child: const Text(
-                'INGRESAR',
-                style: TextStyle(fontSize: 14),
+              const Text('Mantener Sesión'),
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  context.read<LoginBloc>().add(LoginSubmitted());
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF16697A),
+                  foregroundColor: Colors.white,
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                ),
+                child: const Text(
+                  'INGRESAR',
+                  style: TextStyle(fontSize: 14),
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
+              ElevatedButton(
+                onPressed: () {
                   Navigator.push(context,
-                MaterialPageRoute(builder: (context) =>  const RegistroLogin()));
+                      MaterialPageRoute(builder: (context) => const RegistroLogin()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF16697A),
+                  foregroundColor: Colors.white,
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                ),
+                child: const Text(
+                  'REGISTRARSE',
+                  style: TextStyle(fontSize: 14),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 70,
+          ),
+          IconButton(
+              onPressed: () {
+                auth();
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF16697A),
-                foregroundColor: Colors.white,
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-              ),
-              child: const Text(
-                'REGISTRARSE',
-                style: TextStyle(fontSize: 14),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 70,
-        ),
-        IconButton(
-            onPressed: () {
-              auth();
-            },
-            color: const Color(0xffFFB997),
-            icon: const Icon(
-              Icons.fingerprint,
-              size: 50,
-              color: Color(0xffFF6347),
-            ))
-      ],
+              color: const Color(0xffFFB997),
+              icon: const Icon(
+                Icons.fingerprint,
+                size: 50,
+                color: Color(0xffFF6347),
+              ))
+        ],
+      ),
     );
   }
 }
@@ -148,11 +158,9 @@ Widget loginLogo() {
   );
 }
 
-Widget loginInputs(
-    String email, String password, VoidCallback togglePasswordView) {
+Widget loginInputs(BuildContext context, VoidCallback togglePasswordView, bool isPasswordVisible) {
   return Column(
-    crossAxisAlignment:
-        CrossAxisAlignment.start, // Alinea los textos a la izquierda.
+    crossAxisAlignment: CrossAxisAlignment.start, // Alinea los textos a la izquierda.
     children: [
       TextField(
         keyboardType: TextInputType.emailAddress,
@@ -160,21 +168,28 @@ Widget loginInputs(
           labelText: 'USUARIO',
           hintText: 'Nombre de usuario o correo',
         ),
-        controller: TextEditingController(text: email),
+        onChanged: (value) {
+          context.read<LoginBloc>().add(UserEmailChanged(value));
+        },
       ),
       const SizedBox(height: 8),
       TextField(
-        obscureText: true,
+        obscureText: !isPasswordVisible,
         decoration: InputDecoration(
           labelText: 'CONTRASEÑA',
           hintText: 'Ingresa tu contraseña',
           suffixIcon: IconButton(
-            icon: const Icon(Icons.visibility),
-            onPressed: () {},
+            icon: Icon(
+              isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+            ),
+            onPressed: togglePasswordView,
           ),
         ),
-        controller: TextEditingController(text: password),
+        onChanged: (value) {
+          context.read<LoginBloc>().add(PasswordChanged(value));
+        },
       ),
     ],
   );
 }
+
