@@ -24,7 +24,7 @@ class RegistroLoginRepositoryImpl implements RegistroLoginRepository {
   Future<bool> registerUser(RegistroLogin user) async {
     try {
       final response = await dio.post(
-        'http://localhost:3000/users',
+        'https://apimoviles-production.up.railway.app/users',
         data: {
           'name': user.name,
           'lastname': user.lastname,
