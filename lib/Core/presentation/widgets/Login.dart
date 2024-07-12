@@ -51,8 +51,12 @@ class _LoginState extends State<Login> {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => const HomePage()));
+          // Navigator.pushReplacement(
+          //     context, MaterialPageRoute(builder: (context) => const HomePage()));
+           Navigator.pushReplacement<void, void>(
+          context,
+          MaterialPageRoute<void>(
+              builder: (BuildContext context) => const HomePage()));
         } else if (state is LoginFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Login failed')),
@@ -166,7 +170,7 @@ Widget loginInputs(BuildContext context, VoidCallback togglePasswordView, bool i
         keyboardType: TextInputType.emailAddress,
         decoration: const InputDecoration(
           labelText: 'USUARIO',
-          hintText: 'Nombre de usuario o correo',
+          hintText: 'Numero de telefono',
         ),
         onChanged: (value) {
           context.read<LoginBloc>().add(UserEmailChanged(value));
