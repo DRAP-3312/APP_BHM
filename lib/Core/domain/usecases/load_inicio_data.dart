@@ -19,7 +19,7 @@ class LoadInicioData {
     if (inicioData.numTarjet.isEmpty) {
       throw Exception("numTarjet no puede ser vacio");
     }
-    if (!_isValidCardNumber(inicioData.numTarjet)) {
+    if (!_isValidText(inicioData.numTarjet)) {
       throw Exception("numTarjet formato invalido");
     }
 
@@ -59,10 +59,10 @@ class LoadInicioData {
     return userNameRegExp.hasMatch(userName);
   }
 
-  bool _isValidCardNumber(String cardNumber) {
-    final cardNumberRegExp = RegExp(r'^\d{16}$');
-    return cardNumberRegExp.hasMatch(cardNumber);
-  }
+  // bool _isValidCardNumber(String cardNumber) {
+  //   final cardNumberRegExp = RegExp(r'^\d{16}$');
+  //   return cardNumberRegExp.hasMatch(cardNumber);
+  // }
 
   bool _isValidCVC(int cvc) {
     final cvcStr = cvc.toString();

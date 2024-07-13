@@ -8,9 +8,16 @@ class MiCuentaBloc extends Bloc<MiCuentaEvent, MiCuentaState> {
   final usecase.LoadMiCuentaData loadMiCuentaData;
 
   MiCuentaBloc(this.loadMiCuentaData) : super(const MiCuentaState()) {
+    
     on<LoadMiCuentaDataEvent>((event, emit) async {
-      final miCuentaData = await loadMiCuentaData();
+     try {
+        final miCuentaData = await loadMiCuentaData();
+        print('Datos recibidos en el Bloc: $miCuentaData'); 
       emit(MiCuentaState.fromModel(miCuentaData));
+       print('Estado actualizado en el Bloc: $miCuentaData');
+     } catch (e) {
+       print('Error al cargar datos: $e');
+     }
     });
 
     on<NumCuentaChanged>((event, emit) {

@@ -45,3 +45,23 @@ class LoginState extends Equatable {
         isValid,
       ];
 }
+
+class LoginSuccess extends LoginState {
+  LoginSuccess(LoginState state)
+      : super(
+          userEmail: state.userEmail,
+          password: state.password,
+          saveSesion: state.saveSesion,
+          isValid: true,
+        );
+}
+
+class LoginFailure extends LoginState {
+  LoginFailure(LoginState state)
+      : super(
+          userEmail: state.userEmail,
+          password: state.password,
+          saveSesion: state.saveSesion,
+          isValid: false,
+        );
+}

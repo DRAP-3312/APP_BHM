@@ -35,6 +35,9 @@ dependencies:
   json_annotation: ^4.0.1
   provider: ^6.0.0
   equatable: ^2.0.3
+  dio: ^4.0.0
+  shared_preferences: ^2.0.6
+  logger: ^1.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -75,6 +78,9 @@ flutter:
   assets:
     - assets/images/
     - assets/images/homeImages/
+    - assets/json_data/RegistroLogin_data.json
+    - assets/json_data/micuenta_data.json
+    - assets/json_data/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

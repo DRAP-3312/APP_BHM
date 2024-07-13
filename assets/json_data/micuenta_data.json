@@ -1,7 +1,14 @@
 {
+<<<<<<< HEAD
     "numCuenta": "4212314",
     "user": "Yosh",
     "cel": "5523028212",
+=======
+    "numCuenta": "4550123456",
+    "user": "Alejandro",
+    "cell": "9988776644",
+>>>>>>> 6af0579f4515f81185b8a3df9704cb8cb1f45ca2
     "userEmail": "micorreo23@hotmail.com",
-    "fotoPerfil": "mifoto.jpg"
+    "fotoPerfil": "mifoto.jpg",
+    "isValid": false
 }
