@@ -1,8 +1,11 @@
 {
-    "numCuenta": "4550123456",
-    "user": "Alejandro",
-    "cell": "9988776644",
-    "userEmail": "micorreo23@hotmail.com",
-    "fotoPerfil": "mifoto.jpg",
+    "id": 0,
+    "name": "juan",
+    "lastname": "fernandez",
+    "email": "juan@gmail.com",
+    "rfc": "JUAN0203242Q1",
+    "phone": "9911335577",
+    "password": "juanSicario123",
+    "id_bank": 2,
     "isValid": false
 }

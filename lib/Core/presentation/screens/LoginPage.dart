@@ -1,4 +1,5 @@
 import 'package:bhm_app/Core/data/repositories/login_repositoryImpl.dart';
+import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
 import 'package:bhm_app/Core/presentation/widgets/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,8 +19,8 @@ class LoginPage extends StatelessWidget {
         appBar: AppBar(),
         body: BlocProvider(
           create: (context) => LoginBloc(
-            LoadLoginData(LoginRepositoryImpl(dio: Dio())),
-            LoginRepositoryImpl(dio: Dio()),
+            LoadLoginData(LoginRepositoryImpl(dio: Dio(), tokenStorage :TokenStorage())),
+            LoginRepositoryImpl(dio: Dio(), tokenStorage:TokenStorage()),
           ),
           child: Center(
             child: ListView(

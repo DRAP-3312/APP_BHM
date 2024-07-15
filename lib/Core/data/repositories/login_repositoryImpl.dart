@@ -1,25 +1,31 @@
 import 'dart:convert';
-
 import 'package:bhm_app/Core/domain/models/login_model.dart';
 import 'package:bhm_app/Core/domain/repositories/login_Repositorie.dart';
+import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:logger/logger.dart';
+import 'package:logger/logger.dart'; // Importar la clase TokenStorage
 
 class LoginRepositoryImpl implements LoginRepository {
   final Dio dio;
   final Logger logger = Logger();
+  final TokenStorage tokenStorage;
 
-  LoginRepositoryImpl({required this.dio});
+  LoginRepositoryImpl({required this.dio, required this.tokenStorage});
+  
   @override
   Future<Login> loadLoginData() async {
-    final response =
-        await rootBundle.loadString('/assets/json_data/login_data.json');
-    final data = json.decode(response);
+    try {
+      final response = await rootBundle.loadString('assets/json_data/login_data.json');
+      final data = json.decode(response);
 
-    logger.i(data);
-    return Login.fromJson(data);
+      logger.i(data);
+      return Login.fromJson(data);
+    } catch (e) {
+      logger.e('Error loading login data: $e');
+      rethrow;
+    }
   }
 
   @override
@@ -30,29 +36,32 @@ class LoginRepositoryImpl implements LoginRepository {
         data: {"phone": login.userEmail, "password": login.password},
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 && response.data != null) {
         final token = response.data['access_token'];
-        logger.i('El token: $token');
-
-        // Guardar el token en las SharedPreferences
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('access_token', token);
-
-        SharedPreferences leer = await SharedPreferences.getInstance();
-        String? clave = leer.getString('access_token');
-
         if (token != null) {
-          // Usa el token para hacer una solicitud autenticada, por ejemplo
-          logger.i('El token recuperado: $clave');
+          logger.i('El token: $token');
+
+          // Guardar el token utilizando TokenStorage
+          await tokenStorage.saveToken(token);
+
+          // Leer el token guardado para verificar
+          String? savedToken = await tokenStorage.getToken();
+          if (savedToken != null) {
+            logger.i('El token recuperado: $savedToken');
+          } else {
+            logger.i('No hay token guardado');
+          }
+          return true;
         } else {
-          logger.i('No hay token guardado');
+          logger.e('No access token found in response');
+          return false;
         }
-        return true;
       } else {
+        logger.e('Failed to sign in, status code: ${response.statusCode}');
         return false;
       }
     } catch (e) {
-      logger.i('Error: $e');
+      logger.e('Sign-in error: $e');
       return false;
     }
   }

@@ -7,19 +7,25 @@ part of 'micuenta_model.dart';
 // **************************************************************************
 
 Micuenta _$MicuentaFromJson(Map<String, dynamic> json) => Micuenta(
-      numCuenta: json['numCuenta'] as String,
-      user: json['user'] as String,
-      cell: json['cell'] as String,
-      userEmail: json['userEmail'] as String,
-      fotoPerfil: json['fotoPerfil'] as String,
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      lastname: json['lastname'] as String,
+      email: json['email'] as String,
+      rfc: json['rfc'] as String,
+      phone: json['phone'] as String,
+      password: json['password'] as String,
+      id_bank: (json['id_bank'] as num).toInt(),
       isValid: json['isValid'] as bool,
     );
 
 Map<String, dynamic> _$MicuentaToJson(Micuenta instance) => <String, dynamic>{
-      'numCuenta': instance.numCuenta,
-      'user': instance.user,
-      'cell': instance.cell,
-      'userEmail': instance.userEmail,
-      'fotoPerfil': instance.fotoPerfil,
+      'id': instance.id,
+      'name': instance.name,
+      'lastname': instance.lastname,
+      'email': instance.email,
+      'rfc': instance.rfc,
+      'phone': instance.phone,
+      'password': instance.password,
+      'id_bank': instance.id_bank,
       'isValid': instance.isValid,
     };
