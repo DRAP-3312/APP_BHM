@@ -26,4 +26,20 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
 
     return Micuenta.fromJson(response.data);
   }
+
+  @override
+  Future<void> updateUserData(Micuenta user) async {
+    final token = await tokenStorage.getToken();
+    if (token == null) {
+      throw Exception('Token not found');
+    }
+
+    await dio.patch(
+      'https://apimoviles-production.up.railway.app/users',
+      data: user.toJson(),
+      options: Options(
+        headers: {'Authorization': 'Bearer $token'},
+      ),
+    );
+  }
 }

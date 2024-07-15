@@ -48,10 +48,10 @@ class _PerfilPageState extends State<PerfilPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        infoPersonal('Primer nombre', state.name),
-                        infoPersonal('RFC', state.rfc),
-                        infoPersonal('Email', state.email),
-                        infoPersonal('Telefono', state.phone),
+                        infoPersonal(context,'Primer nombre', state.name),
+                        infoPersonal(context,'RFC', state.rfc),
+                        infoPersonal(context,'Email', state.email),
+                        infoPersonal(context,'Telefono', state.phone),
                       ],
                     ),
                   ],

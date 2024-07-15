@@ -2,7 +2,7 @@ import 'package:bhm_app/Core/presentation/widgets/PefilUser/fotoPerfil.dart';
 import 'package:bhm_app/Core/presentation/widgets/PefilUser/infoPersonal.dart';
 import 'package:flutter/material.dart';
 
-Widget perfil(){
+Widget perfil(BuildContext context){
   return ListView(
     children: [
       fotoPerfil(),
@@ -12,10 +12,10 @@ Widget perfil(){
      ),
      Column(
       children: [
-        infoPersonal('Numero de cuenta','3024982387'),
-        infoPersonal('Usuario','Yoshua R. Moreno Arendondo'),
-        infoPersonal('Email','JoshRay@hotmail.com'),
-        infoPersonal('Telefono','9988112321')
+        infoPersonal(context,'Numero de cuenta','3024982387'),
+        infoPersonal(context,'Usuario','Yoshua R. Moreno Arendondo'),
+        infoPersonal(context,'Email','JoshRay@hotmail.com'),
+        infoPersonal(context,'Telefono','9988112321')
       ],
      ) 
     ],
