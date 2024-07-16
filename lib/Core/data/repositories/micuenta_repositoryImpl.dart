@@ -10,7 +10,7 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
   final TokenStorage tokenStorage;
 
   MiCuentaRepositoryImpl(this.dio, this.tokenStorage);
-  
+
   @override
   Future<Micuenta> loadMiCuentaData() async {
     final token = await tokenStorage.getToken();
@@ -24,8 +24,8 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
       ),
     );
 
-  final responseData = response.data['data'];
-  return Micuenta.fromJson(responseData);
+    final responseData = response.data['data'];
+    return Micuenta.fromJson(responseData);
   }
 
   @override

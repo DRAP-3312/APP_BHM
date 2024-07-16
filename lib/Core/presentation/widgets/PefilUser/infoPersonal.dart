@@ -1,6 +1,9 @@
 import 'package:bhm_app/Core/domain/models/micuenta_model.dart';
 import 'package:bhm_app/Core/presentation/widgets/PefilUser/onEdit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bhm_app/Core/presentation/bloc/bloc_miCuenta/miCuenta_bloc.dart';
+import 'package:bhm_app/Core/presentation/bloc/bloc_miCuenta/miCuenta_state.dart';
 
 Widget infoPersonal(BuildContext context, String target, String valor) {
   return Container(
@@ -31,16 +34,21 @@ Widget infoPersonal(BuildContext context, String target, String valor) {
         ),
         IconButton(
           onPressed: () {
-            // Navegar a la vista de edición al presionar el botón
+            final state = BlocProvider.of<MiCuentaBloc>(context).state;
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => EditUser(
                 user: Micuenta(
-        name: '3024982387',
-        lastname: 'Yoshua R. Moreno Arendondo',
-        email: 'JoshRay@hotmail.com',
-        phone: '9988112321', id: 1, rfc: '', password: '', id_bank: 1, isValid: true,
-      ),
+                  id: state.id,
+                  name: state.name,
+                  lastname: state.lastname,
+                  email: state.email,
+                  phone: state.phone,
+                  rfc: state.rfc,
+                  password: '', // Assuming password is not displayed and edited
+                  id_bank: state.id_bank,
+                  isValid: state.isValid,
+                ),
               )),
             );
           },

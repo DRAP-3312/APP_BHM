@@ -13,7 +13,7 @@ Widget perfil(BuildContext context){
      Column(
       children: [
         infoPersonal(context,'Numero de cuenta','3024982387'),
-        infoPersonal(context,'Usuario','Yoshua R. Moreno Arendondo'),
+        infoPersonal(context,'Usuario','tu cola R. Moreno Arendondo'),
         infoPersonal(context,'Email','JoshRay@hotmail.com'),
         infoPersonal(context,'Telefono','9988112321')
       ],

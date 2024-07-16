@@ -1,9 +1,8 @@
-import 'package:bhm_app/Core/data/repositories/micuenta_repositoryImpl.dart';
 import 'package:flutter/material.dart';
 import 'package:bhm_app/Core/domain/models/micuenta_model.dart';
-import 'package:bhm_app/Core/domain/repositories/micuenta_Repositorie.dart';
-import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
+import 'package:bhm_app/Core/data/repositories/micuenta_repositoryImpl.dart';
 import 'package:dio/dio.dart';
+import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
 
 class EditUser extends StatefulWidget {
   final Micuenta user;
@@ -44,11 +43,15 @@ class _EditUserState extends State<EditUser> {
   Future<void> _updateUserData() async {
     if (_formKey.currentState!.validate()) {
       final updatedUser = Micuenta(
+        id: widget.user.id,
         name: _accountController.text,
         lastname: _usernameController.text,
         email: _emailController.text,
         phone: _phoneController.text,
-        id: 18, rfc: 'JUAN0203242Q1', password: 'juanSicario123', id_bank: 2, isValid: false
+        rfc: widget.user.rfc,
+        password: widget.user.password,
+        id_bank: widget.user.id_bank,
+        isValid: widget.user.isValid,
       );
 
       try {
