@@ -24,7 +24,8 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
       ),
     );
 
-    return Micuenta.fromJson(response.data);
+  final responseData = response.data['data'];
+  return Micuenta.fromJson(responseData);
   }
 
   @override
