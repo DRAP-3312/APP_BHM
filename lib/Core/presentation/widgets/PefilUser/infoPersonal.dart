@@ -47,7 +47,7 @@ Widget infoPersonal(BuildContext context, String target, String valor) {
                   rfc: state.rfc,
                   password: '', // Assuming password is not displayed and edited
                   id_bank: state.id_bank,
-                  isValid: state.isValid,
+                  //isValid: state.isValid,
                 ),
               )),
             );

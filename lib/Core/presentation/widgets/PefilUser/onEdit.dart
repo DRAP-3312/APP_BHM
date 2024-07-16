@@ -51,7 +51,7 @@ class _EditUserState extends State<EditUser> {
         rfc: widget.user.rfc,
         password: widget.user.password,
         id_bank: widget.user.id_bank,
-        isValid: widget.user.isValid,
+        //isValid: widget.user.isValid,
       );
 
       try {

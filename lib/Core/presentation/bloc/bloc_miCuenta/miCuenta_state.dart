@@ -62,7 +62,7 @@ class MiCuentaState extends Equatable {
       phone: model.phone,
       password: model.password,
       id_bank: model.id_bank,
-      isValid: model.isValid,
+      //isValid: model.isValid,
     );
   }
 

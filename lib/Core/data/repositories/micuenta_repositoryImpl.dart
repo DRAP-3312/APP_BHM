@@ -4,10 +4,12 @@ import 'package:bhm_app/Core/domain/repositories/micuenta_Repositorie.dart';
 import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
+import 'package:logger/logger.dart';
 
 class MiCuentaRepositoryImpl implements MiCuentaRepository {
   final Dio dio;
   final TokenStorage tokenStorage;
+    final Logger logger = Logger();
 
   MiCuentaRepositoryImpl(this.dio, this.tokenStorage);
 
@@ -42,5 +44,6 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
         headers: {'Authorization': 'Bearer $token'},
       ),
     );
+    logger.i('data: ${user.toJson()}');
   }
 }

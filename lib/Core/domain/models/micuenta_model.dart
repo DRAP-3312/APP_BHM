@@ -12,7 +12,7 @@ class Micuenta {
   String phone;
   String password;
   int id_bank;
-  bool isValid;
+  //bool isValid;
 
   Micuenta({
     required this.id,
@@ -23,7 +23,7 @@ class Micuenta {
     required this.phone,
     required this.password,
     required this.id_bank,
-    required this.isValid,
+    //required this.isValid,
   });
 
   factory Micuenta.fromJson(Map<String, dynamic> json) {
@@ -36,7 +36,7 @@ class Micuenta {
       phone: json['phone'] as String,
       password: json['password'] as String,
       id_bank: json['id_bank'] as int,
-      isValid: json['isValid'] as bool? ?? false, // Aquí aseguramos que isValid tenga un valor por defecto
+      //isValid: json['isValid'] as bool? ?? false, // Aquí aseguramos que isValid tenga un valor por defecto
     );
   }
 
