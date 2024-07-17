@@ -9,7 +9,7 @@ class LoadMiCuentaData {
   Future<Micuenta> call() async {
     final miCuentaData = await repository.loadMiCuentaData();
 
-    if (miCuentaData.id == null) {
+    if (miCuentaData.id == 0) {
       throw Exception("id no puede ser nulo");
     }
 
@@ -52,7 +52,7 @@ class LoadMiCuentaData {
       throw Exception("password no puede ser vacío");
     }
 
-    if (miCuentaData.id_bank == null) {
+    if (miCuentaData.id_bank == 0) {
       throw Exception("id_bank no puede ser nulo");
     }
 

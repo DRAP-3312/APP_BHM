@@ -3,7 +3,7 @@ import 'package:bhm_app/Core/presentation/widgets/PefilUser/onEdit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_miCuenta/miCuenta_bloc.dart';
-import 'package:bhm_app/Core/presentation/bloc/bloc_miCuenta/miCuenta_state.dart';
+
 
 Widget infoPersonal(BuildContext context, String target, String valor) {
   return Container(
