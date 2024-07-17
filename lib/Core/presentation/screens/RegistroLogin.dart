@@ -45,7 +45,7 @@ class _RegistroLoginState extends State<RegistroLogin> {
                 child: BlocBuilder<RegistroLoginBloc, RegistroLoginState>(
                   builder: (context, state) {
                     // Verificar estado actual
-                    print('Estado actual en la vista: $state');
+                   // print('Estado actual en la vista: $state');
 
                     TextEditingController nameController = TextEditingController(text: state.name);
                     TextEditingController lastNameController = TextEditingController(text: state.lastname);

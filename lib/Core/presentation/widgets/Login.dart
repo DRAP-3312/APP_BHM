@@ -28,15 +28,33 @@ class _LoginState extends State<Login> {
           options: const AuthenticationOptions(
               stickyAuth: true, useErrorDialogs: true));
     } catch (e) {
-      print(e);
+      if (mounted) {
+        // Verifica si el widget está montado antes de usar el context
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error de autenticación: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
     if (authenticated) {
-      Navigator.pushReplacement<void, void>(
-          context,
-          MaterialPageRoute<void>(
-              builder: (BuildContext context) => const HomePage()));
+      if (mounted) {
+        Navigator.pushReplacement<void, void>(
+            context,
+            MaterialPageRoute<void>(
+                builder: (BuildContext context) => const HomePage()));
+      }
     } else {
-      print("Fallo auth");
+      if (mounted) {
+        // Verifica si el widget está montado antes de usar el context
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Auth fallo'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
@@ -53,10 +71,10 @@ class _LoginState extends State<Login> {
         if (state is LoginSuccess) {
           // Navigator.pushReplacement(
           //     context, MaterialPageRoute(builder: (context) => const HomePage()));
-           Navigator.pushReplacement<void, void>(
-          context,
-          MaterialPageRoute<void>(
-              builder: (BuildContext context) => const HomePage()));
+          Navigator.pushReplacement<void, void>(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => const HomePage()));
         } else if (state is LoginFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Login failed')),
@@ -72,7 +90,8 @@ class _LoginState extends State<Login> {
             children: [
               Checkbox(
                 value: _ifChecked,
-                onChanged: (newValue) => {setState(() => _ifChecked = newValue!)},
+                onChanged: (newValue) =>
+                    {setState(() => _ifChecked = newValue!)},
               ),
               const Text('Mantener Sesión'),
             ],
@@ -93,7 +112,8 @@ class _LoginState extends State<Login> {
                   elevation: 2,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 ),
                 child: const Text(
                   'INGRESAR',
@@ -102,8 +122,10 @@ class _LoginState extends State<Login> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const RegistroLogin()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RegistroLogin()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF16697A),
@@ -111,7 +133,8 @@ class _LoginState extends State<Login> {
                   elevation: 2,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 ),
                 child: const Text(
                   'REGISTRARSE',
@@ -162,9 +185,11 @@ Widget loginLogo() {
   );
 }
 
-Widget loginInputs(BuildContext context, VoidCallback togglePasswordView, bool isPasswordVisible) {
+Widget loginInputs(BuildContext context, VoidCallback togglePasswordView,
+    bool isPasswordVisible) {
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.start, // Alinea los textos a la izquierda.
+    crossAxisAlignment:
+        CrossAxisAlignment.start, // Alinea los textos a la izquierda.
     children: [
       TextField(
         keyboardType: TextInputType.emailAddress,
@@ -196,4 +221,3 @@ Widget loginInputs(BuildContext context, VoidCallback togglePasswordView, bool i
     ],
   );
 }
-

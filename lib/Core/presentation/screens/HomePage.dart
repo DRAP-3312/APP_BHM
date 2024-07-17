@@ -202,10 +202,3 @@ Widget accionesRapidas(String accion) {
     ]),
   );
 }
-
-
-// style: const ButtonStyle(
-//         alignment: Alignment.center,
-//         backgroundColor: MaterialStatePropertyAll(Colors.white),
-//         elevation: MaterialStatePropertyAll(0),
-//       ),
