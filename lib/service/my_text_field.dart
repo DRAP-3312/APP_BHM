@@ -20,9 +20,22 @@ class MyTextFormField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: const TextStyle(fontWeight: FontWeight.w400),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(
+            color:  Color(0xffFF6347),
+          ),
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
       ),
       obscureText: obscureText,
       onChanged: onChanged,
+      textAlign: TextAlign.start, 
+      textDirection: TextDirection.ltr, 
     );
   }
 }

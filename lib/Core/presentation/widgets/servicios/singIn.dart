@@ -13,15 +13,15 @@ class SignIn extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         margin: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 126, 126, 126),
+          color: const Color(0xFF16697A),
           borderRadius: BorderRadius.circular(8),
         ),
         child: const Center(
           child: Text(
-            'Ingresa',
+            'Registrarse',
             style: TextStyle(
-              color: Colors.black,
-              // fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
           ),

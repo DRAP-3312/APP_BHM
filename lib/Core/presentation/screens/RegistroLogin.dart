@@ -25,10 +25,10 @@ class _RegistroLoginState extends State<RegistroLogin> {
         RegistroLoginRepositoryImpl(dio: Dio()),
       )..add(LoadRegistroLoginDataEvent()),
       child: Scaffold(
+        appBar: AppBar(),
         body: SafeArea(
-          child: SizedBox(
-            width: double.infinity,
-            height: double.infinity,
+          child: Container(
+            padding: const EdgeInsets.all(15.0),
             child: SingleChildScrollView(
               child: BlocListener<RegistroLoginBloc, RegistroLoginState>(
                 listener: (context, state) {
@@ -44,216 +44,116 @@ class _RegistroLoginState extends State<RegistroLogin> {
                 },
                 child: BlocBuilder<RegistroLoginBloc, RegistroLoginState>(
                   builder: (context, state) {
-                    // Verificar estado actual
-                   // print('Estado actual en la vista: $state');
-
-                    TextEditingController nameController = TextEditingController(text: state.name);
-                    TextEditingController lastNameController = TextEditingController(text: state.lastname);
-                    TextEditingController emailController = TextEditingController(text: state.email);
-                    TextEditingController rfcController = TextEditingController(text: state.rfc);
-                    TextEditingController phoneController = TextEditingController(text: state.phone);
-                    TextEditingController passwordController = TextEditingController(text: state.password);
-                    TextEditingController idBankController = TextEditingController(text: state.id_banck.toString());
+                    TextEditingController nameController =
+                        TextEditingController(text: state.name);
+                    TextEditingController lastNameController =
+                        TextEditingController(text: state.lastname);
+                    TextEditingController emailController =
+                        TextEditingController(text: state.email);
+                    TextEditingController rfcController =
+                        TextEditingController(text: state.rfc);
+                    TextEditingController phoneController =
+                        TextEditingController(text: state.phone);
+                    TextEditingController passwordController =
+                        TextEditingController(text: state.password);
+                    TextEditingController idBankController =
+                        TextEditingController(text: state.id_banck.toString());
 
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 50),
+                        const SizedBox(height: 30),
+                        Image.asset(
+                          'assets/images/Bienvenida.jpg',
+                          height: 200,
+                          fit: BoxFit.fill,
+                        ),
+                        const SizedBox(height: 20),
                         const Text(
-                          'Registro',
+                          'Comienza tu Aventura con BHM',
                           style: TextStyle(
-                            fontSize: 48,
+                            fontSize: 20,
                             fontFamily: 'Arial Black',
-                            fontWeight: FontWeight.bold
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF16697A),
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: 66),
-
-                        // Nombre completo
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Nombre completo',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        MyTextFormField(
-                          controller: nameController,
-                          hintText: 'Ingrese su nombre',
-                          obscureText: false,
-                          onChanged: (value) {
-                            context.read<RegistroLoginBloc>().add(NameChanged(value));
-                          },
+                        const SizedBox(height: 20),
+                        _buildTextField(
+                          context,
+                          'Nombre completo',
+                          nameController,
+                          (value) => context
+                              .read<RegistroLoginBloc>()
+                              .add(NameChanged(value)),
                         ),
                         const SizedBox(height: 19),
-                        // Apellido
-
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Apellido',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        MyTextFormField(
-                          controller: lastNameController,
-                          hintText: 'Ingrese su apellido',
-                          obscureText: false,
-                          onChanged: (value) {
-                            context.read<RegistroLoginBloc>().add(LastNameChanged(value));
-                          },
+                        _buildTextField(
+                          context,
+                          'Apellido',
+                          lastNameController,
+                          (value) => context
+                              .read<RegistroLoginBloc>()
+                              .add(LastNameChanged(value)),
                         ),
                         const SizedBox(height: 19),
-
-                        // Correo
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Correo',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        MyTextFormField(
-                          controller: emailController,
-                          hintText: 'Ingrese su correo',
-                          obscureText: false,
-                          onChanged: (value) {
-                            context.read<RegistroLoginBloc>().add(EmailChanged(value));
-                          },
-                        ),
-
-                        // RFC
-                        const SizedBox(height: 19),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'RFC',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        MyTextFormField(
-                          controller: rfcController,
-                          hintText: 'Ingrese su RFC',
-                          obscureText: false,
-                          onChanged: (value) {
-                            context.read<RegistroLoginBloc>().add(RfcChanged(value));
-                          },
+                        _buildTextField(
+                          context,
+                          'Correo',
+                          emailController,
+                          (value) => context
+                              .read<RegistroLoginBloc>()
+                              .add(EmailChanged(value)),
                         ),
                         const SizedBox(height: 19),
-                        // Teléfono
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Teléfono',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        MyTextFormField(
-                          controller: phoneController,
-                          hintText: 'Ingrese su teléfono personal',
-                          obscureText: false,
-                          onChanged: (value) {
-                            context.read<RegistroLoginBloc>().add(PhoneChanged(value));
-                          },
+                        _buildTextField(
+                          context,
+                          'RFC',
+                          rfcController,
+                          (value) => context
+                              .read<RegistroLoginBloc>()
+                              .add(RfcChanged(value)),
                         ),
                         const SizedBox(height: 19),
-                        // Contraseña
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Contraseña',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
+                        _buildTextField(
+                          context,
+                          'Teléfono',
+                          phoneController,
+                          (value) => context
+                              .read<RegistroLoginBloc>()
+                              .add(PhoneChanged(value)),
                         ),
-
-                        MyTextFormField(
-                          controller: passwordController,
-                          hintText: 'Ingrese su contraseña',
+                        const SizedBox(height: 19),
+                        _buildTextField(
+                          context,
+                          'Contraseña',
+                          passwordController,
+                          (value) => context
+                              .read<RegistroLoginBloc>()
+                              .add(PassowordChanged(value)),
                           obscureText: true,
-                          onChanged: (value) {
-                            context.read<RegistroLoginBloc>().add(PassowordChanged(value));
-                          },
                         ),
                         const SizedBox(height: 32),
-
-                        // Id Bank
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'ID Bank',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        MyTextFormField(
-                          controller: idBankController,
-                          hintText: 'Ingrese su idbanck',
-                          obscureText: false,
-                          onChanged: (value) {
-                            context.read<RegistroLoginBloc>().add(IdbanckChanged(int.tryParse(value) ?? 0));
-                          },
+                        _buildTextField(
+                          context,
+                          'ID Bank',
+                          idBankController,
+                          (value) => context
+                              .read<RegistroLoginBloc>()
+                              .add(IdbanckChanged(int.tryParse(value) ?? 0)),
                         ),
                         const SizedBox(height: 19),
                         SignIn(onTap: () {
                           if (state.isValid) {
-                            context.read<RegistroLoginBloc>().add(RegistroLoginSubmitted());
+                            context
+                                .read<RegistroLoginBloc>()
+                                .add(RegistroLoginSubmitted());
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Por favor complete todos los campos')),
+                              const SnackBar(
+                                  content: Text(
+                                      'Por favor complete todos los campos')),
                             );
                           }
                         })
@@ -266,6 +166,33 @@ class _RegistroLoginState extends State<RegistroLogin> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextField(BuildContext context, String labelText,
+      TextEditingController controller, Function(String) onChanged,
+      {bool obscureText = false}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Text(
+            labelText,
+            style: const TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.w400
+            ),
+          ),
+        ),
+        MyTextFormField(
+          controller: controller,
+          hintText: 'Ingrese su $labelText',
+          obscureText: obscureText,
+          onChanged: onChanged,
+        ),
+      ],
     );
   }
 }

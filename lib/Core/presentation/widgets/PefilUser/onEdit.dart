@@ -1,3 +1,4 @@
+import 'package:bhm_app/Core/presentation/widgets/servicios/singIn.dart';
 import 'package:flutter/material.dart';
 import 'package:bhm_app/Core/domain/models/micuenta_model.dart';
 import 'package:bhm_app/Core/data/repositories/micuenta_repositoryImpl.dart';
@@ -7,7 +8,7 @@ import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
 class EditUser extends StatefulWidget {
   final Micuenta user;
 
-  EditUser({required this.user});
+  const EditUser({super.key, required this.user});
 
   @override
   _EditUserState createState() => _EditUserState();
@@ -51,19 +52,22 @@ class _EditUserState extends State<EditUser> {
         rfc: widget.user.rfc,
         password: widget.user.password,
         id_bank: widget.user.id_bank,
-        //isValid: widget.user.isValid,
       );
 
       try {
         await _miCuentaRepository.updateUserData(updatedUser);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Datos actualizados con éxito'),
-        ));
-        Navigator.pop(context, updatedUser);
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Datos actualizados con éxito'),
+          ));
+          Navigator.pop(context, updatedUser);
+        }
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error al actualizar los datos'),
-        ));
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Error al actualizar los datos'),
+          ));
+        }
       }
     }
   }
@@ -72,7 +76,10 @@ class _EditUserState extends State<EditUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit User'),
+        //title:const Text('Editar Usuario'),
+        backgroundColor: const Color(0xFF16697A),
+        titleTextStyle: const TextStyle(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -80,19 +87,29 @@ class _EditUserState extends State<EditUser> {
           key: _formKey,
           child: Column(
             children: [
-              TextFormField(
+              Container(
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'Editar datos',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF16697A),
+                      fontSize: 25),
+                ),
+              ),
+              _buildTextFormField(
                 controller: _accountController,
-                decoration: InputDecoration(labelText: 'Número de cuenta'),
+                labelText: 'Primer Nombre',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor ingrese el número de cuenta';
+                    return 'Por favor ingrese un nombre';
                   }
                   return null;
                 },
               ),
-              TextFormField(
+              _buildTextFormField(
                 controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Usuario'),
+                labelText: 'Usuario',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingrese el nombre de usuario';
@@ -100,9 +117,9 @@ class _EditUserState extends State<EditUser> {
                   return null;
                 },
               ),
-              TextFormField(
+              _buildTextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                labelText: 'Email',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingrese el email';
@@ -110,9 +127,9 @@ class _EditUserState extends State<EditUser> {
                   return null;
                 },
               ),
-              TextFormField(
+              _buildTextFormField(
                 controller: _phoneController,
-                decoration: InputDecoration(labelText: 'Teléfono'),
+                labelText: 'Teléfono',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingrese el número de teléfono';
@@ -120,14 +137,43 @@ class _EditUserState extends State<EditUser> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _updateUserData,
-                child: Text('Guardar'),
-              ),
+             const SizedBox(height: 20),
+               SignIn(
+                onTap: _updateUserData,
+               )
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildTextFormField({
+    required TextEditingController controller,
+    required String labelText,
+    required String? Function(String?) validator,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: const TextStyle(color: Color(0xFF16697A)),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: Color(0xffFF6347),
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: Colors.grey,
+            ),
+          ),
+        ),
+        validator: validator,
       ),
     );
   }
