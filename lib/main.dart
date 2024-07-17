@@ -15,24 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false, // Aquí se oculta la etiqueta DEBUG
-      home: Btn(),
-    );
-  }
-}
-
-class Btn extends StatelessWidget {
-  const Btn({Key? key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: const LoginPage(),
-        ),
-      ),
+      home: LoginPage(),
     );
   }
 }

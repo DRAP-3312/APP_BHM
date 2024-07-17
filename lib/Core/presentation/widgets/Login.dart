@@ -66,98 +66,98 @@ class _LoginState extends State<Login> {
       });
     }
 
-    return BlocListener<LoginBloc, LoginState>(
-      listener: (context, state) {
-        if (state is LoginSuccess) {
-          // Navigator.pushReplacement(
-          //     context, MaterialPageRoute(builder: (context) => const HomePage()));
-          Navigator.pushReplacement<void, void>(
-              context,
-              MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const HomePage()));
-        } else if (state is LoginFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Login failed')),
-          );
-        }
-      },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          loginInputs(context, togglePasswordView, isPasswordVisible),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+    return Column(
+      children: [
+        BlocListener<LoginBloc, LoginState>(
+          listener: (context, state) {
+            if (state is LoginSuccess) {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => const HomePage()));
+            } else if (state is LoginFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Login failed')),
+              );
+            }
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Checkbox(
-                value: _ifChecked,
-                onChanged: (newValue) =>
-                    {setState(() => _ifChecked = newValue!)},
+              loginInputs(context, togglePasswordView, isPasswordVisible),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Checkbox(
+                    value: _ifChecked,
+                    onChanged: (newValue) =>
+                        {setState(() => _ifChecked = newValue!)},
+                  ),
+                  const Text('Mantener Sesión'),
+                ],
               ),
-              const Text('Mantener Sesión'),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<LoginBloc>().add(LoginSubmitted());
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF16697A),
+                      foregroundColor: Colors.white,
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                    ),
+                    child: const Text(
+                      'INGRESAR',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RegistroLogin()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF16697A),
+                      foregroundColor: Colors.white,
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                    ),
+                    child: const Text(
+                      'REGISTRARSE',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 70,
+              ),
+              IconButton(
+                  onPressed: () {
+                    auth();
+                  },
+                  color: const Color(0xffFFB997),
+                  icon: const Icon(
+                    Icons.fingerprint,
+                    size: 50,
+                    color: Color(0xffFF6347),
+                  ))
             ],
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  context.read<LoginBloc>().add(LoginSubmitted());
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF16697A),
-                  foregroundColor: Colors.white,
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                ),
-                child: const Text(
-                  'INGRESAR',
-                  style: TextStyle(fontSize: 14),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const RegistroLogin()));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF16697A),
-                  foregroundColor: Colors.white,
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                ),
-                child: const Text(
-                  'REGISTRARSE',
-                  style: TextStyle(fontSize: 14),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 70,
-          ),
-          IconButton(
-              onPressed: () {
-                auth();
-              },
-              color: const Color(0xffFFB997),
-              icon: const Icon(
-                Icons.fingerprint,
-                size: 50,
-                color: Color(0xffFF6347),
-              ))
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
