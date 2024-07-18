@@ -18,7 +18,7 @@ class SignIn extends StatelessWidget {
         ),
         child: const Center(
           child: Text(
-            'Registrarse',
+            'Guardar',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
