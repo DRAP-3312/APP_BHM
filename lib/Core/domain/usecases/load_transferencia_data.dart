@@ -14,10 +14,10 @@ class LoadTransferenciaData {
       throw Exception("nameContacto no puede ser vacio");
     }
 
-    if (transferData.montoTrans <= 0.0) {
+    if (transferData.amount <= 0.0) {
       throw Exception("montoTrans debe ser positivo");
     }
-    if (transferData.montoTrans > transferData.saldoDisponible) {
+    if (transferData.amount > transferData.saldoDisponible) {
       throw Exception("montoTrans excede el saldo disponible");
     }
 

@@ -3,14 +3,14 @@ import 'package:equatable/equatable.dart';
 
 class TranferenciaState extends Equatable {
   final String nameContacto;
-  final double montoTrans;
+  final int amount;
   final String fechaTrans;
   final double saldoDisponible;
   final bool isValid;
 
   const TranferenciaState({
     this.nameContacto = '',
-    this.montoTrans = 0.0,
+    this.amount = 0,
     this.fechaTrans = '',
     this.saldoDisponible = 0.0,
     this.isValid = false,
@@ -19,7 +19,7 @@ class TranferenciaState extends Equatable {
   factory TranferenciaState.fromModel(Transferencia model) {
     return TranferenciaState(
       nameContacto: model.nameContacto,
-      montoTrans: model.montoTrans,
+      amount: model.amount,
       fechaTrans: model.fechaTrans,
       saldoDisponible: model.saldoDisponible,
       isValid: true,
@@ -28,14 +28,14 @@ class TranferenciaState extends Equatable {
 
   TranferenciaState copyWith({
     String? nameContacto,
-    double? montoTrans,
+    int? amount,
     String? fechaTrans,
     double? saldoDisponible,
     bool? isValid,
   }) {
     return TranferenciaState(
       nameContacto: nameContacto ?? this.nameContacto,
-      montoTrans: montoTrans ?? this.montoTrans,
+      amount: amount ?? this.amount,
       fechaTrans: fechaTrans ?? this.fechaTrans,
       saldoDisponible: saldoDisponible ?? this.saldoDisponible,
       isValid: isValid ?? this.isValid,
@@ -45,7 +45,7 @@ class TranferenciaState extends Equatable {
   @override
   List<Object?> get props => [
         nameContacto,
-        montoTrans,
+        amount,
         fechaTrans,
         saldoDisponible,
         isValid,

@@ -171,7 +171,7 @@ class _RegistroLoginState extends State<RegistroLogin> {
 
   Widget _buildTextField(BuildContext context, String labelText,
       TextEditingController controller, Function(String) onChanged,
-      {bool obscureText = false}) {
+      {bool obscureText = false , TextInputType keyboardType = TextInputType.text}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,6 +190,7 @@ class _RegistroLoginState extends State<RegistroLogin> {
           controller: controller,
           hintText: 'Ingrese su $labelText',
           obscureText: obscureText,
+          keyboardType: keyboardType,
           onChanged: onChanged,
         ),
       ],

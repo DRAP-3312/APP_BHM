@@ -19,12 +19,12 @@ class NameContactoChanged extends TransferenciaEvent {
 }
 
 class MontoTransChanged extends TransferenciaEvent {
-  final double montoTrans;
+  final int amount;
 
-  const MontoTransChanged(this.montoTrans);
+  const MontoTransChanged(this.amount);
 
   @override
-  List<Object?> get props => [montoTrans];
+  List<Object?> get props => [amount];
 }
 
 class FechaTransChanged extends TransferenciaEvent {
