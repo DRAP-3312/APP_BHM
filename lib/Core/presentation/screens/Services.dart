@@ -114,7 +114,7 @@ class _ServicesState extends State<Services> {
       case 'streaming':
         return Icons.smart_display;
       default:
-        return Icons.miscellaneous_services;
+        return Icons.paid;
     }
   }
 }

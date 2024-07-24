@@ -2,22 +2,27 @@ import 'dart:convert';
 import 'package:bhm_app/Core/domain/models/login_model.dart';
 import 'package:bhm_app/Core/domain/repositories/login_Repositorie.dart';
 import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
+import 'package:bhm_app/service/globalUser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:logger/logger.dart'; // Importar la clase TokenStorage
+
+import 'package:logger/logger.dart';
+// Importar la clase TokenStorage
 
 class LoginRepositoryImpl implements LoginRepository {
   final Dio dio;
   final Logger logger = Logger();
   final TokenStorage tokenStorage;
-  final String urlServer= 'http://localhost:3000/auth/login'; //'https://apimoviles-production.up.railway.app/auth/login'
+  final String urlServer =
+      'https://apimoviles-production.up.railway.app/auth/login'; //http://localhost:3000/auth/login
 
   LoginRepositoryImpl({required this.dio, required this.tokenStorage});
-  
+
   @override
   Future<Login> loadLoginData() async {
     try {
-      final response = await rootBundle.loadString('assets/json_data/login_data.json');
+      final response =
+          await rootBundle.loadString('assets/json_data/login_data.json');
       final data = json.decode(response);
       return Login.fromJson(data);
     } catch (e) {
@@ -37,9 +42,17 @@ class LoginRepositoryImpl implements LoginRepository {
       if (response.statusCode == 200 && response.data != null) {
         final token = response.data['access_token'];
         if (token != null) {
-          
+         
           // Guardar el token utilizando TokenStorage
           await tokenStorage.saveToken(token);
+          final userInfo = await dio.get(
+            'https://apimoviles-production.up.railway.app/users', //http://localhost:3000
+            options: Options(
+              headers: {'Authorization': 'Bearer $token'},
+            ),
+          );
+          final idUser = userInfo.data['data']['id'];
+           GlobalState().setUserId(int.parse(idUser.toString()));
           return true;
         } else {
           logger.e('No access token found in response');

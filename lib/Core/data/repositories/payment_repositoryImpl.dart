@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 class PaymentRepositoryImpl implements PaymentRepository {
   final Dio dio;
   final TokenStorage tokenStorage;
-  final String rutaServer = 'http://localhost:3000/log-services';
+  final String rutaServer = 'https://apimoviles-production.up.railway.app/log-services'; //http://localhost:3000/log-services
 
   PaymentRepositoryImpl(this.dio, this.tokenStorage);
 
@@ -14,7 +14,6 @@ class PaymentRepositoryImpl implements PaymentRepository {
   Future<void> postPayment(Payment payment) async {
     try {
       final token = await tokenStorage.getToken();
-      print(payment.toJson());
       final response = await dio.post(
         rutaServer,
         data: payment.toJson(),

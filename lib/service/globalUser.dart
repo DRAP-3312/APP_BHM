@@ -1,12 +1,19 @@
-import 'package:flutter/material.dart';
+class GlobalState {
+  static final GlobalState _instance = GlobalState._internal();
 
-class GlobalState extends ChangeNotifier {
-  int _globalVariable = 117;
+  factory GlobalState() {
+    return _instance;
+  }
 
-  int get globalVariable => _globalVariable;
+  GlobalState._internal();
 
-  void setGlobalVariable(int value) {
-    _globalVariable = value;
-    notifyListeners();
+  int? userId;
+
+  void setUserId(int id) {
+    userId = id;
+  }
+
+  int? getUserId() {
+    return userId;
   }
 }

@@ -10,7 +10,7 @@ import 'package:bhm_app/Core/domain/usecases/load_miCuenta_data.dart';
 import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
 import 'package:bhm_app/Core/presentation/widgets/PefilUser/fotoPerfil.dart';
 import 'package:bhm_app/Core/presentation/widgets/PefilUser/infoPersonal.dart';
-import 'package:provider/provider.dart';
+
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({super.key});
@@ -37,7 +37,7 @@ class _PerfilPageState extends State<PerfilPage> {
                 return Center(child: Text('Error: ${state.error['error']}'));
               } else {
                 Future.microtask(() {
-                    Provider.of<GlobalState>(context, listen: false).setGlobalVariable(state.id);
+                    GlobalState().setUserId(state.id);
                   });
                 return ListView(
                   padding: const EdgeInsets.all(20.0),

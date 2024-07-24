@@ -12,7 +12,7 @@ import 'package:bhm_app/service/globalUser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+
 
 class MontoServicio extends StatefulWidget {
   final Servicio servicio;
@@ -35,10 +35,7 @@ class _MontoServicio extends State<MontoServicio> {
     super.initState();
     // Asignar valores iniciales a los controladores
     _idServiceController.text = widget.servicio.id.toString();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final globalState = Provider.of<GlobalState>(context, listen: false);
-      _idUserController.text = globalState.globalVariable.toString();
-    });
+      _idUserController.text = GlobalState().getUserId().toString();
     _idAccountController.text = "0";
     _referenceController.text = widget.servicio.name;
   }

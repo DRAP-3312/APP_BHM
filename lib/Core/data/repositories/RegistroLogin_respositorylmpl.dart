@@ -8,7 +8,7 @@ import 'package:logger/logger.dart';
 class RegistroLoginRepositoryImpl implements RegistroLoginRepository {
   final Dio dio;
   final Logger logger = Logger();
-  final String urlServer ='http://localhost:3000/users'; //'https://apimoviles-production.up.railway.app/users'
+  final String urlServer ='https://apimoviles-production.up.railway.app/users'; //http://localhost:3000/users
 
   RegistroLoginRepositoryImpl({required this.dio});
 
