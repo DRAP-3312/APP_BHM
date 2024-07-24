@@ -23,7 +23,7 @@ class _TransferPageState extends State<TransferPage> {
     return BlocProvider(
       create: (context) => TransferenciaBloc(
         LoadTransferenciaData(TransferenciaRepositoryImpl(dio: Dio())),
-        TransferenciaRepositoryImpl(dio: Dio()) as TransferenciaRepository,
+        TransferenciaRepositoryImpl(dio: Dio()) 
       )..add(LoadTransferenciaDataEvent()),
       child: Scaffold(
         appBar: AppBar(title: Text('Transfer Money')),
