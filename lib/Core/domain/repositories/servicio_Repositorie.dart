@@ -1,6 +1,5 @@
-
 import 'package:bhm_app/Core/domain/models/servicio_model.dart';
 
-abstract class ServicioRepository{
-  Future<Servicio> loadServicioData();
+abstract class ServicioRepository {
+  Future<List<Servicio>> loadServicioData();
 }

@@ -10,6 +10,7 @@ class LoginRepositoryImpl implements LoginRepository {
   final Dio dio;
   final Logger logger = Logger();
   final TokenStorage tokenStorage;
+  final String urlServer= 'http://localhost:3000/auth/login'; //'https://apimoviles-production.up.railway.app/auth/login'
 
   LoginRepositoryImpl({required this.dio, required this.tokenStorage});
   
@@ -31,7 +32,7 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<bool> singIn(Login login) async {
     try {
       final response = await dio.post(
-        'https://apimoviles-production.up.railway.app/auth/login',
+        urlServer,
         data: {"phone": login.userEmail, "password": login.password},
       );
 

@@ -15,7 +15,6 @@ Micuenta _$MicuentaFromJson(Map<String, dynamic> json) => Micuenta(
       phone: json['phone'] as String,
       password: json['password'] as String,
       id_bank: (json['id_bank'] as num).toInt(),
-      //isValid: json['isValid'] as bool,
     );
 
 Map<String, dynamic> _$MicuentaToJson(Micuenta instance) => <String, dynamic>{
@@ -27,5 +26,4 @@ Map<String, dynamic> _$MicuentaToJson(Micuenta instance) => <String, dynamic>{
       'phone': instance.phone,
       'password': instance.password,
       'id_bank': instance.id_bank,
-      //'isValid': instance.isValid,
     };

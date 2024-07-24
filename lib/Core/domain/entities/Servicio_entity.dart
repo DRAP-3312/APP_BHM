@@ -1,10 +1,9 @@
 
 class Servicio {
-  final double  montoPago;
-  final String referencia;
-  final String fecha;
-  final bool isValid;
+  final int  id;
+  final String name;
+  final bool status;
 
   Servicio(
-      {required this.montoPago, required this.referencia, required this.fecha, required this.isValid});
+      {required this.id, required this.name, required this.status});
 }

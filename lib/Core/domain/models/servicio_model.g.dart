@@ -7,15 +7,13 @@ part of 'servicio_model.dart';
 // **************************************************************************
 
 Servicio _$ServicioFromJson(Map<String, dynamic> json) => Servicio(
-      montoPago: (json['montoPago'] as num).toDouble(),
-      referencia: json['referencia'] as String,
-      fecha: json['fecha'] as String,
-      isValid: json['isValid'] as bool,
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      status: json['status'] as bool,
     );
 
 Map<String, dynamic> _$ServicioToJson(Servicio instance) => <String, dynamic>{
-      'montoPago': instance.montoPago,
-      'referencia': instance.referencia,
-      'fecha': instance.fecha,
-      'isValid': instance.isValid,
+      'id': instance.id,
+      'name': instance.name,
+      'status': instance.status,
     };

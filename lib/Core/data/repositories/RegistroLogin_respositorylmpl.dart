@@ -8,6 +8,7 @@ import 'package:logger/logger.dart';
 class RegistroLoginRepositoryImpl implements RegistroLoginRepository {
   final Dio dio;
   final Logger logger = Logger();
+  final String urlServer ='http://localhost:3000/users'; //'https://apimoviles-production.up.railway.app/users'
 
   RegistroLoginRepositoryImpl({required this.dio});
 
@@ -24,7 +25,7 @@ class RegistroLoginRepositoryImpl implements RegistroLoginRepository {
   Future<bool> registerUser(RegistroLogin user) async {
     try {
       final response = await dio.post(
-        'https://apimoviles-production.up.railway.app/users',
+        urlServer,
         data: {
           'name': user.name,
           'lastname': user.lastname,

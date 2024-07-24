@@ -3,8 +3,7 @@ import 'package:bhm_app/Core/presentation/screens/Services.dart';
 import 'package:flutter/material.dart';
 
 class MontoServicio extends StatefulWidget {
-  final String servicio; // Parámetro requerido para la pantalla
-
+  final String servicio;
   MontoServicio({required this.servicio});
 
   @override
@@ -52,7 +51,7 @@ class _MontoServicio extends State<MontoServicio> {
                 color: Colors.white,
               ),
             ),
-            Container(), // Puedes eliminar los contenedores adicionales si no son necesarios
+            Container(), 
           ],
         ),
       ),
@@ -98,7 +97,7 @@ class _MontoServicio extends State<MontoServicio> {
                 //mostrarNotificacion(_textFieldValue, widget.servicio);
                 Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => ConfirmacionPagoServicio(valorSaldo: _textFieldValue,)),
+                    MaterialPageRoute(builder: (context) => ConfirmacionPagoServicio(valorSaldo: _textFieldValue,servicio: widget.servicio,)),
                   );
               },
               style: ElevatedButton.styleFrom(

@@ -8,6 +8,7 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
   final Dio dio;
   final TokenStorage tokenStorage;
     final Logger logger = Logger();
+    final String urlServer = 'http://localhost:3000/users'; //'https://apimoviles-production.up.railway.app/users'
 
   MiCuentaRepositoryImpl(this.dio, this.tokenStorage);
 
@@ -18,7 +19,7 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
       throw Exception('Token no encontrado');   
     } 
     final response = await dio.get(
-      'https://apimoviles-production.up.railway.app/users',
+      urlServer,
       options: Options(
         headers: {'Authorization': 'Bearer $token'},
       ),
@@ -35,7 +36,7 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
     }
 
     await dio.patch(
-      'https://apimoviles-production.up.railway.app/users',
+      urlServer,
       data: user.toJson(),
       options: Options(
         headers: {'Authorization': 'Bearer $token'},

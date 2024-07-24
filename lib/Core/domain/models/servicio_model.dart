@@ -4,13 +4,15 @@ part 'servicio_model.g.dart';
 
 @JsonSerializable()
 class Servicio {
-  double montoPago;
-  String referencia;
-  String fecha;
-  bool isValid;
+  int id;
+  String name;
+  bool status;
 
-  Servicio(
-      {required this.montoPago, required this.referencia, required this.fecha, required this.isValid});
+  Servicio({
+    required this.id,
+    required this.name,
+    required this.status,
+  });
 
   factory Servicio.fromJson(Map<String, dynamic> json) => _$ServicioFromJson(json);
   Map<String, dynamic> toJson() => _$ServicioToJson(this);
