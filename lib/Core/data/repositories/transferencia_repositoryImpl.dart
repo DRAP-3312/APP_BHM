@@ -10,8 +10,6 @@ class TransferenciaRepositoryImpl implements TransferenciaRepository {
 
     final response = await rootBundle.loadString('/assets/json_data/transferencia_data.json');
     final data = json.decode(response);
-
-    print(data);
     return Transferencia.fromJson(data);
   }
 }

@@ -9,10 +9,7 @@ class InicioRepositoryImpl implements InicioRepository {
   Future<Inicio> loadInicioData() async {
     final response = await rootBundle.loadString('assets/json_data/inicio_data.json');
     final data = json.decode(response);
-
-    // print('Datos cargados del JSON: $data');
     final inicio = Inicio.fromJson(data);
-    // print('Datos convertidos a modelo: $inicio');
     return inicio;
   }
 }

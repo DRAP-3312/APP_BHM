@@ -10,11 +10,8 @@ class MiCuentaBloc extends Bloc<MiCuentaEvent, MiCuentaState> {
     on<LoadMiCuentaDataEvent>((event, emit) async {
       try {
         final miCuentaData = await loadMiCuentaData();
-        print('Datos recibidos en el Bloc: $miCuentaData');
         emit(MiCuentaState.fromModel(miCuentaData));
-        print('Estado actualizado en el Bloc: ${MiCuentaState.fromModel(miCuentaData)}');
       } catch (e) {
-        print('Error al cargar datos: $e');
         emit(state.copyWith(error: {'error': e.toString()}));
       }
     });

@@ -80,10 +80,10 @@ class _ServicesState extends State<Services> {
         create: (_) => _servicioBloc,
         child: BlocBuilder<ServicioBloc, ServicioState>(
           builder: (context, state) {
-            if (state is ServicioStateInitial) {
+           if (state is ServicioStateInitial) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is ServicioStateLoaded) {
-              final servicios = state.servicios.map((e) => e.name).toList();
+              final servicios = state.servicios; 
               final iconos = state.servicios.map((e) => _getIcon(e.name)).toList();
               return Padding(
                 padding: const EdgeInsets.all(10),

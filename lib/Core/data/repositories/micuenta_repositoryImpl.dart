@@ -42,6 +42,6 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
         headers: {'Authorization': 'Bearer $token'},
       ),
     );
-    logger.i('data: ${user.toJson()}');
+    //logger.i('data: ${user.toJson()}');
   }
 }

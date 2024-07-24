@@ -11,8 +11,6 @@ class CuentaRepositoryImpl implements CuentaRepository {
 
     final response = await rootBundle.loadString('/assets/json_data/cuenta_data.json');
     final data = json.decode(response);
-
-    print(data);
     return Cuenta.fromJson(data);
   }
 }

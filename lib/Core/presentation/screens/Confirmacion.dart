@@ -1,9 +1,10 @@
+import 'package:bhm_app/Core/domain/models/servicio_model.dart';
 import 'package:bhm_app/Core/presentation/screens/Services.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmacionPagoServicio extends StatefulWidget {
   final String valorSaldo;
-  final String servicio;
+  final Servicio servicio;
 
   const ConfirmacionPagoServicio({super.key, required this.valorSaldo, required this.servicio});
 
@@ -46,7 +47,7 @@ class _ConfirmacionPagoServicio extends State<ConfirmacionPagoServicio> {
               ),
               const SizedBox(height: 20),
               Text(
-                'Servicio: ${widget.servicio}',
+                'Servicio: ${widget.servicio.name}',
                 style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
                 textAlign: TextAlign.center,
               ),

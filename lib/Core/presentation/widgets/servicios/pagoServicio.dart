@@ -1,8 +1,9 @@
+import 'package:bhm_app/Core/domain/models/servicio_model.dart';
 import 'package:bhm_app/Core/presentation/screens/MontoServicio.dart';
 import 'package:flutter/material.dart';
 
 Widget pagoServicio(
-    BuildContext context, List<String> targets, List<IconData> iconos) {
+    BuildContext context, List<Servicio> targets, List<IconData> iconos) {
   return Container(
     decoration: BoxDecoration(
       border: Border.all(
@@ -18,7 +19,7 @@ Widget pagoServicio(
 }
 
 Widget opcionesServicio(
-    BuildContext context, List<String> targets, List<IconData> iconos) {
+    BuildContext context, List<Servicio> targets, List<IconData> iconos) {
   return ListView(
     children: List.generate(targets.length, (index) {
       return Column(
@@ -59,7 +60,7 @@ Widget opcionesServicio(
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          targets[index],
+                          targets[index].name,
                           style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w100,

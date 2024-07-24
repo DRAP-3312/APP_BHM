@@ -10,8 +10,6 @@ class NotificacionRepositoryImpl implements NotificacionRepository {
 
     final response = await rootBundle.loadString('/assets/json_data/notificacion_data.json');
     final data = json.decode(response);
-
-    print(data);
     return Notificacion.fromJson(data);
   }
 }

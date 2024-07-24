@@ -19,8 +19,6 @@ class LoginRepositoryImpl implements LoginRepository {
     try {
       final response = await rootBundle.loadString('assets/json_data/login_data.json');
       final data = json.decode(response);
-
-      logger.i(data);
       return Login.fromJson(data);
     } catch (e) {
       logger.e('Error loading login data: $e');
@@ -39,18 +37,9 @@ class LoginRepositoryImpl implements LoginRepository {
       if (response.statusCode == 200 && response.data != null) {
         final token = response.data['access_token'];
         if (token != null) {
-          logger.i('El token: $token');
-
+          
           // Guardar el token utilizando TokenStorage
           await tokenStorage.saveToken(token);
-
-          // Leer el token guardado para verificar
-          String? savedToken = await tokenStorage.getToken();
-          if (savedToken != null) {
-            logger.i('El token recuperado: $savedToken');
-          } else {
-            logger.i('No hay token guardado');
-          }
           return true;
         } else {
           logger.e('No access token found in response');
