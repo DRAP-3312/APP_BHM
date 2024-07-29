@@ -12,7 +12,7 @@ class ServicioBloc extends Bloc<ServicioEvent, ServicioState> {
         final servicioData = await loadServicioData();
         emit(ServicioStateLoaded(servicioData));
       } catch (e) {
-        emit(ServicioStateError('Failed to load services'));
+        emit(const ServicioStateError('Failed to load services'));
       }
     });
 

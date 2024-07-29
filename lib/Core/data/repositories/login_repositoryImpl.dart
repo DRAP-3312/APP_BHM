@@ -13,8 +13,8 @@ class LoginRepositoryImpl implements LoginRepository {
   final Dio dio;
   final Logger logger = Logger();
   final TokenStorage tokenStorage;
-  final String urlServer =
-      'https://apimoviles-production.up.railway.app/auth/login'; //http://localhost:3000/auth/login
+  final String urlServer ='http://localhost:3000/auth/login';
+      //'https://apimoviles-production.up.railway.app/auth/login'; 
 
   LoginRepositoryImpl({required this.dio, required this.tokenStorage});
 
@@ -46,7 +46,8 @@ class LoginRepositoryImpl implements LoginRepository {
           // Guardar el token utilizando TokenStorage
           await tokenStorage.saveToken(token);
           final userInfo = await dio.get(
-            'https://apimoviles-production.up.railway.app/users', //http://localhost:3000
+            'http://localhost:3000/users',
+            //'https://apimoviles-production.up.railway.app/users', 
             options: Options(
               headers: {'Authorization': 'Bearer $token'},
             ),

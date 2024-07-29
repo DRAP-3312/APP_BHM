@@ -7,17 +7,13 @@ part of 'cuenta_model.dart';
 // **************************************************************************
 
 Cuenta _$CuentaFromJson(Map<String, dynamic> json) => Cuenta(
-      nameContacto: json['nameContacto'] as String,
-      aliasContacto: json['aliasContacto'] as String,
-      numTarjet: json['numTarjet'] as String,
-      fotoPerfil: json['fotoPerfil'] as String,
-      isValid: json['isValid'] as bool,
+      id_user: (json['id_user'] as num).toInt(),
+      nickname: json['nickname'] as String,
+      account: json['account'] as String,
     );
 
 Map<String, dynamic> _$CuentaToJson(Cuenta instance) => <String, dynamic>{
-      'nameContacto': instance.nameContacto,
-      'aliasContacto': instance.aliasContacto,
-      'numTarjet': instance.numTarjet,
-      'fotoPerfil': instance.fotoPerfil,
-      'isValid': instance.isValid,
+      'id_user': instance.id_user,
+      'nickname': instance.nickname,
+      'account': instance.account,
     };

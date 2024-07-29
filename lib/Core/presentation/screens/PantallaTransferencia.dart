@@ -1,3 +1,4 @@
+import 'package:bhm_app/Core/domain/models/cuenta_model.dart';
 import 'package:bhm_app/Core/presentation/screens/TransferScreen.dart';
 import 'package:bhm_app/service/notification.service.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 // }
 
 class PantallaTransferencia extends StatefulWidget {
-  final String usuario; // Parámetro requerido para la pantalla
+  final Cuenta usuario; // Parámetro requerido para la pantalla
 
   PantallaTransferencia({required this.usuario});
 
@@ -99,7 +100,7 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                mostrarNotificacion(_textFieldValue, widget.usuario);
+                mostrarNotificacion(_textFieldValue, widget.usuario.nickname);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
