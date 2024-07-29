@@ -53,7 +53,9 @@ class LoginRepositoryImpl implements LoginRepository {
             ),
           );
           final idUser = userInfo.data['data']['id'];
+          final userName = '${userInfo.data['data']['name']} ${userInfo.data['data']['lastname']}';
            GlobalState().setUserId(int.parse(idUser.toString()));
+           GlobalState().setNameUser(userName);
           return true;
         } else {
           logger.e('No access token found in response');

@@ -8,9 +8,18 @@ class GlobalState {
   GlobalState._internal();
 
   int? userId;
+  String? nameUser;
 
   void setUserId(int id) {
     userId = id;
+  }
+
+  void setNameUser(String name) {
+    nameUser = name;
+  }
+
+  String? getNameUser() {
+    return nameUser;
   }
 
   int? getUserId() {

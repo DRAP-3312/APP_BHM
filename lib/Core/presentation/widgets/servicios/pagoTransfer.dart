@@ -1,9 +1,9 @@
 import 'package:bhm_app/Core/domain/models/cuenta_model.dart';
 import 'package:bhm_app/Core/presentation/screens/PantallaTransferencia.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-Widget pagoTransfer(
-    BuildContext context, List<Cuenta> targets) {
+Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
   return Container(
     padding: const EdgeInsets.all(5),
     child: Container(
@@ -12,8 +12,7 @@ Widget pagoTransfer(
   );
 }
 
-Widget opcionesContacto(
-    BuildContext context, List<Cuenta> targets) {
+Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
   return ListView(
     children: List.generate(targets.length, (index) {
       return Column(
@@ -23,7 +22,8 @@ Widget opcionesContacto(
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => PantallaTransferencia(usuario: targets[index])),
+                    builder: (context) =>
+                        PantallaTransferencia(usuario: targets[index])),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -49,17 +49,31 @@ Widget opcionesContacto(
                         const Icon(
                           Icons.face,
                           size: 28.0,
-                          color:  Color(0xff16697A),
+                          color: Color(0xff16697A),
                         ),
                         const SizedBox(width: 10),
-                        Text(
-                          targets[index].nickname,
-                          style: const TextStyle(
-                            
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,),
-                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              targets[index].nickname.trim(),
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
+                            ),
+                           
+                            Text(
+                              targets[index].account.trim(),
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w200,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                     const Icon(

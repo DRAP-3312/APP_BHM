@@ -12,6 +12,7 @@ import 'package:bhm_app/Core/presentation/screens/TransferScreen.dart';
 import 'package:bhm_app/Core/presentation/widgets/home-view/noticias.dart';
 import 'package:bhm_app/Core/presentation/widgets/home-view/otros-servicios.dart';
 import 'package:bhm_app/Core/presentation/widgets/tarjetaCambio.dart';
+import 'package:bhm_app/service/globalUser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -53,12 +54,12 @@ class _DashBoardState extends State<DashBoard> {
                     children: [
                        const SizedBox(height: 10),
                       ListTile(
-                        title: const Text('Buenos días',
+                        title: const Text('Bienvenido',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(state.userName,
+                        subtitle: Text(GlobalState().getNameUser().toString(),
                             style: const TextStyle(
                               color: Color(0xffEDE7E3),
                               fontSize: 15,
