@@ -94,11 +94,14 @@ class _TransferScreenState extends State<TransferScreen> {
                       children: [
                         Container(),
                         Container(),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.add,
-                            color: Colors.orange,
-                            size: 30,
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
                           ),
                           onPressed: () {
                             final contactoBloc =
@@ -111,6 +114,17 @@ class _TransferScreenState extends State<TransferScreen> {
                               ),
                             );
                           },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Nuevo', style: TextStyle(color: Colors.black, fontSize: 16),),
+                              Icon(
+                                Icons.add,
+                                size: 30,
+                                color: Colors.orange,
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),

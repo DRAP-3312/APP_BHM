@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 class CuentaRepositoryImpl implements CuentaRepository {
   final Dio dio;
   final TokenStorage tokenStorage;
-  final String rutaServer = 'https://apimoviles-production.up.railway.app/contacts';
+  final String rutaServer = 'http://localhost:3000/contacts';
   ////'https://apimoviles-production.up.railway.app/contacts'
   CuentaRepositoryImpl(this.dio, this.tokenStorage);
   @override
@@ -39,7 +39,10 @@ class CuentaRepositoryImpl implements CuentaRepository {
         data: {
           "id_user": contacto.id_user,
           "nickname": contacto.nickname,
-          "account": contacto.account
+          "account": contacto.account,
+          "email": contacto.email,
+          "phone": contacto.phone,
+          "bankname": contacto.bankname
         },
         options: Options(
           headers: {'Authorization': 'Bearer $token'},

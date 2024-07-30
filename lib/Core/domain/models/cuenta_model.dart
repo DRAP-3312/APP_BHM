@@ -7,11 +7,17 @@ class Cuenta {
   int id_user;
   String nickname;
   String account;
+  String email;
+  String phone;
+  String bankname;
 
   Cuenta({
     required this.id_user,
     required this.nickname,
     required this.account,
+    required this.email,
+    required this.phone,
+    required this.bankname
   });
 
   factory Cuenta.fromJson(Map<String, dynamic> json) => _$CuentaFromJson(json);

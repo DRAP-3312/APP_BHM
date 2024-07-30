@@ -18,6 +18,9 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
   final TextEditingController _idUserController = TextEditingController();
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _accountController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _banknameController = TextEditingController();
 
   @override
   void dispose() {
@@ -30,10 +33,12 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
   void _submitForm() {
     if (_formKey.currentState?.validate() ?? false) {
       final newContacto = Cuenta(
-        id_user: int.parse(_idUserController.text),
-        nickname: _nicknameController.text,
-        account: _accountController.text,
-      );
+          id_user: int.parse(_idUserController.text),
+          nickname: _nicknameController.text,
+          account: _accountController.text,
+          email: _emailController.text,
+          phone: _phoneController.text,
+          bankname: _banknameController.text);
 
       try {
         widget.contactoBloc.add(CreateContactoEvent(newContacto));
@@ -66,8 +71,8 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 8),
               _buildTextFormField(
@@ -96,6 +101,36 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Account no puede ir vacio';
+                    }
+                    return null;
+                  }),
+              const SizedBox(height: 16),
+              _buildTextFormField(
+                  controller: _emailController,
+                  labelText: 'Email',
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Email no puede ir vacio';
+                    }
+                    return null;
+                  }),
+              const SizedBox(height: 16),
+              _buildTextFormField(
+                  controller: _phoneController,
+                  labelText: 'Phone',
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Phone no puede ir vacio';
+                    }
+                    return null;
+                  }),
+              const SizedBox(height: 16),
+              _buildTextFormField(
+                  controller: _banknameController,
+                  labelText: 'Bankname',
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Bankname no puede ir vacio';
                     }
                     return null;
                   }),
