@@ -6,7 +6,15 @@ import 'package:flutter/widgets.dart';
 Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
   return Container(
     padding: const EdgeInsets.all(5),
+    margin: const EdgeInsets.fromLTRB(10,0,10,10),
     child: Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: const Color(0xFFC9C9C9),
+          width: 1.0,
+        ),
+        borderRadius: BorderRadius.circular(6.0),
+      ),
       child: opcionesContacto(context, targets),
     ),
   );
@@ -63,7 +71,6 @@ Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
                                 fontSize: 16,
                               ),
                             ),
-                           
                             Text(
                               targets[index].account.trim(),
                               style: const TextStyle(

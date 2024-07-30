@@ -19,7 +19,6 @@ class CuentaRepositoryImpl implements CuentaRepository {
         options: Options(headers: {'Authorization': 'Bearer $token'}));
 
     if (response.statusCode == 200) {
-
       //cargar datos de user
       // final response = await dio.get('', options: Options(
       //   headers: {'Authorization': 'Bearer $token'}
@@ -29,6 +28,31 @@ class CuentaRepositoryImpl implements CuentaRepository {
       return data.map((json) => Cuenta.fromJson(json)).toList();
     } else {
       throw Exception(' Failed to load contacts');
+    }
+  }
+
+  Future<bool> createContacto(Cuenta contacto) async {
+    try {
+      final token = await tokenStorage.getToken();
+      final response = await dio.post(
+        rutaServer,
+        data: {
+          "id_user": contacto.id_user,
+          "nickname": contacto.nickname,
+          "account": contacto.account
+        },
+        options: Options(
+          headers: {'Authorization': 'Bearer $token'},
+        ),
+      );
+
+      if (response.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      throw Exception('Error repo create: $e');
     }
   }
 }
