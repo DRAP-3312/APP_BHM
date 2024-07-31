@@ -13,8 +13,8 @@ class LoginRepositoryImpl implements LoginRepository {
   final Dio dio;
   final Logger logger = Logger();
   final TokenStorage tokenStorage;
-  final String urlServer ='http://localhost:3000/auth/login';
-      //'https://apimoviles-production.up.railway.app/auth/login'; 
+  final String urlServer = 'http://localhost:3000/auth/login';
+  //'https://apimoviles-production.up.railway.app/auth/login';
 
   LoginRepositoryImpl({required this.dio, required this.tokenStorage});
 
@@ -42,20 +42,22 @@ class LoginRepositoryImpl implements LoginRepository {
       if (response.statusCode == 200 && response.data != null) {
         final token = response.data['access_token'];
         if (token != null) {
-         
           // Guardar el token utilizando TokenStorage
           await tokenStorage.saveToken(token);
-          final userInfo = await dio.get(
-            'http://localhost:3000/users',
-            //'https://apimoviles-production.up.railway.app/users', 
+          final infoCompletaUser = await dio.get(
+            'http://localhost:3000/accounts/me',
             options: Options(
               headers: {'Authorization': 'Bearer $token'},
             ),
           );
-          final idUser = userInfo.data['data']['id'];
-          final userName = '${userInfo.data['data']['name']} ${userInfo.data['data']['lastname']}';
-           GlobalState().setUserId(int.parse(idUser.toString()));
-           GlobalState().setNameUser(userName);
+          final idUser = infoCompletaUser.data['data']['user']['id'];
+          final idAccount =
+              infoCompletaUser.data['data']['card'][0]['id_account'];
+          final userName =
+              '${infoCompletaUser.data['data']['user']['name']} ${infoCompletaUser.data['data']['user']['lastname']}';
+          GlobalState().setUserId(int.parse(idUser.toString()));
+          GlobalState().setNameUser(userName);
+          GlobalState().setidAccount(int.parse(idAccount.toString()));
           return true;
         } else {
           logger.e('No access token found in response');

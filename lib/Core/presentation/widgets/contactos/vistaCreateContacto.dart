@@ -1,3 +1,4 @@
+import 'package:bhm_app/service/globalUser.dart';
 import 'package:flutter/material.dart';
 import 'package:bhm_app/Core/domain/models/cuenta_model.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_bloc.dart';
@@ -22,6 +23,11 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _banknameController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    _idUserController.text = GlobalState().getUserId().toString();
+  }
   @override
   void dispose() {
     _idUserController.dispose();
