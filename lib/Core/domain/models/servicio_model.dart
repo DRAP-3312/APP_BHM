@@ -7,11 +7,13 @@ class Servicio {
   int id;
   String name;
   bool status;
+  String? icono;
 
   Servicio({
     required this.id,
     required this.name,
     required this.status,
+    required this.icono
   });
 
   factory Servicio.fromJson(Map<String, dynamic> json) => _$ServicioFromJson(json);

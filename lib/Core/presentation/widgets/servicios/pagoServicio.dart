@@ -1,9 +1,9 @@
 import 'package:bhm_app/Core/domain/models/servicio_model.dart';
 import 'package:bhm_app/Core/presentation/screens/MontoServicio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-Widget pagoServicio(
-    BuildContext context, List<Servicio> targets, List<IconData> iconos) {
+Widget pagoServicio(BuildContext context, List<Servicio> targets) {
   return Container(
     decoration: BoxDecoration(
       border: Border.all(
@@ -13,13 +13,29 @@ Widget pagoServicio(
       borderRadius: BorderRadius.circular(6.0),
     ),
     child: Container(
-      child: opcionesServicio(context, targets, iconos),
+      child: targets.isNotEmpty
+          ? opcionesServicio(context, targets)
+          : Center(
+              child: Container(
+              padding: const EdgeInsets.all(30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    child: Image.asset('images/sinResultados.jpg'),
+                  ),
+                  const Text(
+                    'Sin resultados',
+                    style: TextStyle(fontWeight: FontWeight.w200, fontSize: 15),
+                  )
+                ],
+              ),
+            )),
     ),
   );
 }
 
-Widget opcionesServicio(
-    BuildContext context, List<Servicio> targets, List<IconData> iconos) {
+Widget opcionesServicio(BuildContext context, List<Servicio> targets) {
   return ListView(
     children: List.generate(targets.length, (index) {
       return Column(
@@ -50,13 +66,20 @@ Widget opcionesServicio(
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Icon(
-                          iconos[index],
-                          size: 28.0,
-                          color: const Color(0xff16697A),
+                        ClipOval(
+                          child: SizedBox(
+                              width: 40,
+                              height: 40,
+                              child: targets[index].icono != null &&
+                                      targets[index].icono!.isNotEmpty
+                                  ? Image.network(
+                                      targets[index].icono!,
+                                      fit: BoxFit.contain,
+                                    )
+                                  : Image.asset(
+                                      'images/imgDefaultService.jpg',
+                                      fit: BoxFit.contain,
+                                    )),
                         ),
                         const SizedBox(width: 10),
                         Text(
@@ -69,10 +92,9 @@ Widget opcionesServicio(
                       ],
                     ),
                     const Icon(
-                      Icons.arrow_right,
-                      size: 20.0,
-                      color: Color(0xff16697A),
-                    ),
+                      Icons.arrow_forward_ios,
+                      color: Color(0xFF16697A),
+                    )
                   ],
                 ),
               ),

@@ -84,12 +84,11 @@ class _ServicesState extends State<Services> {
               return const Center(child: CircularProgressIndicator());
             } else if (state is ServicioStateLoaded) {
               final servicios = state.servicios; 
-              final iconos = state.servicios.map((e) => _getIcon(e.name)).toList();
               return Padding(
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: pagoServicio(context, servicios, iconos)),
+                  child: pagoServicio(context, servicios)),
               );
             } else if (state is ServicioStateError) {
               return Center(child: Text(state.error));
@@ -99,22 +98,5 @@ class _ServicesState extends State<Services> {
         ),
       ),
     );
-  }
-
-  IconData _getIcon(String serviceName) {
-    switch (serviceName.toLowerCase()) {
-      case 'agua':
-        return Icons.water_drop;
-      case 'electricidad':
-        return Icons.bolt;
-      case 'telefono':
-        return Icons.smartphone;
-      case 'internet':
-        return Icons.wifi;
-      case 'streaming':
-        return Icons.smart_display;
-      default:
-        return Icons.paid;
-    }
   }
 }

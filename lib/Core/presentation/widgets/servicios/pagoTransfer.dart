@@ -1,12 +1,13 @@
 import 'package:bhm_app/Core/domain/models/cuenta_model.dart';
 import 'package:bhm_app/Core/presentation/screens/PantallaTransferencia.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
   return Container(
     padding: const EdgeInsets.all(5),
-    margin: const EdgeInsets.fromLTRB(10,0,10,10),
+    margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
     child: Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -15,7 +16,24 @@ Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
         ),
         borderRadius: BorderRadius.circular(6.0),
       ),
-      child: opcionesContacto(context, targets),
+      child: targets.isNotEmpty
+          ? opcionesContacto(context, targets)
+          : Center(
+              child: Container(
+              padding: const EdgeInsets.all(30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    child: Image.asset('images/sinResultados.jpg'),
+                  ),
+                  const Text(
+                    'Sin Contactos',
+                    style: TextStyle(fontWeight: FontWeight.w200, fontSize: 15),
+                  )
+                ],
+              ),
+            )),
     ),
   );
 }
@@ -62,6 +80,7 @@ Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
                         const SizedBox(width: 10),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               targets[index].nickname.trim(),
@@ -71,13 +90,27 @@ Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
                                 fontSize: 16,
                               ),
                             ),
-                            Text(
-                              targets[index].account.trim(),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w200,
-                                fontSize: 12,
-                              ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Account: ${targets[index].account.trim()}',
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w200,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Text(
+                                  'Banco: ${targets[index].bankname.isNotEmpty ? targets[index].bankname.trim() : 'vacio'}',
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w200,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         )
@@ -85,7 +118,7 @@ Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
                     ),
                     const Icon(
                       Icons.arrow_forward_ios,
-                      size: 20.0,
+                      size: 25.0,
                       color: Color(0xff16697A),
                     ),
                   ],
