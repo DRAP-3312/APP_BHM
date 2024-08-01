@@ -55,9 +55,11 @@ class LoginRepositoryImpl implements LoginRepository {
               infoCompletaUser.data['data']['card'][0]['id_account'];
           final userName =
               '${infoCompletaUser.data['data']['user']['name']} ${infoCompletaUser.data['data']['user']['lastname']}';
+          final card = infoCompletaUser.data['data']['card'][0]['card'];
           GlobalState().setUserId(int.parse(idUser.toString()));
           GlobalState().setNameUser(userName);
           GlobalState().setidAccount(int.parse(idAccount.toString()));
+          GlobalState().setCard(card);
           return true;
         } else {
           logger.e('No access token found in response');

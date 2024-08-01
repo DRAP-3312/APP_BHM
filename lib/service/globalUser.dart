@@ -12,6 +12,7 @@ class GlobalState {
   int? userId;
   String? nameUser;
   int? id_account;
+  String? card;
 
   void setUserId(int id) {
     userId = id;
@@ -35,5 +36,13 @@ class GlobalState {
 
   int? getIdAccount(){
     return id_account;
+  }
+
+  void setCard(String newCard){
+    card = newCard;
+  }
+
+  String? getCard(){
+    return card;
   }
 }

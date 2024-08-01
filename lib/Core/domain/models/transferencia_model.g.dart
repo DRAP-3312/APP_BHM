@@ -8,18 +8,14 @@ part of 'transferencia_model.dart';
 
 Transferencia _$TransferenciaFromJson(Map<String, dynamic> json) =>
     Transferencia(
-      nameContacto: json['nameContacto'] as String,
-      montoTrans: (json['montoTrans'] as num).toDouble(),
-      fechaTrans: json['fechaTrans'] as String,
-      saldoDisponible: (json['saldoDisponible'] as num).toDouble(),
-      isValid: json['isValid'] as bool,
+      user_account: json['user_account'] as String,
+      receptor_account: json['receptor_account'] as String,
+      amount: (json['amount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$TransferenciaToJson(Transferencia instance) =>
     <String, dynamic>{
-      'nameContacto': instance.nameContacto,
-      'montoTrans': instance.montoTrans,
-      'fechaTrans': instance.fechaTrans,
-      'saldoDisponible': instance.saldoDisponible,
-      'isValid': instance.isValid,
+      'user_account': instance.user_account,
+      'receptor_account': instance.receptor_account,
+      'amount': instance.amount,
     };
