@@ -20,7 +20,13 @@ class LoadTransferenciaData {
     if (transferData.amount <= 0.0) {
       throw Exception("amount debe ser positivo");
     }
-  
+
+    bool validarVacio(String valor){
+      if(valor.isEmpty){
+        return false;
+      }
+      return true;
+    }
     return transferData;
   }
 }

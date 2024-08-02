@@ -40,10 +40,8 @@ class _LoginState extends State<Login> {
     }
     if (authenticated) {
       if (mounted) {
-        Navigator.pushReplacement<void, void>(
-            context,
-            MaterialPageRoute<void>(
-                builder: (BuildContext context) => const HomePage()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
       }
     } else {
       if (mounted) {
@@ -71,8 +69,8 @@ class _LoginState extends State<Login> {
         BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state is LoginSuccess) {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => const HomePage()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
             } else if (state is LoginFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Login failed')),
@@ -110,8 +108,8 @@ class _LoginState extends State<Login> {
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 12),
                     ),
                     child: const Text(
                       'INGRESAR',
@@ -131,8 +129,8 @@ class _LoginState extends State<Login> {
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 12),
                     ),
                     child: const Text(
                       'REGISTRARSE',

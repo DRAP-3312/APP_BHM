@@ -9,11 +9,15 @@ class Transferencia {
   String user_account;
   String receptor_account;
   int amount;
+  String concept;
+  String owner;
 
   Transferencia(
       {required this.user_account,
       required this.receptor_account,
-      required this.amount});
+      required this.amount,
+      required this.concept,
+      required this.owner});
 
   factory Transferencia.fromJson(Map<String, dynamic> json) =>
       _$TransferenciaFromJson(json);

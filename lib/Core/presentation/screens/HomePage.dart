@@ -1,11 +1,8 @@
 import 'package:bhm_app/Core/presentation/screens/DashBoard.dart';
 import 'package:bhm_app/Core/presentation/screens/HelpPage.dart';
 import 'package:bhm_app/Core/presentation/screens/LoginPage.dart';
-import 'package:bhm_app/Core/presentation/screens/Monto.dart';
 import 'package:bhm_app/Core/presentation/screens/Movimientos.dart';
 import 'package:bhm_app/Core/presentation/screens/PerfilPage.dart';
-import 'package:bhm_app/Core/presentation/screens/Services.dart';
-import 'package:bhm_app/Core/presentation/screens/TransferScreen.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,7 +31,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.pushReplacement(context,
+              Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const Movimientos()));
             },
           ),
@@ -97,33 +94,7 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 18,
                       color: Color(0xffFF6347)),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const TransferScreen()));
-                  },
-                  child: accionesRapidas('Transferir'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Monto()));
-                  },
-                  child: accionesRapidas('Retirar'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Services()));
-                  },
-                  child: accionesRapidas('Ver servicios'),
-                ),
+              
               ]),
               ElevatedButton(
                 onPressed: () {

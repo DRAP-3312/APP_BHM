@@ -18,14 +18,14 @@ Widget pagoServicio(BuildContext context, List<Servicio> targets) {
           : Center(
               child: Container(
               padding: const EdgeInsets.all(30),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    child: Image.asset('images/sinResultados.jpg'),
+                    child: Icon(Icons.search_off, color: Colors.orange, size: 100,),
                   ),
-                  const Text(
-                    'Sin resultados',
+                  Text(
+                    'Sin servicios',
                     style: TextStyle(fontWeight: FontWeight.w200, fontSize: 15),
                   )
                 ],

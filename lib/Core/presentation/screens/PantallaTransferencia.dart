@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:bhm_app/Core/data/repositories/transferencia_repositoryImpl.dart';
 import 'package:bhm_app/Core/domain/models/cuenta_model.dart';
 import 'package:bhm_app/Core/domain/models/transferencia_model.dart';
@@ -14,7 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PantallaTransferencia extends StatefulWidget {
   final Cuenta usuario;
 
-  PantallaTransferencia({required this.usuario});
+  const PantallaTransferencia({super.key, required this.usuario});
 
   @override
   _PantallaTransferenciaState createState() => _PantallaTransferenciaState();
@@ -22,9 +24,11 @@ class PantallaTransferencia extends StatefulWidget {
 
 class _PantallaTransferenciaState extends State<PantallaTransferencia> {
   //final TextEditingController _userAccountController = TextEditingController();
-  final TextEditingController _receiverAccountController =
-      TextEditingController();
+  //final TextEditingController _receiverAccountController =
+     // TextEditingController();
   final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _conceptController = TextEditingController();
+  final TextEditingController _ownerController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   final GlobalKey<FormState> _formKey =
       GlobalKey<FormState>(); // Global key for form
@@ -43,7 +47,10 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
                 color: Colors.white)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
+          onPressed: (){
+           Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const TransferScreen()));
+          },
         ),
       ),
       body: BlocProvider(
@@ -54,7 +61,7 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
             if (state is TransferenciaLoaded) {
               ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Transferencia exitosa')));
-              Navigator.push(
+              Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const TransferScreen()));
@@ -84,12 +91,12 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
         children: [
           //buildTextField(controller: _userAccountController, label: 'Cuenta del usuario', validator: (value) => value == null || value.isEmpty ? 'Cuenta usuario no puede estar vacía' : null),
           const SizedBox(height: 8),
-          buildTextField(
-              controller: _receiverAccountController,
-              label: 'Cuenta del receptor',
-              validator: (value) => value == null || value.isEmpty
-                  ? 'Cuenta receptor no puede estar vacía'
-                  : null),
+          // buildTextField(
+          //     controller: _receiverAccountController,
+          //     label: 'Cuenta del receptor',
+          //     validator: (value) => value == null || value.isEmpty
+          //         ? 'Cuenta receptor no puede estar vacía'
+          //         : null),
           const SizedBox(height: 16),
           buildTextField(
               controller: _amountController,
@@ -104,6 +111,26 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
                 return null;
               },
               isAmount: true),
+          buildTextField(
+            controller: _conceptController,
+            label: 'Concepto a transferir',
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'No puede estar vacio';
+              }
+              return null;
+            },
+          ),
+          buildTextField(
+            controller: _ownerController,
+            label: 'Owner a transferir',
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'No puede estar vacio';
+              }
+              return null;
+            },
+          ),
           const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () {
@@ -142,10 +169,11 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
 
   void _submitTransfer(BuildContext context) {
     final transfer = Transferencia(
-      user_account: GlobalState().getCard().toString(),
-      receptor_account: _receiverAccountController.text,
-      amount: int.parse(_amountController.text),
-    );
+        user_account: GlobalState().getCard().toString(),
+        receptor_account: widget.usuario.account,
+        amount: int.parse(_amountController.text),
+        concept: _conceptController.text,
+        owner: _ownerController.text);
     BlocProvider.of<TransferenciaBloc>(context)
         .add(CreateTransferencia(transfer));
   }

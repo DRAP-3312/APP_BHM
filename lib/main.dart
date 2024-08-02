@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false, // Aquí se oculta la etiqueta DEBUG
+      debugShowCheckedModeBanner: true, // Aquí se oculta la etiqueta DEBUG
       home: LoginPage(),
     );
   }

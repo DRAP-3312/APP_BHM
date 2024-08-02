@@ -21,13 +21,17 @@ Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
           : Center(
               child: Container(
               padding: const EdgeInsets.all(30),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    child: Image.asset('images/sinResultados.jpg'),
+                    child: Icon(
+                      Icons.search_off,
+                      color: Colors.orange,
+                      size: 100,
+                    ),
                   ),
-                  const Text(
+                  Text(
                     'Sin Contactos',
                     style: TextStyle(fontWeight: FontWeight.w200, fontSize: 15),
                   )
@@ -115,6 +119,10 @@ Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
                           ],
                         )
                       ],
+                    ),
+                    IconButton(
+                      onPressed: (){},
+                      icon: const Icon(Icons.delete, color: Colors.red, size: 20,),
                     ),
                     const Icon(
                       Icons.arrow_forward_ios,

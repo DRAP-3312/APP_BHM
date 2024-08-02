@@ -11,6 +11,8 @@ Transferencia _$TransferenciaFromJson(Map<String, dynamic> json) =>
       user_account: json['user_account'] as String,
       receptor_account: json['receptor_account'] as String,
       amount: (json['amount'] as num).toInt(),
+      concept: json['concept'] as String,
+      owner: json['owner'] as String,
     );
 
 Map<String, dynamic> _$TransferenciaToJson(Transferencia instance) =>
@@ -18,4 +20,6 @@ Map<String, dynamic> _$TransferenciaToJson(Transferencia instance) =>
       'user_account': instance.user_account,
       'receptor_account': instance.receptor_account,
       'amount': instance.amount,
+      'concept': instance.concept,
+      'owner': instance.owner,
     };
