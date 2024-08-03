@@ -13,7 +13,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class MontoServicio extends StatefulWidget {
   final Servicio servicio;
   MontoServicio({required this.servicio});
@@ -35,7 +34,7 @@ class _MontoServicio extends State<MontoServicio> {
     super.initState();
     // Asignar valores iniciales a los controladores
     _idServiceController.text = widget.servicio.id.toString();
-      _idUserController.text = GlobalState().getUserId().toString();
+    _idUserController.text = GlobalState().getUserId().toString();
     _idAccountController.text = GlobalState().getIdAccount().toString();
     _referenceController.text = widget.servicio.name;
   }
@@ -113,9 +112,9 @@ class _MontoServicio extends State<MontoServicio> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      '10.000\$',
-                      style: TextStyle(
+                    Text(
+                      GlobalState().getBalance().toString(),
+                      style: const TextStyle(
                           fontSize: 18.0, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),

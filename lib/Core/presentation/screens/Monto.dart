@@ -1,5 +1,4 @@
 import 'package:bhm_app/Core/presentation/screens/CodigoTrans.dart';
-import 'package:bhm_app/Core/presentation/screens/HomePage.dart';
 import 'package:flutter/material.dart';
 
 class Monto extends StatefulWidget {
@@ -25,37 +24,17 @@ class _MontoState extends State<Monto> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF16697A),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomePage()));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  elevation: 0,
-                ),
-                child: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
-                )),
-            Container(),
-            const Text(
+             Text(
               'Cantidad de retiro',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
                   color: Colors.white),
             ),
-            Container(),
-            Container(),
-            Container(),
-            Container(),
           ],
         ),
       ),

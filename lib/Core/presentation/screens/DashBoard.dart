@@ -93,7 +93,7 @@ class _DashBoardState extends State<DashBoard> {
                             title: 'Servicios',
                             icono: Icons.design_services,
                             onTap: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => const Services()));
@@ -105,7 +105,7 @@ class _DashBoardState extends State<DashBoard> {
                             title: 'Transferir',
                             icono: Icons.currency_exchange,
                             onTap: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
@@ -118,7 +118,7 @@ class _DashBoardState extends State<DashBoard> {
                           title: 'Retirar',
                           icono: Icons.payment,
                           onTap: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const Monto()));

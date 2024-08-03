@@ -50,6 +50,7 @@ class LoginRepositoryImpl implements LoginRepository {
               headers: {'Authorization': 'Bearer $token'},
             ),
           );
+          final balance = infoCompletaUser.data['data']['balance'];
           final idUser = infoCompletaUser.data['data']['user']['id'];
           final idAccount =
               infoCompletaUser.data['data']['card'][0]['id_account'];
@@ -60,6 +61,7 @@ class LoginRepositoryImpl implements LoginRepository {
           GlobalState().setNameUser(userName);
           GlobalState().setidAccount(int.parse(idAccount.toString()));
           GlobalState().setCard(card);
+          GlobalState().setBalance(balance);
           return true;
         } else {
           logger.e('No access token found in response');
