@@ -1,7 +1,6 @@
 import 'package:bhm_app/Core/data/repositories/cuenta_respositoryImpl.dart';
 import 'package:bhm_app/Core/domain/usecases/load_contacto_data.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_state.dart';
-import 'package:bhm_app/Core/presentation/screens/HomePage.dart';
 import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
 import 'package:bhm_app/Core/presentation/widgets/contactos/vistaCreateContacto.dart';
 import 'package:bhm_app/Core/presentation/widgets/servicios/pagoTransfer.dart';
@@ -44,27 +43,11 @@ class _TransferScreenState extends State<TransferScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF16697A),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
-                shadowColor: Colors.transparent,
-                elevation: 0,
-              ),
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-              ),
-            ),
-            const Text(
+            Text(
               'Mis Contactos',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -72,8 +55,6 @@ class _TransferScreenState extends State<TransferScreen> {
                 color: Colors.white,
               ),
             ),
-            Container(),
-            Container()
           ],
         ),
       ),
@@ -117,7 +98,11 @@ class _TransferScreenState extends State<TransferScreen> {
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Nuevo', style: TextStyle(color: Colors.black, fontSize: 16),),
+                              Text(
+                                'Nuevo',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
+                              ),
                               Icon(
                                 Icons.add,
                                 size: 30,

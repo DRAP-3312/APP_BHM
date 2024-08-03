@@ -1,5 +1,4 @@
 import 'package:bhm_app/Core/data/repositories/servicio_repositoryImpl.dart';
-import 'package:bhm_app/Core/presentation/screens/HomePage.dart';
 import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
 import 'package:bhm_app/Core/presentation/widgets/servicios/pagoServicio.dart';
 import 'package:flutter/material.dart';
@@ -42,28 +41,11 @@ class _ServicesState extends State<Services> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF16697A),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const HomePage()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
-                shadowColor: Colors.transparent,
-                elevation: 0,
-              ),
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-              ),
-            ),
-            const Text(
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [  
+             Text(
               'Pago de Servicio',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -71,8 +53,6 @@ class _ServicesState extends State<Services> {
                 color: Colors.white,
               ),
             ),
-            Container(), 
-            Container()
           ],
         ),
       ),
