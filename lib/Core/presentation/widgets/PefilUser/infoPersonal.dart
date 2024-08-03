@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_miCuenta/miCuenta_bloc.dart';
 
 
-Widget infoPersonal(BuildContext context, String target, String valor) {
+Widget infoPersonal(BuildContext context, String target, String valor, bool editar) {
   return Container(
     margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
     padding: const EdgeInsets.fromLTRB(12, 0, 2, 0),
@@ -32,7 +32,7 @@ Widget infoPersonal(BuildContext context, String target, String valor) {
             color: Colors.black,
           ),
         ),
-        IconButton(
+        editar ? IconButton(
           onPressed: () {
             final state = BlocProvider.of<MiCuentaBloc>(context).state;
             Navigator.push(
@@ -53,7 +53,7 @@ Widget infoPersonal(BuildContext context, String target, String valor) {
             );
           },
           icon: const Icon(Icons.edit, color: Color(0xFF16697A)),
-        ),
+        ) : const Icon(Icons.remove),
       ],
     ),
   );

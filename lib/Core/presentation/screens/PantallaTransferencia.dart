@@ -23,15 +23,12 @@ class PantallaTransferencia extends StatefulWidget {
 }
 
 class _PantallaTransferenciaState extends State<PantallaTransferencia> {
-  //final TextEditingController _userAccountController = TextEditingController();
-  //final TextEditingController _receiverAccountController =
-     // TextEditingController();
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _conceptController = TextEditingController();
   final TextEditingController _ownerController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   final GlobalKey<FormState> _formKey =
-      GlobalKey<FormState>(); // Global key for form
+      GlobalKey<FormState>(); 
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +44,11 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
                 color: Colors.white)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-          onPressed: (){
-           Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const TransferScreen()));
+          onPressed: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const TransferScreen()));
           },
         ),
       ),
@@ -89,53 +88,48 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          //buildTextField(controller: _userAccountController, label: 'Cuenta del usuario', validator: (value) => value == null || value.isEmpty ? 'Cuenta usuario no puede estar vacía' : null),
-          const SizedBox(height: 8),
-          // buildTextField(
-          //     controller: _receiverAccountController,
-          //     label: 'Cuenta del receptor',
-          //     validator: (value) => value == null || value.isEmpty
-          //         ? 'Cuenta receptor no puede estar vacía'
-          //         : null),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
+          buildAmountInputField(),
+          const SizedBox(height: 24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Saldo Disponible: ',
+                style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20,
+                    color: Color(0xffFF6347)),
+              ),
+              Text(
+                '\$${GlobalState().getBalance().toString()}',
+                style: const TextStyle(
+                    color: Color(0xFF16697A),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
           buildTextField(
-              controller: _amountController,
-              label: 'Cantidad a transferir',
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'No puede estar vacio';
-                }
-                if ((int.tryParse(value.toString())) == null) {
-                  return 'Debe ser numero';
-                }
-                return null;
-              },
-              isAmount: true),
-          buildTextField(
-            controller: _conceptController,
-            label: 'Concepto a transferir',
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'No puede estar vacio';
-              }
-              return null;
-            },
+              controller: _conceptController,
+              label: 'Concepto a transferir',
+              validator: (value) => value == null || value.isEmpty
+                  ? 'No puede estar vacío'
+                  : null),
+          const SizedBox(
+            height: 10,
           ),
           buildTextField(
-            controller: _ownerController,
-            label: 'Owner a transferir',
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'No puede estar vacio';
-              }
-              return null;
-            },
-          ),
+              controller: _ownerController,
+              label: 'Owner a transferir',
+              validator: (value) => value == null || value.isEmpty
+                  ? 'No puede estar vacío'
+                  : null),
           const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                // Validate form
                 _submitTransfer(context);
               }
             },
@@ -153,17 +147,33 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
   Widget buildTextField(
       {required TextEditingController controller,
       required String label,
-      required String? Function(String?) validator,
-      bool isAmount = false}) {
+      required String? Function(String?) validator}) {
     return TextFormField(
       controller: controller,
-      focusNode: isAmount ? _focusNode : null,
-      keyboardType: isAmount
-          ? const TextInputType.numberWithOptions(decimal: true)
-          : TextInputType.text,
-      style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300),
-      decoration: InputDecoration(labelText: label),
+      keyboardType: TextInputType.text,
+      style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.w300),
+      decoration: InputDecoration(
+        labelText: label,
+        border: const OutlineInputBorder(),
+      ),
       validator: validator,
+    );
+  }
+
+  Widget buildAmountInputField() {
+    return TextField(
+      controller: _amountController,
+      focusNode: _focusNode,
+      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+      style: const TextStyle(
+          fontSize: 40.0,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF16697A)),
+      textAlign: TextAlign.center,
+      decoration: const InputDecoration(
+        hintText: '0',
+        border: InputBorder.none,
+      ),
     );
   }
 

@@ -13,7 +13,8 @@ class LoginRepositoryImpl implements LoginRepository {
   final Dio dio;
   final Logger logger = Logger();
   final TokenStorage tokenStorage;
-  final String urlServer = 'http://localhost:3000/auth/login';
+  final String urlLogin = 'http://localhost:3000/auth/login';
+  final String urlInfo = 'http://localhost:3000/accounts/me';
   //'https://apimoviles-production.up.railway.app/auth/login';
 
   LoginRepositoryImpl({required this.dio, required this.tokenStorage});
@@ -35,7 +36,7 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<bool> singIn(Login login) async {
     try {
       final response = await dio.post(
-        urlServer,
+        urlLogin,
         data: {"phone": login.userEmail, "password": login.password},
       );
 
@@ -45,7 +46,7 @@ class LoginRepositoryImpl implements LoginRepository {
           // Guardar el token utilizando TokenStorage
           await tokenStorage.saveToken(token);
           final infoCompletaUser = await dio.get(
-            'http://localhost:3000/accounts/me',
+            urlInfo,
             options: Options(
               headers: {'Authorization': 'Bearer $token'},
             ),

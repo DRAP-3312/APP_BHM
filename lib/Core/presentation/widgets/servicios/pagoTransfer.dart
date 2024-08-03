@@ -1,8 +1,6 @@
 import 'package:bhm_app/Core/domain/models/cuenta_model.dart';
 import 'package:bhm_app/Core/presentation/screens/PantallaTransferencia.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
   return Container(

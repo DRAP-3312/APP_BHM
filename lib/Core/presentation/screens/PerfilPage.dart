@@ -53,10 +53,11 @@ class _PerfilPageState extends State<PerfilPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        infoPersonal(context,'Primer nombre', state.name),
-                        infoPersonal(context,'RFC', state.rfc),
-                        infoPersonal(context,'Email', state.email),
-                        infoPersonal(context,'Telefono', state.phone),
+                        infoPersonal(context, 'Numero de cuenta', GlobalState().getCard().toString(), false),
+                        infoPersonal(context,'Primer nombre', state.name, true),
+                        infoPersonal(context,'RFC', state.rfc, true),
+                        infoPersonal(context,'Email', state.email, true),
+                        infoPersonal(context,'Telefono', state.phone, true),
                       ],
                     ),
                   ],

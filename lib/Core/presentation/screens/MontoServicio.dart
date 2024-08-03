@@ -106,17 +106,24 @@ class _MontoServicio extends State<MontoServicio> {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    const Text(
-                      'Saldo disponible',
-                      style: TextStyle(fontSize: 16.0),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      GlobalState().getBalance().toString(),
-                      style: const TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Saldo Disponible: ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 20,
+                              color: Color(0xffFF6347)),
+                        ),
+                        Text(
+                          '\$${GlobalState().getBalance().toString()}',
+                          style: const TextStyle(
+                              color: Color(0xFF16697A),
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 24),
                     Visibility(
