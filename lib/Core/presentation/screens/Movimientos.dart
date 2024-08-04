@@ -184,6 +184,7 @@ Widget detalles(String titulo, String data) {
             )),
         TextSpan(
           text: data,
+          style: const TextStyle(color: Colors.black)
         ),
       ],
     ),
@@ -203,6 +204,7 @@ Widget titulos(String titulo, String data) {
             )),
         TextSpan(
           text: data,
+          style: const TextStyle(color: Colors.black)
         ),
       ],
     ),
