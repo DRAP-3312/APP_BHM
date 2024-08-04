@@ -11,6 +11,7 @@ class ContactoBloc extends Bloc<ContactoEvent, ContactoState> {
   ContactoBloc(this.loadContactoData, this.servicioRepository) : super(ContactoStateInitial()) {
     on<LoadContactoDataEvent>(_onLoadContactoDataEvent);
     on<CreateContactoEvent>(_onCreateContactoEvent);
+    on<DeleteContactoEvent>(_onDeleteContactoEvent); // Nuevo evento registrado
   }
 
   void _onLoadContactoDataEvent(LoadContactoDataEvent event, Emitter<ContactoState> emit) async {
@@ -31,4 +32,19 @@ class ContactoBloc extends Bloc<ContactoEvent, ContactoState> {
       emit(ContactoStateError('Failed to create contact: ${e.toString()}'));
     }
   }
+
+  void _onDeleteContactoEvent(DeleteContactoEvent event, Emitter<ContactoState> emit) async {
+    try {
+      final success = await servicioRepository.deleteContacto(event.contactoId);
+      if (success) {
+        final cuentaData = await loadContactoData();
+        emit(ContactoStateLoaded(cuentaData)); 
+      } else {
+        emit(const ContactoStateError('Failed to delete contact'));
+      }
+    } catch (e) {
+      emit(ContactoStateError('Failed to delete contact: ${e.toString()}'));
+    }
+  }
 }
+

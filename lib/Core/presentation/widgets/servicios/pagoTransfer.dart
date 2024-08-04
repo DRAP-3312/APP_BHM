@@ -1,6 +1,9 @@
 import 'package:bhm_app/Core/domain/models/cuenta_model.dart';
+import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_bloc.dart';
+import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_event.dart';
 import 'package:bhm_app/Core/presentation/screens/PantallaTransferencia.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
   return Container(
@@ -119,7 +122,9 @@ Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
                       ],
                     ),
                     IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        BlocProvider.of<ContactoBloc>(context).add(DeleteContactoEvent(targets[index].id));
+                      },
                       icon: const Icon(Icons.delete, color: Colors.red, size: 20,),
                     ),
                     const Icon(

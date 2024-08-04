@@ -9,6 +9,7 @@ import 'package:bhm_app/Core/presentation/bloc/bloc_transferencia/transferencia_
 import 'package:bhm_app/Core/presentation/screens/TransferScreen.dart';
 import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
 import 'package:bhm_app/service/globalUser.dart';
+import 'package:bhm_app/service/notification.service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,6 +61,7 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
             if (state is TransferenciaLoaded) {
               ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Transferencia exitosa')));
+              mostrarNotificacion(_amountController.text, _ownerController.text);
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
