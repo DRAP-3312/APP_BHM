@@ -32,7 +32,6 @@ class _PerfilPageState extends State<PerfilPage> {
         body: SafeArea(
           child: BlocBuilder<MiCuentaBloc, MiCuentaState>(
             builder: (context, state) {
-              //print('State data: $state'); // 
               if (state.error.isNotEmpty) {
                 return Center(child: Text('Error: ${state.error['error']}'));
               } else {
