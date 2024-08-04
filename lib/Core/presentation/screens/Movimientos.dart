@@ -15,13 +15,16 @@ class Movimientos extends StatefulWidget {
   _MovimientosState createState() => _MovimientosState();
 }
 
-class _MovimientosState extends State<Movimientos> {
+class _MovimientosState extends State<Movimientos>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   late MovimientosBloc _movimientosBloc;
   final TokenStorage tokenStorage = TokenStorage();
 
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 2, vsync: this);
     _movimientosBloc =
         MovimientosBloc(MovimientosRepositoryImpl(Dio(), tokenStorage))
           ..add(LoadMovimientosEvent());
@@ -29,6 +32,7 @@ class _MovimientosState extends State<Movimientos> {
 
   @override
   void dispose() {
+    _tabController.dispose();
     _movimientosBloc.close();
     super.dispose();
   }
@@ -49,6 +53,24 @@ class _MovimientosState extends State<Movimientos> {
           onPressed: () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (_) => const HomePage())),
         ),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48.0),
+          child: Container(
+            color: Colors.white,
+            child: TabBar(
+              labelColor: const Color(0xffFF6347),
+              unselectedLabelColor: const Color(0xFF16697A),
+              indicatorColor: const Color(0xffFF6347),
+              controller: _tabController,
+              tabs: const [
+                Tab(
+                  text: 'SERVICIOS',
+                ),
+                Tab(text: 'TRANSFERENCIAS'),
+              ],
+            ),
+          ),
+        ),
       ),
       body: BlocProvider(
         create: (_) => _movimientosBloc,
@@ -57,9 +79,12 @@ class _MovimientosState extends State<Movimientos> {
             if (state is MovimientosLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is MovimientosLoaded) {
-              return ListView(
-                children: _buildMovimientosList(
-                    state.movimientosData), // Uso de datos dinámicos.
+              return TabBarView(
+                controller: _tabController,
+                children: [
+                  listaServicio(state.movimientosData['services']['data']),
+                  listaTransfer(state.movimientosData['transfer']['data']),
+                ],
               );
             } else if (state is MovimientosError) {
               return Center(child: Text('Error: ${state.message}'));
@@ -70,142 +95,116 @@ class _MovimientosState extends State<Movimientos> {
       ),
     );
   }
-
-  List<Widget> _buildMovimientosList(dynamic data) {
-    List<Widget> listItems = [];
-    if (data is Map<String, dynamic>) {
-      var servicios = data['services'];
-      var transferencias = data['transfer'];
-
-      listItems.add(Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Text(
-              'Pagos por servicios',
-              style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xffFF6347)),
-            ),
-            Container(
-              margin: const EdgeInsets.all(15),
-              constraints: const BoxConstraints(
-                minHeight: 10, 
-                maxHeight: 400, 
-              ),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xFFC9C9C9),
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(6.0),
-              ),
-              child: ListView(
-                children: [
-                  listaServicio(servicios['data']),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ));
-
-      listItems.add(Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Text(
-              'Pagos por transferencia',
-              style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xffFF6347)),
-            ),
-            Container(
-              margin: const EdgeInsets.all(15),
-              constraints: const BoxConstraints(
-                minHeight: 10, 
-                maxHeight: 400, 
-              ),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xFFC9C9C9),
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(6.0),
-              ),
-              child: ListView(
-                children: [
-                  listaTransfer(transferencias['data']),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ));
-    }
-    return listItems;
-  }
 }
 
 Widget listaServicio(List<dynamic> servicios) {
-  return Column(
-    children: servicios.map((servicio) {
-      return Card(
-        elevation: 0,
-        margin: const EdgeInsets.all(10),
-        child: ExpansionTile(
-          title: Text('Referencia: ${servicio['reference']}'),
-          subtitle: Text('Monto: \$${servicio['amount']}'),
-          children: <Widget>[
-            ListTile(
-              title: const Text('Detalles del servicio'),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('ID Usuario: ${servicio['id_users']}'),
-                  Text('ID Cuenta: ${servicio['id_account']}'),
-                  Text('ID Servicio: ${servicio['id_service']}'),
-                ],
+  return Container(
+    margin: const EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      border: Border.all(
+        color: const Color(0xFFC9C9C9),
+        width: 1.0,
+      ),
+      borderRadius: BorderRadius.circular(6.0),
+    ),
+    child: ListView(
+      padding: const EdgeInsets.all(10.0),
+      children: servicios.map((servicio) {
+        return Card(
+          elevation: 0,
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          child: ExpansionTile(
+            title: titulos('Referencia: ', servicio['reference']),
+            subtitle: titulos('Monto: \$',servicio['amount'].toString()),
+            children: <Widget>[
+              ListTile(
+                title: const Text('Detalles del servicio', style: TextStyle(color: Color.fromARGB(255, 114, 114, 114), fontSize: 12),),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    detalles('ID Servicio: ', servicio['id_service'].toString())
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-    }).toList(),
+            ],
+          ),
+        );
+      }).toList(),
+    ),
   );
 }
 
 Widget listaTransfer(List<dynamic> transfers) {
-  return Column(
-    children: transfers.map((transfer) {
-      return Card(
-        elevation: 0,
-        margin: const EdgeInsets.all(10),
-        child: ExpansionTile(
-          title: Text(
-              'Concepto: ${transfer['concept'] != null && transfer['concept'].toString().isNotEmpty ? transfer['concept'] : 'desconocido'}'),
-          subtitle: Text(
-              'Monto: \$${transfer['amount'] != null && transfer['amount'].toString().isNotEmpty ? transfer['amount'] : 'desconocido'}'),
-          children: <Widget>[
-            ListTile(
-              title: const Text('Detalles de la transferencia'),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                      'Propietario: ${transfer['owner'] != null && transfer['owner'].toString().isNotEmpty ? transfer['owner'] : 'desconocido'}'),
-                  Text('ID Usuario: ${transfer['user_account']}'),
-                  Text('ID Cuenta: ${transfer['receptor_account']}'),
-                ],
+  return Container(
+    margin: const EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      border: Border.all(
+        color: const Color(0xFFC9C9C9),
+        width: 1.0,
+      ),
+      borderRadius: BorderRadius.circular(6.0),
+    ),
+    child: ListView(
+      padding: const EdgeInsets.all(10.0),
+      children: transfers.map((transfer) {
+        return Card(
+          elevation: 0,
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          child: ExpansionTile(
+            title: titulos('Concepto: ',transfer['concept'] != null && transfer['concept'].toString().isNotEmpty ? transfer['concept'] : 'desconocido'),
+            subtitle: titulos('Monto: \$', transfer['amount'] != null && transfer['amount'].toString().isNotEmpty ? transfer['amount'].toString() : 'desconocido'),         
+            children: <Widget>[
+              ListTile(
+                title: const Text('Detalles de la transferencia', style: TextStyle(color: Color.fromARGB(255, 114, 114, 114), fontSize: 12)),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    detalles('Propietario: ', transfer['owner'] != null && transfer['owner'].toString().isNotEmpty ? transfer['owner'] : 'desconocido'),
+                    detalles('Mi card: ', transfer['sender_account'].toString()),
+                    detalles('Card receptor: ', transfer['receptor_account'].toString())
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
+        );
+      }).toList(),
+    ),
+  );
+}
+
+Widget detalles(String titulo, String data) {
+  return RichText(
+    text: TextSpan(
+      children: [
+        TextSpan(
+            text: titulo,
+            style: const TextStyle(
+              color: Color(0xffFF6347)
+            )),
+        TextSpan(
+          text: data,
         ),
-      );
-    }).toList(),
+      ],
+    ),
+  );
+}
+
+
+Widget titulos(String titulo, String data) {
+  return RichText(
+    text: TextSpan(
+      children: [
+        TextSpan(
+            text: titulo,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color:  Color(0xFF16697A)
+            )),
+        TextSpan(
+          text: data,
+        ),
+      ],
+    ),
   );
 }

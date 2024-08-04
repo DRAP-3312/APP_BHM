@@ -7,8 +7,8 @@ import 'package:dio/dio.dart';
 class CuentaRepositoryImpl implements CuentaRepository {
   final Dio dio;
   final TokenStorage tokenStorage;
-  final String rutaContacto = 'https://apimoviles-production.up.railway.app/contacts';
-  final String rutaInfo = 'https://apimoviles-production.up.railway.app/accounts/me';
+  final String rutaContacto = 'http://localhost:3000/contacts';
+  final String rutaInfo = 'http://localhost:3000/accounts/me';
   ////'https://apimoviles-production.up.railway.app/contacts'
   CuentaRepositoryImpl(this.dio, this.tokenStorage);
   @override

@@ -8,7 +8,7 @@ class MiCuentaRepositoryImpl implements MiCuentaRepository {
   final Dio dio;
   final TokenStorage tokenStorage;
     final Logger logger = Logger();
-    final String urlServer = 'https://apimoviles-production.up.railway.app/users'; //'https://apimoviles-production.up.railway.app/users'; 
+    final String urlServer = 'http://localhost:3000/users'; //'https://apimoviles-production.up.railway.app/users'; 
 
   MiCuentaRepositoryImpl(this.dio, this.tokenStorage);
 

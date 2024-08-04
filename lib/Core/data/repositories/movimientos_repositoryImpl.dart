@@ -8,8 +8,8 @@ class MovimientosRepositoryImpl implements MovimientosRepository {
   final Dio dio;
   final TokenStorage tokenStorage;
   final Logger logger = Logger();
-  final String urlService = 'https://apimoviles-production.up.railway.app/log-services';
-  final String urlTransfer = 'https://apimoviles-production.up.railway.app/transferences';
+  final String urlService = 'http://localhost:3000/log-services';
+  final String urlTransfer = 'http://localhost:3000/transferences';
 
   MovimientosRepositoryImpl(this.dio, this.tokenStorage);
 

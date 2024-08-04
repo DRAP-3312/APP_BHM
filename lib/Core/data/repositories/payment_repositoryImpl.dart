@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 class PaymentRepositoryImpl implements PaymentRepository {
   final Dio dio;
   final TokenStorage tokenStorage;
-  final String rutaServer ='https://apimoviles-production.up.railway.app/log-services'; //'https://apimoviles-production.up.railway.app/log-services';
+  final String rutaServer ='http://localhost:3000/log-services'; //'https://apimoviles-production.up.railway.app/log-services';
 
   PaymentRepositoryImpl(this.dio, this.tokenStorage);
 

@@ -10,7 +10,7 @@ import 'package:logger/logger.dart';
 class TransferenciaRepositoryImpl implements TransferenciaRepository {
   final Logger logger = Logger();
   final Dio dio;
-  final String urlServer = 'https://apimoviles-production.up.railway.app/transferences';
+  final String urlServer = 'http://localhost:3000/transferences';
   final TokenStorage tokenStorage;
 
   TransferenciaRepositoryImpl(this.dio, this.tokenStorage);

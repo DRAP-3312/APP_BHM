@@ -16,15 +16,9 @@ class LoadMiCuentaData {
     if (miCuentaData.name.isEmpty) {
       throw Exception("name no puede ser vacío");
     }
-    if (!_isValidName(miCuentaData.name)) {
-      throw Exception("name formato inválido");
-    }
 
     if (miCuentaData.lastname.isEmpty) {
       throw Exception("lastname no puede ser vacío");
-    }
-    if (!_isValidName(miCuentaData.lastname)) {
-      throw Exception("lastname formato inválido");
     }
 
     if (miCuentaData.email.isEmpty) {
@@ -57,11 +51,6 @@ class LoadMiCuentaData {
     }
 
     return miCuentaData;
-  }
-
-  bool _isValidName(String name) {
-    final nameRegExp = RegExp(r'^[a-zA-Z\s]+$');
-    return nameRegExp.hasMatch(name);
   }
 
   bool _isValidEmail(String email) {
