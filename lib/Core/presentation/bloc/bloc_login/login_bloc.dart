@@ -118,7 +118,7 @@ void _onPasswordChanged(PasswordChanged event, Emitter<LoginState> emit) {
     errorMessage = 'La contraseña no puede estar vacía.';
   } else if (password.length < 8) {
     errorMessage = 'La contraseña debe tener al menos 8 caracteres.';
-  } else if (!RegExp(r'^(?=.[A-Z])(?=.[a-z]).{8,}$').hasMatch(password)) {
+  } else if (!RegExp(r'^(?=.*[A-Z])(?=.*[a-z]).{8,}$').hasMatch(password)) {
     errorMessage =
         'La contraseña debe contener al menos una letra mayúscula y una letra minúscula.';
   }
