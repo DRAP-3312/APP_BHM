@@ -93,22 +93,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
 void _onEmailChanged(UserEmailChanged event, Emitter<LoginState> emit) {
-  final phone = event.userEmail;
+  final email = event.userEmail;
   String? errorMessage;
 
-  if (phone.isEmpty) {
-    errorMessage = 'El Usuario no puede estar vacío.';
-  } else if (!RegExp(r'^\d{10}$').hasMatch(phone)) {
-    errorMessage = 'Ingrese un número de teléfono válido de 10 dígitos.';
+  if (email.isEmpty) {
+    errorMessage = 'El correo electrónico no puede estar vacío.';
   }
 
   emit(state.copyWith(
-    userEmail: phone,
+    userEmail: email,
     errors: {...state.errors, 'userEmail': errorMessage},
     isValid: _validateForm(),
   ));
 }
-
 
 void _onPasswordChanged(PasswordChanged event, Emitter<LoginState> emit) {
   final password = event.password;
@@ -116,11 +113,6 @@ void _onPasswordChanged(PasswordChanged event, Emitter<LoginState> emit) {
 
   if (password.isEmpty) {
     errorMessage = 'La contraseña no puede estar vacía.';
-  } else if (password.length < 8) {
-    errorMessage = 'La contraseña debe tener al menos 8 caracteres.';
-  } else if (!RegExp(r'^(?=.*[A-Z])(?=.*[a-z]).{8,}$').hasMatch(password)) {
-    errorMessage =
-        'La contraseña debe contener al menos una letra mayúscula y una letra minúscula.';
   }
 
   emit(state.copyWith(
