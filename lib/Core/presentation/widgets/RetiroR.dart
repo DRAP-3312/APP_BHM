@@ -11,20 +11,20 @@ class RetiroR extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Icon(
+              const Icon(
                 Icons.check_circle_outline,
                 size: 100.0,
                 color: Colors.orange,
               ),
-              SizedBox(height: 24),
-              Text(
+              const SizedBox(height: 24),
+              const Text(
                 'Retiro completado',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 48),
+              const SizedBox(height: 48),
               ElevatedButton(
                 onPressed: () {
                   // Define la acción al presionar el botón 'Listo'
@@ -33,9 +33,9 @@ class RetiroR extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white, backgroundColor: Colors.blue,
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 ),
-                child: Text('Listo'),
+                child: const Text('Listo'),
               ),
             ],
           ),

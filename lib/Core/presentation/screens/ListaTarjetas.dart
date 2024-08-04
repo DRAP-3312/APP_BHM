@@ -27,7 +27,7 @@ class _ListaTarjetasState extends State<ListaTarjetas> {
                           builder: (context) => const HomePage()));
                 },
                 icon: const Icon(Icons.arrow_back_ios, color: Colors.white)),
-            const Text('Lista de Tarjetas', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),),
+            const Text('Lista de Tarjetas', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),),
             Container(),
             Container(),
             Container(),

@@ -27,7 +27,7 @@ class _MontoServicio extends State<MontoServicio> {
   final TextEditingController _idUserController = TextEditingController();
   final TextEditingController _idAccountController = TextEditingController();
   final TextEditingController _referenceController = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
+  //final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -42,15 +42,15 @@ class _MontoServicio extends State<MontoServicio> {
   @override
   Widget build(BuildContext context) {
     final tokenStorage = TokenStorage();
-    _focusNode.requestFocus();
+    //_focusNode.requestFocus();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF16697A),
-        title: const Text(
-          'Cantidad a pagar',
-          style: TextStyle(
+        title: Text(
+          'Pago de servicio ${widget.servicio.name}',
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 25,
+            fontSize: 18,
             color: Colors.white,
           ),
         ),
@@ -92,11 +92,13 @@ class _MontoServicio extends State<MontoServicio> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    const Text('Cantidad a transferir', style: TextStyle(fontWeight: FontWeight.w300, color: Color.fromARGB(255, 83, 83, 83)),),
+                    const SizedBox(height: 5,),
                     TextField(
                       controller: _amountController,
-                      focusNode: _focusNode,
+                      // focusNode: _focusNode,
                       keyboardType:
-                          const TextInputType.numberWithOptions(decimal: true),
+                          const TextInputType.numberWithOptions(decimal: false),
                       style: const TextStyle(
                           fontSize: 40.0, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
@@ -186,11 +188,11 @@ class _MontoServicio extends State<MontoServicio> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.teal,
+                        backgroundColor: const Color(0xFF16697A),
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
-                      child: const Text('Confirmar Pago'),
+                      child: const Text('Pagar', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),

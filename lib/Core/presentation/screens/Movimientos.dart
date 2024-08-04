@@ -39,7 +39,7 @@ class _MovimientosState extends State<Movimientos> {
       appBar: AppBar(
         title: const Text('Movimientos recientes'),
         titleTextStyle: const TextStyle(
-            color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+            color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
         backgroundColor: const Color(0xFF16697A),
         leading: IconButton(
           icon: const Icon(

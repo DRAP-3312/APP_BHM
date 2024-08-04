@@ -9,8 +9,8 @@ class ServicioRepositoryImpl implements ServicioRepository {
   final Dio dio;
   final TokenStorage tokenStorage;
   final Logger logger = Logger();
-  final String urlServicios = 'http://localhost:3000/services';
-  final String urlInfo = 'http://localhost:3000/accounts/me';
+  final String urlServicios = 'https://apimoviles-production.up.railway.app/services';
+  final String urlInfo = 'https://apimoviles-production.up.railway.app/accounts/me';
   //'https://apimoviles-production.up.railway.app/services';
 
   ServicioRepositoryImpl(this.dio, this.tokenStorage);

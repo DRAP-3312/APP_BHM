@@ -46,13 +46,13 @@ class _TransferScreenState extends State<TransferScreen> {
           backgroundColor: const Color(0xFF16697A),
           iconTheme: const IconThemeData(color: Colors.white),
           title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 'Mis Contactos',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 18,
                   color: Colors.white,
                 ),
               ),

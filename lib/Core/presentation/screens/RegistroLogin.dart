@@ -64,18 +64,18 @@ class _RegistroLoginState extends State<RegistroLogin> {
               if (state.errors['submission'] != null &&
                   state.errors['submission']!.isNotEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text(
                         'Registro incorrecto, intentelo de nuevo, mas tarde'),
-                    duration: const Duration(seconds: 2),
+                    duration:  Duration(seconds: 2),
                   ),
                 );
               }
               if (state is RegistroLoginSuccess) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text('¡Registro exitoso!'),
-                    duration: const Duration(seconds: 3),
+                    duration:  Duration(seconds: 3),
                   ),
                 );
               }

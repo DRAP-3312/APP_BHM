@@ -26,13 +26,13 @@ class _MontoState extends State<Monto> {
         backgroundColor: const Color(0xFF16697A),
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
              Text(
               'Cantidad de retiro',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
+                  fontSize: 18,
                   color: Colors.white),
             ),
           ],

@@ -158,16 +158,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-Widget accionesRapidas(String accion) {
-  return Container(
-    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Text(
-        accion,
-        style: const TextStyle(fontSize: 18, color: Color(0xff16697A)),
-      ),
-      const Icon(Icons.arrow_forward, color: Color(0xff16697A))
-    ]),
-  );
-}

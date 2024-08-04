@@ -76,7 +76,6 @@ class _EditUserState extends State<EditUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //title:const Text('Editar Usuario'),
         backgroundColor: const Color(0xFF16697A),
         titleTextStyle: const TextStyle(color: Colors.white),
         iconTheme: const IconThemeData(color: Colors.white),

@@ -27,21 +27,21 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _conceptController = TextEditingController();
   final TextEditingController _ownerController = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
+  //final FocusNode _focusNode = FocusNode();
   final GlobalKey<FormState> _formKey =
       GlobalKey<FormState>(); 
 
   @override
   Widget build(BuildContext context) {
     final tokenStorage = TokenStorage();
-    _focusNode.requestFocus();
+    //_focusNode.requestFocus();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF16697A),
-        title: const Text('Cantidad a transferir',
-            style: TextStyle(
+        title:  Text('Transferencia a ${widget.usuario.nickname}',
+            style:const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 25,
+                fontSize: 18,
                 color: Colors.white)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -90,6 +90,7 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          const Text('Cantidad a transferir', style: TextStyle(fontWeight: FontWeight.w300, color: Color.fromARGB(255, 83, 83, 83)),),
           const SizedBox(height: 10),
           buildAmountInputField(),
           const SizedBox(height: 24),
@@ -136,10 +137,10 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
               }
             },
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal,
+                backgroundColor: const Color(0xFF16697A),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 16)),
-            child: const Text('Pagar'),
+            child: const Text('Pagar', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
           ),
         ],
       ),
@@ -165,8 +166,8 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
   Widget buildAmountInputField() {
     return TextField(
       controller: _amountController,
-      focusNode: _focusNode,
-      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+      //focusNode: _focusNode,
+      keyboardType: const TextInputType.numberWithOptions(decimal: false),
       style: const TextStyle(
           fontSize: 40.0,
           fontWeight: FontWeight.bold,

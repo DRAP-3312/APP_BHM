@@ -64,7 +64,7 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
         title: const Text(
           'Agregar Contacto',
           style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         backgroundColor: const Color(0xFF16697A),
         leading: IconButton(

@@ -43,13 +43,13 @@ class _ServicesState extends State<Services> {
         backgroundColor: const Color(0xFF16697A),
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [  
              Text(
               'Pago de Servicio',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 18,
                 color: Colors.white,
               ),
             ),

@@ -13,8 +13,8 @@ class LoginRepositoryImpl implements LoginRepository {
   final Dio dio;
   final Logger logger = Logger();
   final TokenStorage tokenStorage;
-  final String urlLogin = 'http://localhost:3000/auth/login';
-  final String urlInfo = 'http://localhost:3000/accounts/me';
+  final String urlLogin = 'https://apimoviles-production.up.railway.app/auth/login';
+  final String urlInfo = 'https://apimoviles-production.up.railway.app/accounts/me';
   //'https://apimoviles-production.up.railway.app/auth/login';
 
   LoginRepositoryImpl({required this.dio, required this.tokenStorage});

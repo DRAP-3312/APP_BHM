@@ -7,13 +7,12 @@ class HelpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:  const Center(child:  Text('¿Necesitas ayuda?', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),)), 
-      ),
       body: Container(
         margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
         child: ListView(
           children: [
+            const  Center(child:  Text('¿Necesitas ayuda?', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)),
+            const SizedBox(height: 10,),
             opcionHelp(Icons.call,'Hablar con mi asesor digital'),
             opcionHelp(Icons.payment,'Reportar tarjeta'),
             opcionHelp(Icons.history_edu,'Aclaraciones'),
