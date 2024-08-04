@@ -6,7 +6,6 @@ import 'package:bhm_app/Core/presentation/widgets/contactos/vistaCreateContacto.
 import 'package:bhm_app/Core/presentation/widgets/servicios/pagoTransfer.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_bloc.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_event.dart';
@@ -40,27 +39,27 @@ class _TransferScreenState extends State<TransferScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF16697A),
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Mis Contactos',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.white,
+    return BlocProvider(
+      create: (_) => _contactoBloc,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF16697A),
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Mis Contactos',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-      body: BlocProvider(
-        create: (_) => _contactoBloc,
-        child: BlocBuilder<ContactoBloc, ContactoState>(
+        body: BlocBuilder<ContactoBloc, ContactoState>(
           builder: (context, state) {
             if (state is ContactoStateInitial) {
               return const Center(child: CircularProgressIndicator());
@@ -115,7 +114,7 @@ class _TransferScreenState extends State<TransferScreen> {
                     ),
                   ),
                   Expanded(
-                    child: pagoTransfer(context, contacto),
+                    child: pagoTransfer(context, contacto, _contactoBloc),
                   ),
                 ],
               );

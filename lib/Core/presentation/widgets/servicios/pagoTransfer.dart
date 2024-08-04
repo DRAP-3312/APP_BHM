@@ -3,9 +3,9 @@ import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_bloc.dart'
 import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_event.dart';
 import 'package:bhm_app/Core/presentation/screens/PantallaTransferencia.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
+Widget pagoTransfer(
+    BuildContext context, List<Cuenta> targets, ContactoBloc contactoBloc) {
   return Container(
     padding: const EdgeInsets.all(5),
     margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
@@ -18,7 +18,7 @@ Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
         borderRadius: BorderRadius.circular(6.0),
       ),
       child: targets.isNotEmpty
-          ? opcionesContacto(context, targets)
+          ? opcionesContacto(context, targets, contactoBloc)
           : Center(
               child: Container(
               padding: const EdgeInsets.all(30),
@@ -43,7 +43,8 @@ Widget pagoTransfer(BuildContext context, List<Cuenta> targets) {
   );
 }
 
-Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
+Widget opcionesContacto(
+    BuildContext context, List<Cuenta> targets, ContactoBloc contactoBloc) {
   return ListView(
     children: List.generate(targets.length, (index) {
       return Column(
@@ -62,7 +63,7 @@ Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
               shadowColor: Colors.transparent,
               elevation: 0,
               shape: LinearBorder.bottom(
-                  side: const BorderSide(color: Colors.transparent)),
+                  side: const BorderSide(color: Color(0xFFEFEFEF))),
             ),
             child: Align(
               alignment: Alignment.centerLeft,
@@ -122,22 +123,60 @@ Widget opcionesContacto(BuildContext context, List<Cuenta> targets) {
                       ],
                     ),
                     IconButton(
-                      onPressed: (){
-                        BlocProvider.of<ContactoBloc>(context).add(DeleteContactoEvent(targets[index].id));
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              backgroundColor: Colors.white,
+                              title: const Text('Confirmar Eliminación', style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff16697A)),),
+                              content: const Text(
+                                '¿Realmente desea eliminar este Contacto?',
+                                style: TextStyle(fontWeight: FontWeight.w400),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pop(); // Cierra el diálogo
+                                  },
+                                  child: const Text(
+                                    'Cancelar',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w500,color: Color(0xffFF6347)),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    contactoBloc.add(
+                                        DeleteContactoEvent(targets[index].id));
+                                    Navigator.of(context)
+                                        .pop(); // Cierra el diálogo
+                                  },
+                                  child: const Text('Confirmar',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500, color: Color(0xffFF6347))),
+                                ),
+                              ],
+                            );
+                          },
+                        );
                       },
-                      icon: const Icon(Icons.delete, color: Colors.red, size: 20,),
-                    ),
-                    const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 25.0,
-                      color: Color(0xff16697A),
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                        size: 20,
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 10), // Espacio adicional entre elementos
+          const SizedBox(height: 10),
         ],
       );
     }),

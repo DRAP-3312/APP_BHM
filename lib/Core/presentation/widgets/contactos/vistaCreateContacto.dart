@@ -84,16 +84,6 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
             children: [
               const SizedBox(height: 8),
               _buildTextFormField(
-                  controller: _idUserController,
-                  labelText: 'Id user',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingrese un id';
-                    }
-                    return null;
-                  }),
-              const SizedBox(height: 16),
-              _buildTextFormField(
                   controller: _nicknameController,
                   labelText: 'Nickname',
                   validator: (value) {
