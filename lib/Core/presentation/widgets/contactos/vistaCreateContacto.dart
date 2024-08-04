@@ -28,6 +28,7 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
     super.initState();
     _idUserController.text = GlobalState().getUserId().toString();
   }
+
   @override
   void dispose() {
     _idUserController.dispose();
@@ -39,6 +40,7 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
   void _submitForm() {
     if (_formKey.currentState?.validate() ?? false) {
       final newContacto = Cuenta(
+          id: 0,
           id_user: int.parse(_idUserController.text),
           nickname: _nicknameController.text,
           account: _accountController.text,

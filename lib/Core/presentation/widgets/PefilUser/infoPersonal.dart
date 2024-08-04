@@ -45,7 +45,7 @@ Widget infoPersonal(BuildContext context, String target, String valor, bool edit
                   email: state.email,
                   phone: state.phone,
                   rfc: state.rfc,
-                  password: '', // Assuming password is not displayed and edited
+                  password: '', 
                   id_bank: state.id_bank,
                   //isValid: state.isValid,
                 ),
@@ -53,7 +53,7 @@ Widget infoPersonal(BuildContext context, String target, String valor, bool edit
             );
           },
           icon: const Icon(Icons.edit, color: Color(0xFF16697A)),
-        ) : const Icon(Icons.remove),
+        ) : const Icon(Icons.content_copy, color: Colors.transparent,),
       ],
     ),
   );

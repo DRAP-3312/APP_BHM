@@ -53,6 +53,14 @@ class _PerfilPageState extends State<PerfilPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('Mi credito: ', style: TextStyle(color: Color(0xffFF6347), fontSize: 15, fontWeight: FontWeight.w400),),
+                            Text('\$${GlobalState().getBalance().toString()}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
+                          ],
+                        ),
+                        const SizedBox(height: 20),
                         infoPersonal(context, 'Numero de cuenta', GlobalState().getCard().toString(), false),
                         infoPersonal(context,'Primer nombre', state.name, true),
                         infoPersonal(context,'RFC', state.rfc, true),

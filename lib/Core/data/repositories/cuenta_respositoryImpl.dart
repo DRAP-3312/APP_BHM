@@ -31,9 +31,31 @@ class CuentaRepositoryImpl implements CuentaRepository {
       final balance = infoCompletaUser.data['data']['balance'];
       GlobalState().setBalance(balance);
       List<dynamic> data = response.data['data'];
+      // print(data);
+      // print('XXXXXXXXXXXXXXXXXXXXXX');
+      // print(marchear);
       return data.map((json) => Cuenta.fromJson(json)).toList();
     } else {
       throw Exception(' Failed to load contacts');
+    }
+  }
+
+  Future<bool> deleteContacto(int id) async {
+     final token = await tokenStorage.getToken();
+    try {
+      final response = await dio.delete(
+        '$rutaContacto/$id',
+        options: Options(
+          headers: {'Authorization': 'Bearer $token'},
+        ),
+      );
+
+      if(response.statusCode ==200){
+        return true;
+      }
+      return false;
+    } catch (e) {
+      throw Exception('Error repo delete: $e');
     }
   }
 
