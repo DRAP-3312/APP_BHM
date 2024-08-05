@@ -171,6 +171,28 @@ class _MontoServicio extends State<MontoServicio> {
                     const Spacer(),
                     ElevatedButton(
                       onPressed: () {
+                        
+                        if (_amountController.text.isEmpty ||
+                            double.tryParse(_amountController.text) == null ||
+                            double.parse(_amountController.text) <= 0) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Por favor, ingrese un monto válido.'),
+                            ),
+                          );
+                          return;
+                        }
+
+                        
+                        if (_referenceController.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Por favor, ingrese una referencia.'),
+                            ),
+                          );
+                          return;
+                        }
+
                         try {
                           final payment = Payment(
                             id_service: int.parse(_idServiceController.text),

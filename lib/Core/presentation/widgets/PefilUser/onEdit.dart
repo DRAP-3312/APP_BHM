@@ -102,6 +102,8 @@ class _EditUserState extends State<EditUser> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingrese un nombre';
+                  } else if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                    return 'El nombre no debe contener números o caracteres especiales';
                   }
                   return null;
                 },
@@ -112,6 +114,8 @@ class _EditUserState extends State<EditUser> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingrese el nombre de usuario';
+                  } else if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                    return 'El usuario no debe contener números o caracteres especiales';
                   }
                   return null;
                 },
@@ -122,6 +126,8 @@ class _EditUserState extends State<EditUser> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingrese el email';
+                  } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                    return 'Por favor ingrese un email válido';
                   }
                   return null;
                 },
@@ -132,6 +138,8 @@ class _EditUserState extends State<EditUser> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingrese el número de teléfono';
+                  } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+                    return 'Por favor ingrese un número de teléfono válido de 10 dígitos';
                   }
                   return null;
                 },

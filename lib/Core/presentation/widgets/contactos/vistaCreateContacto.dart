@@ -1,8 +1,8 @@
-import 'package:bhm_app/service/globalUser.dart';
 import 'package:flutter/material.dart';
 import 'package:bhm_app/Core/domain/models/cuenta_model.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_bloc.dart';
 import 'package:bhm_app/Core/presentation/bloc/bloc_contacto/contacto_event.dart';
+import 'package:bhm_app/service/globalUser.dart';
 
 class CreateContactScreen extends StatefulWidget {
   final ContactoBloc contactoBloc;
@@ -34,19 +34,23 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
     _idUserController.dispose();
     _nicknameController.dispose();
     _accountController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _banknameController.dispose();
     super.dispose();
   }
 
   void _submitForm() {
     if (_formKey.currentState?.validate() ?? false) {
       final newContacto = Cuenta(
-          id: 0,
-          id_user: int.parse(_idUserController.text),
-          nickname: _nicknameController.text,
-          account: _accountController.text,
-          email: _emailController.text,
-          phone: _phoneController.text,
-          bankname: _banknameController.text);
+        id: 0,
+        id_user: int.parse(_idUserController.text),
+        nickname: _nicknameController.text,
+        account: _accountController.text,
+        email: _emailController.text,
+        phone: _phoneController.text,
+        bankname: _banknameController.text,
+      );
 
       try {
         widget.contactoBloc.add(CreateContactoEvent(newContacto));
@@ -80,58 +84,71 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
         child: Form(
           key: _formKey,
           child: ListView(
-            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 8),
               _buildTextFormField(
-                  controller: _nicknameController,
-                  labelText: 'Nickname',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Debe agregar un nickname';
-                    }
-                    return null;
-                  }),
+                controller: _nicknameController,
+                labelText: 'Nickname',
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Debe agregar un nickname';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 16),
               _buildTextFormField(
-                  controller: _accountController,
-                  labelText: 'Account',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Account no puede ir vacio';
-                    }
-                    return null;
-                  }),
+                controller: _accountController,
+                labelText: 'Account',
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Account no puede ir vacío';
+                  } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                    return 'Account debe contener solo números';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 16),
               _buildTextFormField(
-                  controller: _emailController,
-                  labelText: 'Email',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Email no puede ir vacio';
-                    }
-                    return null;
-                  }),
+                controller: _emailController,
+                labelText: 'Email',
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email no puede ir vacío';
+                  } else if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+                      .hasMatch(value)) {
+                    return 'Email no es válido';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 16),
               _buildTextFormField(
-                  controller: _phoneController,
-                  labelText: 'Phone',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Phone no puede ir vacio';
-                    }
-                    return null;
-                  }),
+                controller: _phoneController,
+                labelText: 'Phone',
+                keyboardType: TextInputType.phone,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Phone no puede ir vacío';
+                  } else if (!RegExp(r'^\+?[0-9]{7,15}$').hasMatch(value)) {
+                    return 'Phone no es un número válido';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 16),
               _buildTextFormField(
-                  controller: _banknameController,
-                  labelText: 'Bankname',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Bankname no puede ir vacio';
-                    }
-                    return null;
-                  }),
+                controller: _banknameController,
+                labelText: 'Bankname',
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Bankname no puede ir vacío';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
@@ -157,19 +174,20 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
           ),
         ),
       ),
-      //backgroundColor: const Color(0xFFEFEFEF),
     );
   }
 
   Widget _buildTextFormField({
     required TextEditingController controller,
     required String labelText,
+    TextInputType keyboardType = TextInputType.text,
     required String? Function(String?) validator,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
         controller: controller,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           labelText: labelText,
           labelStyle: const TextStyle(color: Color(0xFF16697A)),
