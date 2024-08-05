@@ -28,6 +28,12 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    super.initState();
+    _ownerController.text = widget.usuario.nickname.toString();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final tokenStorage = TokenStorage();
     return Scaffold(

@@ -34,7 +34,7 @@ class MovimientosRepositoryImpl implements MovimientosRepository {
       
       return {
         "services": responseServicios.data,
-        "transfer": responseTransferencias.data
+        "transfer": responseTransferencias.data,
       };
     }
     return Movimientos(servicios: [], transferencias: []);

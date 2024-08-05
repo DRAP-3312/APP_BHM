@@ -86,6 +86,8 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
           child: ListView(
             children: [
               const SizedBox(height: 8),
+              const Text('Ingrese un nombre para su usurio', style: TextStyle(fontWeight: FontWeight.w300),),
+              const SizedBox(height: 3,),
               _buildTextFormField(
                 controller: _nicknameController,
                 labelText: 'Nickname',
@@ -97,6 +99,8 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
                 },
               ),
               const SizedBox(height: 16),
+              const Text('Ingrese un numero de tarjeta', style: TextStyle(fontWeight: FontWeight.w300),),
+              const SizedBox(height: 3,),
               _buildTextFormField(
                 controller: _accountController,
                 labelText: 'Account',
@@ -115,6 +119,8 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
                 },
               ),
               const SizedBox(height: 16),
+              const Text('Ingresa su email', style: TextStyle(fontWeight: FontWeight.w300),),
+              const SizedBox(height: 3,),
               _buildTextFormField(
                 controller: _emailController,
                 labelText: 'Email',
@@ -129,6 +135,8 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
                 },
               ),
               const SizedBox(height: 16),
+              const Text('Ingrese un numero de celular', style: TextStyle(fontWeight: FontWeight.w300),),
+              const SizedBox(height: 3,),
               _buildTextFormField(
                 controller: _phoneController,
                 labelText: 'Phone',
@@ -143,6 +151,8 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
                 },
               ),
               const SizedBox(height: 16),
+              const Text('Ingrese el nombre del banco', style: TextStyle(fontWeight: FontWeight.w300),),
+              const SizedBox(height: 3,),
               _buildTextFormField(
                 controller: _banknameController,
                 labelText: 'Bankname',

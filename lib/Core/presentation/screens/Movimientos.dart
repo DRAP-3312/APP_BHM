@@ -97,7 +97,8 @@ class _MovimientosState extends State<Movimientos>
   }
 }
 
-Widget listaServicio(List<dynamic> servicios) {
+Widget listaServicio(List<dynamic> listservicios) {
+  List<dynamic> servicios = listservicios.reversed.toList();
   return Container(
     margin: const EdgeInsets.all(10),
     decoration: BoxDecoration(
@@ -134,7 +135,8 @@ Widget listaServicio(List<dynamic> servicios) {
   );
 }
 
-Widget listaTransfer(List<dynamic> transfers) {
+Widget listaTransfer(List<dynamic> listTrans) {
+  List<dynamic> transfers = listTrans.reversed.toList();
   return Container(
     margin: const EdgeInsets.all(10),
     decoration: BoxDecoration(
