@@ -106,6 +106,10 @@ class _CreateContactScreenState extends State<CreateContactScreen> {
                     return 'Account no puede ir vacío';
                   } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
                     return 'Account debe contener solo números';
+                  } else if (value.length < 13) {
+                    return 'Account debe tener al menos 13 caracteres';
+                  } else if (value.length > 18) {
+                    return 'Account debe tener como máximo 18 caracteres';
                   }
                   return null;
                 },

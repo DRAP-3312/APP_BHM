@@ -27,12 +27,10 @@ class _MontoServicio extends State<MontoServicio> {
   final TextEditingController _idUserController = TextEditingController();
   final TextEditingController _idAccountController = TextEditingController();
   final TextEditingController _referenceController = TextEditingController();
-  //final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    // Asignar valores iniciales a los controladores
     _idServiceController.text = widget.servicio.id.toString();
     _idUserController.text = GlobalState().getUserId().toString();
     _idAccountController.text = GlobalState().getIdAccount().toString();
@@ -42,7 +40,6 @@ class _MontoServicio extends State<MontoServicio> {
   @override
   Widget build(BuildContext context) {
     final tokenStorage = TokenStorage();
-    //_focusNode.requestFocus();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF16697A),
@@ -96,7 +93,6 @@ class _MontoServicio extends State<MontoServicio> {
                     const SizedBox(height: 5,),
                     TextField(
                       controller: _amountController,
-                      // focusNode: _focusNode,
                       keyboardType:
                           const TextInputType.numberWithOptions(decimal: false),
                       style: const TextStyle(
@@ -171,7 +167,6 @@ class _MontoServicio extends State<MontoServicio> {
                     const Spacer(),
                     ElevatedButton(
                       onPressed: () {
-                        
                         if (_amountController.text.isEmpty ||
                             double.tryParse(_amountController.text) == null ||
                             double.parse(_amountController.text) <= 0) {
@@ -183,7 +178,17 @@ class _MontoServicio extends State<MontoServicio> {
                           return;
                         }
 
-                        
+                        double amount = double.parse(_amountController.text);
+                        double balance = double.parse(GlobalState().getBalance().toString());
+                        if (amount > balance) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('No puede exceder el límite de su cuenta.'),
+                            ),
+                          );
+                          return;
+                        }
+
                         if (_referenceController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
