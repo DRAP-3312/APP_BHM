@@ -30,7 +30,7 @@ class _PantallaTransferenciaState extends State<PantallaTransferencia> {
   @override
   void initState() {
     super.initState();
-    _ownerController.text = widget.usuario.nickname.toString();
+    _ownerController.text = GlobalState().getNameUser().toString();
   }
 
   @override
