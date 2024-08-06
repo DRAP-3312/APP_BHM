@@ -4,7 +4,9 @@ import 'package:bhm_app/Core/presentation/bloc/bloc_movimientos/movimientos_even
 import 'package:bhm_app/Core/presentation/bloc/bloc_movimientos/movimientos_state.dart';
 import 'package:bhm_app/Core/presentation/screens/HomePage.dart';
 import 'package:bhm_app/Core/presentation/shared/token_stg.dart';
+import 'package:bhm_app/service/globalUser.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 
@@ -154,7 +156,19 @@ Widget listaTransfer(List<dynamic> listTrans) {
           margin: const EdgeInsets.symmetric(vertical: 5),
           child: ExpansionTile(
             title: titulos('Concepto: ',transfer['concept'] != null && transfer['concept'].toString().isNotEmpty ? transfer['concept'] : 'desconocido'),
-            subtitle: titulos('Monto: \$', transfer['amount'] != null && transfer['amount'].toString().isNotEmpty ? transfer['amount'].toString() : 'desconocido'),         
+            subtitle: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                titulos('Monto: \$', transfer['amount'] != null && transfer['amount'].toString().isNotEmpty ? transfer['amount'].toString() : 'desconocido'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    transfer['sender_account'].toString() == GlobalState().getCard().toString() ? const Text('Enviado ', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w200),) : const Text('Recibido ', style: TextStyle(color: Colors.green, fontWeight: FontWeight.w200),),
+                    transfer['sender_account'].toString() == GlobalState().getCard().toString() ? const Icon(Icons.arrow_upward, color: Colors.red,): const Icon(Icons.arrow_downward, color: Colors.green,),
+                  ],
+                )
+              ],
+            ),         
             children: <Widget>[
               ListTile(
                 title: const Text('Detalles de la transferencia', style: TextStyle(color: Color.fromARGB(255, 114, 114, 114), fontSize: 12)),
@@ -162,14 +176,15 @@ Widget listaTransfer(List<dynamic> listTrans) {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     detalles('Propietario: ', transfer['owner'] != null && transfer['owner'].toString().isNotEmpty ? transfer['owner'] : 'desconocido'),
-                    detalles('Mi card: ', transfer['sender_account'].toString()),
-                    detalles('Card receptor: ', transfer['receptor_account'].toString())
+                    detalles('Sender card: ', transfer['sender_account'].toString()),
+                    detalles('Receptor card: ', transfer['receptor_account'].toString()),
                   ],
                 ),
               ),
             ],
           ),
         );
+        
       }).toList(),
     ),
   );
